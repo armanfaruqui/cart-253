@@ -56,7 +56,7 @@ ellipse(circle1.x, circle1.y, circle1.size);
 circle2.x = constrain(circle2.x, 250, 500);
 circle2.x -= circle2.speed
 circle2.size = constrain(circle2.size, 0, 250)
-circle2.size += 1
+circle2.size += 0.7
 fill(circle2.fill,circle2.alpha);
 ellipseMode(CENTER);
 ellipse(circle2.x, circle2.y, circle2.size);
