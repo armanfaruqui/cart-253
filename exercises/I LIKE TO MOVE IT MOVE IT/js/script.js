@@ -1,7 +1,7 @@
 /**************************************************
 Moving Shapes
 Arman Faruqui
-RUB THE SHAKING BALL
+RUB THE SHAKING CIRCLE
 **************************************************/
 
 // objects and variables
