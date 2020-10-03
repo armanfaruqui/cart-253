@@ -27,7 +27,7 @@ let d;
 // Description of setup() goes here.
 function setup() {
   createCanvas(640, 360);
-  background(0);
+
   circle1.x = (1 / 3) * width;
   circle2.x = (2 / 3) * width;
   circle1.y = (1 / 2) * height;
@@ -40,6 +40,7 @@ function setup() {
 }
 
 function draw() {
+  background(0);
 
   if (state === 'title') {
     titleText();
@@ -98,7 +99,7 @@ function draw() {
     text("<3", width / 2, height / 2);
   }
 
-  function mousePressed() {
+  function keyPressed() {
     if (state === 'title') {
       state = 'action'
     }
