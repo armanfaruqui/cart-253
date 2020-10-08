@@ -155,8 +155,7 @@ function draw() {
       ellipse(droppedhook.x, droppedhook.y, hook.size);
       stroke(150)
       line(droppedhook.x, droppedhook.y, mouseX + 70, mouseY - 70)
-    dropx = droppedhook.x
-    dropy = droppedhook.y
+
     }
   }
 
@@ -172,13 +171,13 @@ function draw() {
   }
 
   function reelFish1() {
-    fish1.x = dropx
-    fish1.y = dropy
+    fish1.x = droppedhook.x
+    fish1.y = droppedhook.y
 }
 
   function reelFish2() {
-    fish2.x = dropx
-    fish2.y = dropy
+    fish2.x = droppedhook.x
+    fish2.y = droppedhook.y
 }
 
   function catchFish1() {
