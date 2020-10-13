@@ -32,12 +32,19 @@ let hook = {
   size: 10,
 };
 
+let droppedhook = {
+  x: undefined,
+  y: undefined
+};
+
 let hookDown = 0;
 
 let rod;
 function preload() {
   rod = loadImage("assets/images/rod.png");
 }
+let offscreenx
+let offscreeny
 
 
 
@@ -55,26 +62,36 @@ let offscreeny = [-100, height + 100]
 // Description of draw() goes here.==========================================
 function draw() {
   background(0);
-  console.log(`hookDown: ${hookDown}`);
+
+  console.log(`fish2.caught: ${fish2.caught}`);
+  console.log(`fish2.reeled: ${fish2.reeled}`);
 
   imageMode(CENTER);
   image(rod, mouseX, mouseY, 200, 200);
   setHook();
   dropHook();
 
-  spawnFish1();
-  spawnFish2();
-
+  moveFish1();
+  moveFish2();
+  checkDist();
   checkOffScreen();
 
-  if (fish1.reeled = 1) {
+  if (fish1.reeled === 1) {
     reelFish1()
+  }
+  if (fish1.caught === 1) {
     catchFish1()
+    fish1.caught = 0
   }
-  else if (fish2.reeled = 1) {
+  if (fish2.reeled === 1) {
     reelFish2()
-    catchFish2()
   }
+  if (fish2.caught === 1) {
+      catchFish2()
+      fish2.caught = 0
+    }
+
+
 }
   //Sets spawn position of fish 1
   function setFish1() {
@@ -83,7 +100,7 @@ function draw() {
     fish1.size = random(40, 60);
   }
   // Controls fish 1 movement
-  function spawnFish1() {
+  function moveFish1() {
     let change = random();
     if (change < 0.05) {
       fish1.vx = random(-fish1.speed, fish1.speed);
@@ -91,7 +108,7 @@ function draw() {
     }
     fish1.x += fish1.vx;
     fish1.y += fish1.vy;
-    fill(255);
+    fill(0);
     noStroke();
     ellipse(fish1.x, fish1.y, fish1.size);
   }
@@ -102,7 +119,7 @@ function draw() {
     fish2.size = random(40, 60);
   }
   // Controls fish 2 movement
-  function spawnFish2() {
+  function moveFish2() {
     let change = random();
     if (change < 0.05) {
       fish2.vx = random(-fish2.speed, fish2.speed);
@@ -110,7 +127,7 @@ function draw() {
     }
     fish2.x += fish2.vx;
     fish2.y += fish2.vy;
-    fill(255);
+    fill(0);
     noStroke();
     ellipse(fish2.x, fish2.y, fish2.size);
   }
@@ -141,17 +158,16 @@ function draw() {
       hook.y = mouseY - 70;
       fill(255, 0, 0);
       ellipse(hook.x, hook.y, hook.size);
-      pop();
+    pop();
     }
   }
   // Drops hook into water
   function dropHook() {
     if (hookDown === 1) {
-      let droppedhook = {
-        x: hook.x,
-        y: hook.y,
-      };
-      fill(255, 0, 0);
+      droppedhook.x = hook.x;
+      droppedhook.y = hook.y;
+
+    fill(255, 0, 0);
       ellipse(droppedhook.x, droppedhook.y, hook.size);
       stroke(150)
       line(droppedhook.x, droppedhook.y, mouseX + 70, mouseY - 70)
@@ -165,7 +181,7 @@ function draw() {
     if (d1 < 20) {
       fish1.reeled = 1
     }
-    else if (d2 < 20) {
+    if (d2 < 20) {
       fish2.reeled = 1
     }
   }
@@ -181,13 +197,15 @@ function draw() {
 }
 
   function catchFish1() {
-    fish1.x = random(offscreenx)
-    fish1.y = random(offscreeny)
+    fish1.x = width + 100
+    fish1.y = height + 100
+    fish1.reeled = 0
   }
 
   function catchFish2() {
-    fish2.x = random(offscreenx)
-    fish2.y = random(offscreeny)
+    fish2.x = -100
+    fish2.y = height + 100
+    fish2.reeled = 0
   }
 
 
@@ -198,10 +216,12 @@ function draw() {
     } else if (hookDown === 1) {
       hookDown = 0;
     }
-    if (fish1.reeled = 1) {
+    if (fish1.reeled === 1) {
       fish1.caught = 1
+
     }
-    if (fish2.reeled = 1) {
+    if (fish2.reeled === 1) {
       fish2.caught = 1
+
     }
   }
