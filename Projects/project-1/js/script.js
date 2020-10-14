@@ -1,9 +1,9 @@
 /**************************************************
-Template p5 project
-Pippin Barr
+Fishing
+Arman Faruqui
 Song: https://seventhsage.bandcamp.com/track/lofi-dire-dire-docks-to-study-play-mario-64-to
 Code for fireflies excavated from: https://github.com/anushreedas/fireflies
-Here is a description of this template p5 project.
+Art inspired by Made in Abyss, Houseki no Kuni, and Mob Psycho 100
 **************************************************/
 p5.disableFriendlyErrors = true; // disables FES
 
@@ -184,7 +184,7 @@ function draw() {
   rect(980, -10, 300, 60);
   fill(255, 150)
   textSize(12);
-  text("Click to drop and reel back your hook", 988, 12);
+  text("Click to drop and reel back your hook", 988, 12); //Displays instructions
   text("Hold WASD to bait the fish towards you", 988, 30)
   text("if it comes close enough", 988, 42);
   pop()
