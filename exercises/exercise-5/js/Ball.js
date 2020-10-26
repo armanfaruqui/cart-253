@@ -1,7 +1,6 @@
 class Ball {
-
   constructor(xy) {
-    this.x = width/2;
+    this.x = width / 2;
     this.y = -300;
     this.vx = 0;
     this.vy = 0;
@@ -30,15 +29,40 @@ class Ball {
   }
 
   bounce(paddle) {
-    if (this.x > paddle.x - paddle.width/2 &&
-        this.x < paddle.x + paddle.width/2 &&
-        this.y + this.size/2 > paddle.y - paddle.height/2 &&
-        this.y - this.size/2 < paddle.y + paddle.height/2) {
+    if (
+      this.x > paddle.x - paddle.width / 2 &&
+      this.x < paddle.x + paddle.width / 2 &&
+      this.y + this.size / 2 > paddle.y - paddle.height / 2 &&
+      this.y - this.size / 2 < paddle.y + paddle.height / 2
+    ) {
       this.vy = -this.vy;
       this.ay = 0;
-      carpet.clean = 1
-      this.bounceCount += 1
-      this.gravityForce +=  0.00005
+      carpet.clean = 1;
+      food.full = 0;
+      this.bounceCount += 1;
+      this.gravityForce += 0.00005;
+    } else if (
+      this.x > paddle.x - paddle.width / 2 &&
+      this.x < paddle.x + paddle.width / 2 &&
+      this.y + this.size / 2 > paddle.y - paddle.height / 2 &&
+      this.y - this.size / 2 < paddle.y + paddle.height / 2 &&
+      food.full === 0
+    ) {
+    } else if (
+      this.x > paddle.x - paddle.width / 2 &&
+      this.x < paddle.x + paddle.width / 2 &&
+      this.y + this.size / 2 > paddle.y - paddle.height / 2 &&
+      this.y - this.size / 2 < paddle.y + paddle.height / 2 &&
+      carpet.clean === 0
+    ) {
+    } else if (
+      this.x > paddle.x - paddle.width / 2 &&
+      this.x < paddle.x + paddle.width / 2 &&
+      this.y + this.size / 2 > paddle.y - paddle.height / 2 &&
+      this.y - this.size / 2 < paddle.y + paddle.height / 2 &&
+      food.full === 0 &&
+      carpet.clean === 0
+    ) {
     }
   }
 

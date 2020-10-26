@@ -1,21 +1,14 @@
-let carpetClean;
-let carpetDirty;
-let cleaner;
-
-function preload() {
-  carpetClean = loadImage("assets/images/carpet.png");
-  carpetDirty = loadImage("assets/images/carpet dirty.png");
-  cleaner = loadImage("assets/images/cleaner.png");
-}
-
 class Carpet {
-  constructor() {
+  constructor(carpclean, carpdirty, cleaner) {
     this.x = 1000;
     this.y = 100;
     this.height = 300;
     this.width = 250;
     this.clean = 0;
     this.selected = 0;
+    this.carpet = carpclean;
+    this.carpetdirty = carpdirty;
+    this.cleaner = cleaner;
   }
 
   display() {

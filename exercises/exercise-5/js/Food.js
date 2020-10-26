@@ -1,17 +1,14 @@
-function preload() {
-  ketchup = loadImage("assets/images/ketchup.png");
-  bowl = loadImage("assets/images/bowl.png");
-  bowlfull = loadImage("assets/images/bowlfull.png");
-}
-
 class Food {
-  constructor() {
+  constructor(bowl, bowlfull, ketchup) {
     this.x = 200;
     this.y = 100;
     this.height = 250;
     this.width = 250;
-    this.full = 0;
+    this.full = 1;
     this.selected = 0;
+    this.bowl = bowl;
+    this.bowlfull = bowlfull;
+    this.ketchup = ketchup;
   }
 
   display() {
@@ -21,17 +18,17 @@ class Food {
       image(bowlfull, this.x, this.y, this.width, this.height);
     }
     if (this.selected === 0) {
-      image(ketchup, 1000, height - 100, 50, 100);
+      image(ketchup, 1000, height - 100, 100, 100);
     } else if (this.selected === 1) {
-      image(ketchup, mouseX, mouseY, 50, 100);
+      image(ketchup, mouseX, mouseY, 100, 100);
     }
   }
 
   mousePressed() {
     if (
       this.selected === 0 && //Selects ketchup
-      mouseX > 100 &&
-      mouseX < 150 &&
+      mouseX > 1000 &&
+      mouseX < 1100 &&
       mouseY > height - 150
     ) {
       this.selected = 1;
@@ -44,7 +41,7 @@ class Food {
       mouseY > this.y &&
       mouseY < this.y + this.height
     ) {
-      this.clean = 0;
+      this.full = 1;
       this.selected = 0;
     }
   }
