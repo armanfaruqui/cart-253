@@ -57,6 +57,7 @@ function setup() {
 // Description of draw() goes here.
 function draw() {
   background(0);
+  console.log(state)
 
   if (state === "start") {
     instructions();
@@ -82,7 +83,7 @@ function draw() {
     carpet.display();
     food.display();
 
-    checkIfMissed()
+    ball.checkIfMissed()
   }
  else if (state === "neglect"){
    neglectedChild();
@@ -113,7 +114,7 @@ function instructions() {
 }
 
 function checkIfMissed() {
-  if (ball.y > windowHeight){
+  if (ball.y > 500 && state === 'game'){
     state = "neglect"
   }
 }

@@ -41,28 +41,6 @@ class Ball {
       food.full = 0;
       this.bounceCount += 1;
       this.gravityForce += 0.00005;
-    } else if (
-      this.x > paddle.x - paddle.width / 2 &&
-      this.x < paddle.x + paddle.width / 2 &&
-      this.y + this.size / 2 > paddle.y - paddle.height / 2 &&
-      this.y - this.size / 2 < paddle.y + paddle.height / 2 &&
-      food.full === 0
-    ) {
-    } else if (
-      this.x > paddle.x - paddle.width / 2 &&
-      this.x < paddle.x + paddle.width / 2 &&
-      this.y + this.size / 2 > paddle.y - paddle.height / 2 &&
-      this.y - this.size / 2 < paddle.y + paddle.height / 2 &&
-      carpet.clean === 0
-    ) {
-    } else if (
-      this.x > paddle.x - paddle.width / 2 &&
-      this.x < paddle.x + paddle.width / 2 &&
-      this.y + this.size / 2 > paddle.y - paddle.height / 2 &&
-      this.y - this.size / 2 < paddle.y + paddle.height / 2 &&
-      food.full === 0 &&
-      carpet.clean === 0
-    ) {
     }
   }
 
@@ -71,6 +49,14 @@ class Ball {
     fill(255, 50, 50);
     stroke(0);
     ellipse(this.x, this.y, this.size);
+    console.log(this.y)
     pop();
   }
+
+  checkIfMissed(){
+    if (this.y > 700) {
+      state = "neglect"
+    }
+  }
+
 }
