@@ -10,8 +10,8 @@ Here is a description of this template p5 project.
 let paddle;
 let carpet;
 let food;
-let ball;
 
+//object variables
 let carpetClean;
 let carpetDirty;
 let cleaner;
@@ -41,12 +41,11 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-  paddle = new Paddle(300, 20);
+  paddle = new Paddle(50, 20);
   carpet = new Carpet(carpetClean, carpetDirty, cleaner);
   food = new Food(bowl, bowlfull, ketchup);
-  ball = new Ball()
 
-  for (let i = 0; i < numballs; i++) {
+  for (let i = 0; i < numballs; i++) {    //ball loop
     let x = random(0, width);
     let y = random(-400, -100);
     let ball = new Ball(x, y);
@@ -57,7 +56,6 @@ function setup() {
 // Description of draw() goes here.
 function draw() {
   background(0);
-  console.log(state)
 
   if (state === "start") {
     instructions();
@@ -72,22 +70,27 @@ function draw() {
     paddle.move();
     paddle.display();
 
-    for (let i = 0; i < balls.length; i++) {
+    for (let i = 0; i < balls.length; i++) { //ball loop
       let ball = balls[i];
       ball.gravity(ball.gravityForce);
       ball.move();
       ball.bounce(paddle);
       ball.display();
+      ball.checkIfMissed();
+      ball.checkIfStarved();
+      ball.checkIfDirty();
+      ball.reset();
     }
 
     carpet.display();
     food.display();
-
-    ball.checkIfMissed()
+  } else if (state === "neglect") {
+    neglectedChild();
+  } else if (state === "starved") {
+    hungryChild();
+  } else if (state === "dirty") {
+    stinkyChild();
   }
- else if (state === "neglect"){
-   neglectedChild();
- }
 }
 
 function mousePressed() {
@@ -98,38 +101,51 @@ function mousePressed() {
   }
 }
 
-function instructions() {
+function instructions() { //displays instructions
   push();
   fill(255);
   textSize(20);
   text(
-    " 27th May 2023, Monday, 13:48 PM It's exam season season in this household Make sure there is food available and a clean environment each time there is a study session",
+    " 27th May 2023, Monday, 13:48 PM It's exam season season in this household .Make sure there is food available and a clean environment each time there is a study session. Good luck parent",
     910,
     windowHeight / 2 + 150,
     350,
     500
   );
+}
 
+function neglectedChild() { //displays loss message
+  push();
+  text(
+    "You missed a study session. Your child can no longer get into Harvard. Is it really still your child?",
+    windowWidth / 2 - 200,
+    windowHeight / 2,
+    350,
+    500
+  );
   pop();
 }
 
-function checkIfMissed() {
-  if (ball.y > 500 && state === 'game'){
-    state = "neglect"
-  }
-}
-
-function neglectedChild(){
+function stinkyChild() { //displays loss message
   push();
-  fill(255);
-  textSize(20);
   text(
-    "You neglected your childs basic needs. You definetly don't have what it takes to be a parent",
-    windowWidth / 2,
+    "Your child developed a crippling rash from uncleaned ketchup",
+    windowWidth / 2 - 200,
     windowHeight / 2,
     350,
-    350
+    500
   );
+  pop();
+}
 
+function hungryChild() { //displays loss message
+  push();
+  text(
+    "Your child had to be hospitalized from malnutrition. If only he was given his meal on time",
+    windowWidth / 2 - 200,
+    windowHeight / 2,
+    350,
+    500
+  );
   pop();
 }

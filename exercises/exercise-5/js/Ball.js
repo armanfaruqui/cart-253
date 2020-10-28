@@ -10,7 +10,8 @@ class Ball {
     this.size = 50;
     this.active = true;
     this.bounceCount = 0;
-    this.gravityForce = 0.0001;
+    this.gravityForce = 0.0005;
+    this.d = undefined;
   }
 
   gravity(force) {
@@ -37,12 +38,18 @@ class Ball {
     ) {
       this.vy = -this.vy;
       this.ay = 0;
-      carpet.clean = 1;
-      food.full = 0;
-      this.bounceCount += 1;
       this.gravityForce += 0.00005;
+      this.bounceCount += 1
     }
   }
+
+  reset(){
+    let d = dist(this.x, this.y, mouseX, mouseY)
+    if (this.bounceCount > 0 && d < 50 && this.vy < 0) {
+      food.full = 0
+      carpet.clean = 1
+  }
+}
 
   display() {
     push();
@@ -54,9 +61,33 @@ class Ball {
   }
 
   checkIfMissed(){
-    if (this.y > 700) {
+    if (this.y > windowHeight && state === 'game') {
       state = "neglect"
     }
   }
 
+  checkIfStarved(){
+    if (
+      this.x > paddle.x - paddle.width / 2 &&
+      this.x < paddle.x + paddle.width / 2 &&
+      this.y + this.size / 2 > paddle.y - paddle.height / 2 &&
+      this.y - this.size / 2 < paddle.y + paddle.height / 2 &&
+      food.full === 0
+    ) {
+      state = "starved"
+  }
+
+}
+
+  checkIfDirty() {
+    if (
+      this.x > paddle.x - paddle.width / 2 &&
+      this.x < paddle.x + paddle.width / 2 &&
+      this.y + this.size / 2 > paddle.y - paddle.height / 2 &&
+      this.y - this.size / 2 < paddle.y + paddle.height / 2 &&
+      carpet.clean === 1
+    ) {
+      state = "dirty"
+  }
+  }
 }

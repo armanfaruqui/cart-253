@@ -20,7 +20,7 @@ display() {
   rect(this.x, this.y, this.width, this.height);
   fill(255)
   textSize(18)
-  text("Maths101", this.x - 120, this.y + 5)
+  text("Maths101 -->", this.x - 150, this.y + 5)
   pop();
 }
 

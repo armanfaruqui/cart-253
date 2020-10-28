@@ -22,6 +22,7 @@ class Food {
     } else if (this.selected === 1) {
       image(ketchup, mouseX, mouseY, 100, 100);
     }
+    console.log(this.full)
   }
 
   mousePressed() {

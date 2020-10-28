@@ -22,6 +22,7 @@ class Carpet {
     } else if (this.selected === 1) {
       image(cleaner, mouseX, mouseY, 50, 100);
     }
+
   }
 
   mousePressed() {
