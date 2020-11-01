@@ -44,7 +44,7 @@ function preload() {
 
 function setup() {
   createCanvas(507, 507);
-  player_sprite = createSprite(200, 200, 42, 78);
+  player_sprite = createSprite(200, 200, 42, 42);
   player_sprite.addAnimation("stand", player_stand);
   player_sprite.addAnimation("walkDown", player_walkDown);
   player_sprite.addAnimation("standLeft", player_standLeft);
@@ -53,9 +53,12 @@ function setup() {
   player_sprite.addAnimation("walkRight", player_walkRight);
   player_sprite.addAnimation("standUp", player_standUp);
   player_sprite.addAnimation("walkUp", player_walkUp);
+  player_sprite.setCollider('rectangle', 0, 20, 22, 35)
+  player_sprite.depth = 5
 
-  bed_sprite = createSprite(370, 350, 42, 10);
+  bed_sprite = createSprite(370, 350, 12, 10);
   bed_sprite.addAnimation("bed", bed);
+  bed_sprite.depth = 1
 }
 
 function draw() {
@@ -106,6 +109,15 @@ function movePlayer() {
       }
     }
     player_sprite.collide(bed_sprite)
+    player_sprite.debug = mouseIsPressed
+    if(player_sprite.position.x < 120)
+      player_sprite.position.x = 120;
+    if(player_sprite.position.y < 150)
+      player_sprite.position.y = 150;
+    if(player_sprite.position.x > 380)
+      player_sprite.position.x = 380;
+    if(player_sprite.position.y > 450)
+      player_sprite.position.y = 450;
   }
 
 function displayBG() {
