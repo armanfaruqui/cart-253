@@ -1,6 +1,4 @@
-//animations like p5 images should be stored in variables
-//in order to be displayed during the draw cycle
-let player_stand;
+let player_stand; //Player variables
 let player_walkDown;
 let player_sprite;
 let player_standLeft;
@@ -9,14 +7,15 @@ let player_standRight;
 let player_walkRight;
 let player_standup;
 let player_walkup;
-let direction = 'down'
+let direction = "down";
 
-let bed_sprite
+let phone;  //Phone variables
+let phoneScreen;
 
-//it's advisable (but not necessary) to load the images in the preload function
-//of your sketch otherwise they may appear with a little delay
+let bed_sprite; //Object variables
+
 function preload() {
-  //create an animation from a sequence of numbered images
+  //creates an animation from a sequence of numbered images
   player_stand = loadAnimation("assets/images/main/main-walk001.png");
   player_walkDown = loadAnimation(
     "assets/images/main/main-walk001.png",
@@ -27,22 +26,27 @@ function preload() {
     "assets/images/main/main-walk-left001.png",
     "assets/images/main/main-walk-left003.png"
   );
-  player_standRight = loadAnimation("assets/images/main/main-walk-right001.png");
+  player_standRight = loadAnimation(
+    "assets/images/main/main-walk-right001.png"
+  );
   player_walkRight = loadAnimation(
     "assets/images/main/main-walk-right001.png",
     "assets/images/main/main-walk-right003.png"
   );
-    player_standUp = loadAnimation("assets/images/main/main-walk-up001.png");
-    player_walkUp = loadAnimation(
-      "assets/images/main/main-walk-up001.png",
-      "assets/images/main/main-walk-up004.png"
+  player_standUp = loadAnimation("assets/images/main/main-walk-up001.png");
+  player_walkUp = loadAnimation(
+    "assets/images/main/main-walk-up001.png",
+    "assets/images/main/main-walk-up004.png"
   );
+  //Bed sprite
+  bg_bedroom = loadImage("assets/images/interior/demo bg.png");
+  bed = loadAnimation("assets/images/interior/bed.png");
 
-  bg_bedroom = loadImage("assets/images/interior/demo bg.png")
-  bed = loadAnimation("assets/images/interior/bed.png")
+  phoneScreen = loadImage("assets/images/phone/screen.png");
 }
 
 function setup() {
+  //==========================================================================================
   createCanvas(507, 507);
   player_sprite = createSprite(200, 200, 42, 42);
   player_sprite.addAnimation("stand", player_stand);
@@ -53,82 +57,102 @@ function setup() {
   player_sprite.addAnimation("walkRight", player_walkRight);
   player_sprite.addAnimation("standUp", player_standUp);
   player_sprite.addAnimation("walkUp", player_walkUp);
-  player_sprite.setCollider('rectangle', 0, 20, 22, 35)
-  player_sprite.depth = 5
+  player_sprite.setCollider("rectangle", 0, 20, 22, 35);
+  player_sprite.depth = 5; //Visualize depth as photoshop layers
 
   bed_sprite = createSprite(370, 350, 12, 10);
   bed_sprite.addAnimation("bed", bed);
-  bed_sprite.depth = 1
+  bed_sprite.depth = 1;
+
+  phone = new Phone();
 }
 
 function draw() {
+  //===========================================================================================
   clear();
   background(100);
-  displayBG()
-  displayBed()
+  displayBG();
+  displayBed();
+
   movePlayer();
 
+  phone.display();
+
+  function keyPressed() {
+    if (keyCode === 32) {
+      phone.access();
+    }
+  }
+  console.log(phone.selected)
   drawSprites();
-}
+} //============================================================================================================
 
 function movePlayer() {
-  if (keyIsDown(LEFT_ARROW) && !keyIsDown(DOWN_ARROW) && !keyIsDown(RIGHT_ARROW) && !keyIsDown(UP_ARROW)) {
+  if (keyIsDown(65) && !keyIsDown(83) && !keyIsDown(68) && !keyIsDown(87)) {
     player_sprite.changeAnimation("walkLeft");
     player_sprite.velocity.x = -2.4;
-    direction = 'left'
-  }
-  else if (keyIsDown(DOWN_ARROW) && !keyIsDown(LEFT_ARROW) && !keyIsDown(RIGHT_ARROW) && !keyIsDown(UP_ARROW)) {
-   player_sprite.changeAnimation("walkDown");
-   player_sprite.velocity.y = 2;
-   direction = 'down'
-  }
-  else if (keyIsDown(RIGHT_ARROW) && !keyIsDown(DOWN_ARROW) && !keyIsDown(LEFT_ARROW) && !keyIsDown(UP_ARROW)) {
+    direction = "left";
+  } else if (
+    keyIsDown(83) &&
+    !keyIsDown(65) &&
+    !keyIsDown(68) &&
+    !keyIsDown(87)
+  ) {
+    player_sprite.changeAnimation("walkDown");
+    player_sprite.velocity.y = 2;
+    direction = "down";
+  } else if (
+    keyIsDown(68) &&
+    !keyIsDown(83) &&
+    !keyIsDown(65) &&
+    !keyIsDown(87)
+  ) {
     player_sprite.changeAnimation("walkRight");
     player_sprite.velocity.x = 2.4;
-    direction = 'right'
-  }
-  else if (keyIsDown(UP_ARROW) && !keyIsDown(DOWN_ARROW) && !keyIsDown(RIGHT_ARROW) && !keyIsDown(LEFT_ARROW)) {
+    direction = "right";
+  } else if (
+    keyIsDown(87) &&
+    !keyIsDown(83) &&
+    !keyIsDown(68) &&
+    !keyIsDown(65)
+  ) {
     player_sprite.changeAnimation("walkUp");
     player_sprite.velocity.y = -2;
-    direction = 'up'
-  }
-  else {
+    direction = "up";
+  } else {
     player_sprite.velocity.x = 0;
     player_sprite.velocity.y = 0;
-    if (direction === 'down'){
+    if (direction === "down") {
       player_sprite.changeAnimation("stand");
-      }
-    else if (direction === 'up'){
+    } else if (direction === "up") {
       player_sprite.changeAnimation("standUp");
-      }
-    else if (direction === 'right'){
+    } else if (direction === "right") {
       player_sprite.changeAnimation("standRight");
-      }
-    else if (direction === 'left') {
+    } else if (direction === "left") {
       player_sprite.changeAnimation("standLeft");
-      }
     }
-    player_sprite.collide(bed_sprite)
-    player_sprite.debug = mouseIsPressed
-    if(player_sprite.position.x < 120)
-      player_sprite.position.x = 120;
-    if(player_sprite.position.y < 150)
-      player_sprite.position.y = 150;
-    if(player_sprite.position.x > 380)
-      player_sprite.position.x = 380;
-    if(player_sprite.position.y > 450)
-      player_sprite.position.y = 450;
   }
+  player_sprite.collide(bed_sprite);
+  //player_sprite.debug = mouseIsPressed
+  if (player_sprite.position.x < 120) player_sprite.position.x = 120;
+  if (player_sprite.position.y < 150) player_sprite.position.y = 150;
+  if (player_sprite.position.x > 380) player_sprite.position.x = 380;
+  if (player_sprite.position.y > 450) player_sprite.position.y = 450;
+}
 
 function displayBG() {
-  push()
-  imageMode(CORNER)
-  image(bg_bedroom, 0, 0)
-  pop()
+  push();
+  imageMode(CORNER);
+  image(bg_bedroom, 0, 0);
+  pop();
 }
 
 function displayBed() {
-  push()
-  bed_sprite.changeAnimation("bed")
-  pop()
+  push();
+  bed_sprite.changeAnimation("bed");
+  pop();
+}
+
+function mousePressed(){
+  phone.selectApp()
 }
