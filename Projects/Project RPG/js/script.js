@@ -9,10 +9,11 @@ let player_standup;
 let player_walkup;
 let direction = "down";
 
-let phone;  //Phone variables
+let phone; //Phone variables
 let phoneScreen;
 
 let bed_sprite; //Object variables
+let showB1 = false
 
 function preload() {
   //creates an animation from a sequence of numbered images
@@ -38,6 +39,8 @@ function preload() {
     "assets/images/main/main-walk-up001.png",
     "assets/images/main/main-walk-up004.png"
   );
+  woodstep = loadSound("assets/sounds/step_wood.mp3");
+  ting = loadSound("assets/sounds/ting.wav")
   //Bed sprite
   bg_bedroom = loadImage("assets/images/interior/demo bg.png");
   bed = loadAnimation("assets/images/interior/bed.png");
@@ -83,7 +86,12 @@ function draw() {
       phone.access();
     }
   }
-  console.log(phone.selected)
+  //console.log(phone.selected);
+  //console.log(bed_sprite.overlap(player_sprite));
+  if (showB1 === true) {
+    bedText()
+  }
+
   drawSprites();
 } //============================================================================================================
 
@@ -92,6 +100,9 @@ function movePlayer() {
     player_sprite.changeAnimation("walkLeft");
     player_sprite.velocity.x = -2.4;
     direction = "left";
+    if (!woodstep.isPlaying()) {
+      woodstep.play();
+    }
   } else if (
     keyIsDown(83) &&
     !keyIsDown(65) &&
@@ -101,6 +112,9 @@ function movePlayer() {
     player_sprite.changeAnimation("walkDown");
     player_sprite.velocity.y = 2;
     direction = "down";
+    if (!woodstep.isPlaying()) {
+      woodstep.play();
+    }
   } else if (
     keyIsDown(68) &&
     !keyIsDown(83) &&
@@ -110,6 +124,9 @@ function movePlayer() {
     player_sprite.changeAnimation("walkRight");
     player_sprite.velocity.x = 2.4;
     direction = "right";
+    if (!woodstep.isPlaying()) {
+      woodstep.play();
+    }
   } else if (
     keyIsDown(87) &&
     !keyIsDown(83) &&
@@ -119,6 +136,9 @@ function movePlayer() {
     player_sprite.changeAnimation("walkUp");
     player_sprite.velocity.y = -2;
     direction = "up";
+    if (!woodstep.isPlaying()) {
+      woodstep.play();
+    }
   } else {
     player_sprite.velocity.x = 0;
     player_sprite.velocity.y = 0;
@@ -131,9 +151,12 @@ function movePlayer() {
     } else if (direction === "left") {
       player_sprite.changeAnimation("standLeft");
     }
+    woodstep.stop()
   }
   player_sprite.collide(bed_sprite);
   //player_sprite.debug = mouseIsPressed
+
+  //Sets walls/boundaries for player
   if (player_sprite.position.x < 120) player_sprite.position.x = 120;
   if (player_sprite.position.y < 150) player_sprite.position.y = 150;
   if (player_sprite.position.x > 380) player_sprite.position.x = 380;
@@ -153,6 +176,30 @@ function displayBed() {
   pop();
 }
 
-function mousePressed(){
-  phone.selectApp()
+function mousePressed() {
+  phone.selectApp();
+}
+
+function keyPressed() {
+  if (bed_sprite.overlap(player_sprite) && keyCode === SHIFT){
+    showB1 = true
+    ting.play()
+  }
+  else {
+    showB1 = false
+  }
+}
+
+function bedText() {
+  push()
+  fill(255)
+  rect(42, 22, 421, 116, 10)
+  fill(0)
+  rect(50, 30, 405, 100)
+  fill(255)
+  let b1 = "You slept for 9 hours and 30 minutes last night"
+  textSize(16)
+  textFont('Press Start 2P')
+  text(b1, 80, 50, 427, 80)
+  pop()
 }
