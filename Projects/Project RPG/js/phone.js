@@ -11,13 +11,14 @@ class Phone {
     this.height = phoneHeight;
     this.bezel = bezel;
     this.selected = undefined;
+    this.screenImage = phoneScreen;
   }
 
   display() {
     push();
     fill(57, 58, 56);
     rect(this.x, this.y, this.width, this.height, 5);
-    image(phoneScreen, this.x + bezel, this.y + bezel);
+    image(this.screenImage, this.x + this.bezel, this.y + this.bezel);
     pop();
   }
 
@@ -34,34 +35,34 @@ class Phone {
 
   selectApp() {
     if (
-      mouseX > this.x + bezel + 8 &&
-      mouseX < this.x + bezel + 27 &&
-      mouseY > this.y + bezel + 12 &&
-      mouseY < this.y + bezel + 31
+      mouseX > this.x + this.bezel + 8 &&
+      mouseX < this.x + this.bezel + 27 &&
+      mouseY > this.y + this.bezel + 12 &&
+      mouseY < this.y + this.bezel + 31
     ) {
       this.selected = "camera";
     }
     if (
-      mouseX > this.x + bezel + 8 &&
-      mouseX < this.x + bezel + 27 &&
-      mouseY > this.y + bezel + 43 &&
-      mouseY < this.y + bezel + 62
+      mouseX > this.x + this.bezel + 8 &&
+      mouseX < this.x + this.bezel + 27 &&
+      mouseY > this.y + this.bezel + 43 &&
+      mouseY < this.y + this.bezel + 62
     ) {
       this.selected = "music";
     }
     if (
-      mouseX > this.x + bezel + 39 &&
-      mouseX < this.x + bezel + 58 &&
-      mouseY > this.y + bezel + 12 &&
-      mouseY < this.y + bezel + 31
+      mouseX > this.x + this.bezel + 39 &&
+      mouseX < this.x + this.bezel + 58 &&
+      mouseY > this.y + this.bezel + 12 &&
+      mouseY < this.y + this.bezel + 31
     ) {
       this.selected = "messages";
     }
     if (
-      mouseX > this.x + bezel + 39 &&
-      mouseX < this.x + bezel + 58 &&
-      mouseY > this.y + bezel + 43 &&
-      mouseY < this.y + bezel + 62
+      mouseX > this.x + this.bezel + 39 &&
+      mouseX < this.x + this.bezel + 58 &&
+      mouseY > this.y + this.bezel + 43 &&
+      mouseY < this.y + this.bezel + 62
     ) {
       this.selected = "pong";
     }

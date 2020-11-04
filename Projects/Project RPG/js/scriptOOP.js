@@ -43,9 +43,10 @@ function setup() {
   //==========================================================================================
   createCanvas(507, 507);
 
-  bedroom = new Bedroom();
-  player = new Player();
-  phone = new Phone();
+
+  player = new Player(player_stand, player_walkDown, player_standLeft, player_walkLeft, player_standRight, player_walkRight, player_standUp, player_walkUp, woodstep);
+  bedroom = new Bedroom(bed, bg_bedroom, ting);
+  phone = new Phone(phoneScreen);
 }
 
 function draw() {
@@ -57,10 +58,10 @@ function draw() {
   bedroom.bedText()
   bedroom.boundaries()
 
-  player.display()
+  player.update()
 
   phone.display();
-
+  console.log(phone.selected)
   //console.log(phone.selected);
   //console.log(bed_sprite.overlap(player_sprite));
 
@@ -68,11 +69,11 @@ function draw() {
   drawSprites();
 } //============================================================================================================
 
-function keyPressed(){
-  bedroom.keyPressed()
-}
+ function keyPressed(){
+   bedroom.keyPressed()
+ }
 
 
-function mousePressed() {
-  phone.selectApp();
+ function mousePressed() {
+   phone.selectApp();
 }

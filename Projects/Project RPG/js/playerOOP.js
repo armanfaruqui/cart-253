@@ -27,7 +27,7 @@ class Player {
       this.stepSound = woodstep;
   }
 
-    display(){
+    update(){
       if (keyIsDown(65) && !keyIsDown(83) && !keyIsDown(68) && !keyIsDown(87)) {
         this.sprite.changeAnimation("walkLeft");
         this.sprite.velocity.x = -2.4;
@@ -85,7 +85,7 @@ class Player {
         }
         woodstep.stop()
       }
-      this.sprite.collide(bed_sprite);
+      this.sprite.collide(bedroom.sprite);
       drawSprites()
     }
 
