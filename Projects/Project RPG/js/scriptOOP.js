@@ -55,10 +55,10 @@ function draw() {
   background(100);
 
   bedroom.display()
-  bedroom.bedText()
-  bedroom.boundaries()
+  bedroom.bedText() // Displays text box from interacting with bed
+  bedroom.boundaries() // Sets walls/boundaries for player in the bedroom
 
-  player.update()
+  player.update() // Moves the player
 
   phone.display();
   console.log(phone.selected)
@@ -70,7 +70,7 @@ function draw() {
 } //============================================================================================================
 
  function keyPressed(){
-   bedroom.keyPressed()
+   bedroom.keyPressed()//Interacts with bed
  }
 
 
