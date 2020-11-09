@@ -7,11 +7,13 @@ let player_standRight;
 let player_walkRight;
 let player_standUp;
 let player_walkup;
+let humans
 
 
 class Player {
 
   constructor(player_stand, player_walkDown, player_standLeft, player_walkLeft, player_standRight, player_walkRight, player_standUp, player_walkUp, woodstep){
+      humans = new Group()
       this.sprite = createSprite(200, 200, 42, 42);
       this.sprite.addAnimation("stand", player_stand);
       this.sprite.addAnimation("walkDown", player_walkDown);
@@ -22,6 +24,7 @@ class Player {
       this.sprite.addAnimation("standUp", player_standUp);
       this.sprite.addAnimation("walkUp", player_walkUp);
       this.sprite.setCollider("rectangle", 0, 20, 22, 35);
+      this.sprite.addToGroup(humans)
       this.sprite.depth = 5; //Visualize depth as photoshop layers
       this.direction = "down";
       this.stepSound = woodstep;
@@ -86,7 +89,7 @@ class Player {
         woodstep.stop()
       }
       this.sprite.collide(bedroom.sprite);
-      drawSprites()
+      drawSprites(humans)
     }
 
 

@@ -1,5 +1,7 @@
 let player;
 
+let map = 'bedroom'
+
 let phone; //Phone variables
 let phoneScreen;
 
@@ -35,7 +37,10 @@ function preload() {
   //Bed sprite
   bg_bedroom = loadImage("assets/images/interior/demo bg.png");
   bed = loadAnimation("assets/images/interior/bed.png");
-
+  desk = loadAnimation("assets/images/interior/desk.png")
+  door = loadAnimation("assets/images/interior/door.png")
+  //Hall sprites
+  bg_hall = loadImage("assets/images/interior/hall.png");
   phoneScreen = loadImage("assets/images/phone/screen.png");
 }
 
@@ -45,7 +50,10 @@ function setup() {
 
 
   player = new Player(player_stand, player_walkDown, player_standLeft, player_walkLeft, player_standRight, player_walkRight, player_standUp, player_walkUp, woodstep);
+
   bedroom = new Bedroom(bed, bg_bedroom, ting);
+  hall = new Hall(bg_hall);
+  
   phone = new Phone(phoneScreen);
 }
 
@@ -54,19 +62,28 @@ function draw() {
   clear();
   background(100);
 
+  if (map === 'bedroom'){
   bedroom.display()
   bedroom.bedText() // Displays text box from interacting with bed
+  bedroom.deskText()
   bedroom.boundaries() // Sets walls/boundaries for player in the bedroom
+  bedroom.exit()
+  }
 
+  if (map === 'hall'){
+    hall.display()
+    hall.boundaries()
+    hall.exit()
+  }
   player.update() // Moves the player
 
   phone.display();
-  console.log(phone.selected)
+  console.log(map)
   //console.log(phone.selected);
   //console.log(bed_sprite.overlap(player_sprite));
 
 
-  drawSprites();
+  //drawSprites();
 } //============================================================================================================
 
  function keyPressed(){
