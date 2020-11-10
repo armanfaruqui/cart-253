@@ -8,6 +8,7 @@ let player_walkRight;
 let player_standUp;
 let player_walkup;
 let humans
+let reverb
 
 
 class Player {
@@ -28,6 +29,8 @@ class Player {
       this.sprite.depth = 5; //Visualize depth as photoshop layers
       this.direction = "down";
       this.stepSound = woodstep;
+    
+
   }
 
     update(){
@@ -48,6 +51,7 @@ class Player {
         this.sprite.velocity.y = 2;
         this.direction = "down";
         if (!woodstep.isPlaying()) {
+          //reverb.woodstep(1);
           woodstep.play();
         }
       } else if (
@@ -91,6 +95,7 @@ class Player {
       this.sprite.collide(bedroom.sprite);
       drawSprites(humans)
     }
+
 
 
 }

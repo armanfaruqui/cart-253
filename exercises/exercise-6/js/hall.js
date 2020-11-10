@@ -1,4 +1,5 @@
 let hallObjects
+let oscillator;
 
 class Hall {
   constructor(bg_hall, mainDoor){
@@ -15,6 +16,7 @@ class Hall {
     mainDoor.sprite.depth = 1;
     mainDoor.sprite.addToGroup(hallObjects);
 
+    oscillator = new p5.Oscillator(220, 'triangle')
   }
 
   display(){
@@ -37,6 +39,14 @@ class Hall {
        player.sprite.position.x = 120
        player.sprite.position.y = 420
     }
+  }
+
+  anxiety(){
+    let doorDistance = dist(player.sprite.position.x, player.sprite.position.y, mainDoor.sprite.position.x, mainDoor.sprite.position.y)
+    let newFreq = map(doorDistance, 270, 20, 0, 880)
+    oscillator.freq(newFreq);
+    oscillator.start()
+    console.log(doorDistance)
   }
 
 

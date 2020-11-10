@@ -1,5 +1,5 @@
 let player;
-
+let oscillator;
 let map = 'bedroom'
 
 let phone; //Phone variables
@@ -9,6 +9,7 @@ let bed_sprite; //Object variables
 
 
 function preload() {
+
   //creates an animation from a sequence of numbered images
   player_stand = loadAnimation("assets/images/main/main-walk001.png");
   player_walkDown = loadAnimation(
@@ -57,7 +58,9 @@ function setup() {
   bedroom = new Bedroom(bed, bg_bedroom, ting);
   hall = new Hall(bg_hall, mainDoor);
 
-  phone = new Phone(phoneScreen, selfieIndoor);
+  phone = new Phone(phoneScreen, selfieIndoor)
+
+  oscillator = new p5.Oscillator(220, 'triangle')
 }
 
 function draw() {
@@ -77,6 +80,7 @@ function draw() {
     hall.display()
     hall.boundaries()
     hall.exit()
+    anxiety()
   }
   player.update() // Moves the player
 
@@ -84,7 +88,7 @@ function draw() {
   phone.camera();
 
 
-  console.log(map)
+    //console.log(map)
   //console.log(phone.selected);
   //console.log(bed_sprite.overlap(player_sprite));
 
@@ -102,4 +106,12 @@ function draw() {
  function mousePressed() {
    phone.selectApp();
    phone.exit()
+}
+
+  function anxiety(){
+  let doorDistance = dist(player.sprite.position.x, player.sprite.position.y, mainDoor.sprite.position.x, mainDoor.sprite.position.y)
+  let newFreq = map(doorDistance, 270, 20, 0, 880)
+  oscillator.freq(newFreq);
+  oscillator.start()
+  console.log(doorDistance)
 }
