@@ -1,6 +1,6 @@
 let player;
 
-let map = 'bedroom'
+let map = 'outside'
 
 let phone; //Phone variables
 let phoneScreen;
@@ -45,6 +45,8 @@ function preload() {
   //Phone pictures
   phoneScreen = loadImage("assets/images/phone/screen.png");
   selfieIndoor = loadImage("assets/images/phone/selfieIndoor.png");
+
+  bg_outside = loadImage("assets/images/exterior/virtualTest.png");
 }
 
 function setup() {
@@ -56,6 +58,7 @@ function setup() {
 
   bedroom = new Bedroom(bed, bg_bedroom, ting);
   hall = new Hall(bg_hall, mainDoor);
+  outside = new Outside(bg_outside);
 
   phone = new Phone(phoneScreen, selfieIndoor);
 }
@@ -77,6 +80,12 @@ function draw() {
     hall.display()
     hall.boundaries()
     hall.exit()
+  }
+
+  if (map === 'outside'){
+    outside.display()
+    outside.camera()
+    outside.boundaries()
   }
   player.update() // Moves the player
 

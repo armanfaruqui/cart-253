@@ -41,9 +41,10 @@ class Hall {
     }
   }
 
+  //Oscillator which increases its frequency the closer you get to the main door
   anxiety(){
-    let doorDistance = dist(player.sprite.position.x, player.sprite.position.y, mainDoor.sprite.position.x, mainDoor.sprite.position.y)
-    let newFreq = map(doorDistance, 270, 20, 0, 880)
+    let doorDistance = dist(player.sprite.position.x, player.sprite.position.y, mainDoor.sprite.position.x, mainDoor.sprite.position.y) // Measures distance between player and door
+    let newFreq = map(doorDistance, 270, 20, 0, 880)// Max dist = 270. Min = 20
     oscillator.freq(newFreq);
     oscillator.start()
     console.log(doorDistance)

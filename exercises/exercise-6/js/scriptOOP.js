@@ -1,5 +1,5 @@
 let player;
-let oscillator;
+
 let map = 'bedroom'
 
 let phone; //Phone variables
@@ -46,6 +46,7 @@ function preload() {
   //Phone pictures
   phoneScreen = loadImage("assets/images/phone/screen.png");
   selfieIndoor = loadImage("assets/images/phone/selfieIndoor.png");
+
 }
 
 function setup() {
@@ -58,9 +59,7 @@ function setup() {
   bedroom = new Bedroom(bed, bg_bedroom, ting);
   hall = new Hall(bg_hall, mainDoor);
 
-  phone = new Phone(phoneScreen, selfieIndoor)
-
-  oscillator = new p5.Oscillator(220, 'triangle')
+  phone = new Phone(phoneScreen, selfieIndoor);
 }
 
 function draw() {
@@ -80,7 +79,7 @@ function draw() {
     hall.display()
     hall.boundaries()
     hall.exit()
-    anxiety()
+    hall.anxiety()
   }
   player.update() // Moves the player
 
@@ -106,12 +105,4 @@ function draw() {
  function mousePressed() {
    phone.selectApp();
    phone.exit()
-}
-
-  function anxiety(){
-  let doorDistance = dist(player.sprite.position.x, player.sprite.position.y, mainDoor.sprite.position.x, mainDoor.sprite.position.y)
-  let newFreq = map(doorDistance, 270, 20, 0, 880)
-  oscillator.freq(newFreq);
-  oscillator.start()
-  console.log(doorDistance)
 }
