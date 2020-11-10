@@ -76,9 +76,14 @@ class Bedroom {
       rect(50, 30, 405, 100)
       fill(255)
       let b2 = "Play 'plenty of A̶L̶I̶E̶N̶  fish in the sea' ? "
+      let yes = "Sure"
+      let no = "Not Today"
       textSize(16)
       textFont('Press Start 2P')
       text(b2, 80, 50, 427, 80)
+      text(yes, 80, 100)
+      text(no, 280, 100)
+
       pop()
     }
   }
@@ -97,7 +102,7 @@ class Bedroom {
       // desk.sprite.remove();
       // door.sprite.remove();
        player.sprite.position.x = 325;
-       player.sprite.position.y = 350;
+       player.sprite.position.y = 365;
     }
   }
 

@@ -3,15 +3,16 @@ let phoneHeight = 140;
 let bezel = 6;
 
 class Phone {
-  constructor(phoneScreen) {
+  constructor(phoneScreen, selfieIndoor) {
     this.x = 400;
     this.y = 400;
     this.up = false;
     this.width = phoneWidth;
     this.height = phoneHeight;
     this.bezel = bezel;
-    this.selected = undefined;
+    this.selected = 'menu';
     this.screenImage = phoneScreen;
+    this.selfieIndoor = selfieIndoor;
   }
 
   display() {
@@ -65,6 +66,31 @@ class Phone {
       mouseY < this.y + this.bezel + 62
     ) {
       this.selected = "pong";
+    }
+  }
+
+  camera(){
+    if (this.selected === "camera") {
+      if (map === 'bedroom' || map === 'hall'){
+        image(selfieIndoor, this.x + this.bezel, this.y + this.bezel)
+      }
+    }
+  }
+
+  exit(){
+    if (
+      mouseX > this.x + this.bezel  &&
+      mouseX < this.x + this.bezel + 20 &&
+      mouseY > this.y + this.bezel  &&
+      mouseY < this.y + this.bezel + 20 
+
+    ) {
+      this.selected = "menu";
+      push();
+      fill(57, 58, 56);
+      rect(this.x, this.y, this.width, this.height, 5);
+      image(this.screenImage, this.x + this.bezel, this.y + this.bezel);
+      pop();
     }
   }
 }

@@ -39,9 +39,12 @@ function preload() {
   bed = loadAnimation("assets/images/interior/bed.png");
   desk = loadAnimation("assets/images/interior/desk.png")
   door = loadAnimation("assets/images/interior/door.png")
+  mainDoor = loadAnimation("assets/images/interior/maindoor.png")
   //Hall sprites
   bg_hall = loadImage("assets/images/interior/hall.png");
+  //Phone pictures
   phoneScreen = loadImage("assets/images/phone/screen.png");
+  selfieIndoor = loadImage("assets/images/phone/selfieIndoor.png");
 }
 
 function setup() {
@@ -52,9 +55,9 @@ function setup() {
   player = new Player(player_stand, player_walkDown, player_standLeft, player_walkLeft, player_standRight, player_walkRight, player_standUp, player_walkUp, woodstep);
 
   bedroom = new Bedroom(bed, bg_bedroom, ting);
-  hall = new Hall(bg_hall);
-  
-  phone = new Phone(phoneScreen);
+  hall = new Hall(bg_hall, mainDoor);
+
+  phone = new Phone(phoneScreen, selfieIndoor);
 }
 
 function draw() {
@@ -78,6 +81,9 @@ function draw() {
   player.update() // Moves the player
 
   phone.display();
+  phone.camera();
+
+
   console.log(map)
   //console.log(phone.selected);
   //console.log(bed_sprite.overlap(player_sprite));
@@ -87,10 +93,13 @@ function draw() {
 } //============================================================================================================
 
  function keyPressed(){
+   if (map === 'bedroom'){
    bedroom.keyPressed()//Interacts with bed
+  }
  }
 
 
  function mousePressed() {
    phone.selectApp();
+   phone.exit()
 }
