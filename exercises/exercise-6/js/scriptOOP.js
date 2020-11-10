@@ -1,6 +1,6 @@
 let player;
 
-let map = 'bedroom'
+let scene = 'bedroom'
 
 let phone; //Phone variables
 let phoneScreen;
@@ -59,6 +59,7 @@ function setup() {
   bedroom = new Bedroom(bed, bg_bedroom, ting);
   hall = new Hall(bg_hall, mainDoor);
 
+
   phone = new Phone(phoneScreen, selfieIndoor);
 }
 
@@ -67,7 +68,7 @@ function draw() {
   clear();
   background(100);
 
-  if (map === 'bedroom'){
+  if (scene === 'bedroom'){
   bedroom.display()
   bedroom.bedText() // Displays text box from interacting with bed
   bedroom.deskText()
@@ -75,7 +76,7 @@ function draw() {
   bedroom.exit()
   }
 
-  if (map === 'hall'){
+  if (scene === 'hall'){
     hall.display()
     hall.boundaries()
     hall.exit()
@@ -87,7 +88,7 @@ function draw() {
   phone.camera();
 
 
-    //console.log(map)
+    //console.log(scene)
   //console.log(phone.selected);
   //console.log(bed_sprite.overlap(player_sprite));
 
@@ -96,7 +97,7 @@ function draw() {
 } //============================================================================================================
 
  function keyPressed(){
-   if (map === 'bedroom'){
+   if (scene === 'bedroom'){
    bedroom.keyPressed()//Interacts with bed
   }
  }

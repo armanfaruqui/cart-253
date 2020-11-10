@@ -97,12 +97,12 @@ class Bedroom {
 
   exit(){
     if (door.sprite.overlap(player.sprite) && player.direction === 'left'){
-       map = 'hall'
+       scene = 'hall'
       // this.sprite.remove();
       // desk.sprite.remove();
       // door.sprite.remove();
-       player.sprite.position.x = 325;
-       player.sprite.position.y = 365;
+
+       hall.start()
     }
   }
 
