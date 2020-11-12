@@ -1,6 +1,9 @@
 class Outside{
   constructor(bg_outside){
     this.bg = bg_outside
+
+    player.sprite.position.x = 65
+    player.sprite.position.y = 620
   }
 
   display(){

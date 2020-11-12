@@ -1,6 +1,6 @@
 let player;
 
-let map = 'outside'
+let scene = 'outside'
 
 let phone; //Phone variables
 let phoneScreen;
@@ -46,7 +46,7 @@ function preload() {
   phoneScreen = loadImage("assets/images/phone/screen.png");
   selfieIndoor = loadImage("assets/images/phone/selfieIndoor.png");
 
-  bg_outside = loadImage("assets/images/exterior/virtualTest.png");
+  bg_outside = loadImage("assets/images/exterior/outside1.png");
 }
 
 function setup() {
@@ -68,7 +68,7 @@ function draw() {
   clear();
   background(100);
 
-  if (map === 'bedroom'){
+  if (scene === 'bedroom'){
   bedroom.display()
   bedroom.bedText() // Displays text box from interacting with bed
   bedroom.deskText()
@@ -76,24 +76,31 @@ function draw() {
   bedroom.exit()
   }
 
-  if (map === 'hall'){
+  if (scene === 'hall'){
     hall.display()
     hall.boundaries()
     hall.exit()
+    hall.anxiety()
   }
 
-  if (map === 'outside'){
+  if (scene === 'outside'){
     outside.display()
     outside.camera()
     outside.boundaries()
   }
+
   player.update() // Moves the player
 
+  if (scene == 'outside'){
+    phone.dynamicDisplay()
+  }
+  else {
   phone.display();
+  }
   phone.camera();
 
 
-  console.log(map)
+  console.log(scene)
   //console.log(phone.selected);
   //console.log(bed_sprite.overlap(player_sprite));
 
@@ -102,7 +109,7 @@ function draw() {
 } //============================================================================================================
 
  function keyPressed(){
-   if (map === 'bedroom'){
+   if (scene === 'bedroom'){
    bedroom.keyPressed()//Interacts with bed
   }
  }

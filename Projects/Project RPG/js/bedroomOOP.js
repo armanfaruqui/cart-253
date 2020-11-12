@@ -1,10 +1,12 @@
 let showB1 = false
 let showB2 = false
 let things
-
+let deskSelector = true;
 
 class Bedroom {
+
   constructor(bed, bg_bedroom, ting){
+
     things = new Group()
     this.sprite = createSprite(370, 350, 12, 10);
     this.sprite.addAnimation("bed", bed);
@@ -12,26 +14,23 @@ class Bedroom {
     this.sprite.changeAnimation("bed");
     this.sprite.addToGroup(things)
 
-
     desk.sprite = createSprite(270, 150, 12, 10);
     desk.sprite.addAnimation("desk", desk);
     desk.sprite.depth = 1;
     desk.sprite.changeAnimation("desk");
     desk.sprite.addToGroup(things)
 
-
     door.sprite = createSprite(88, 432, 50, 100);
     door.sprite.addAnimation("door", door);
     door.sprite.setCollider("rectangle", 0, 0, 50, 30);
     door.sprite.addToGroup(things)
     door.sprite.depth = 1;
-
-
   }
 
   display(){
     image(bg_bedroom, 0, 0);
     drawSprites(things)
+
   }
 
   keyPressed() {
@@ -48,6 +47,14 @@ class Bedroom {
     }
     else {
       showB2 = false
+    }
+
+    if (showB2 === true && keyCode === 65 || keyCode === 68){
+      deskSelector = false
+    }
+
+    if (showB2 === false && keyCode === 65 || keyCode === 68){
+      deskSelector = true
     }
   }
 
@@ -81,9 +88,18 @@ class Bedroom {
       textSize(16)
       textFont('Press Start 2P')
       text(b2, 80, 50, 427, 80)
-      text(yes, 80, 100)
-      text(no, 280, 100)
-
+      if (deskSelector = true) {
+        fill(229, 112, 40)
+        text(yes, 80, 100)
+        fill(255);
+        text(no, 280, 100)
+      }
+      if (deskSelector = false) {
+        fill(255);
+        text(yes, 80, 100)
+        fill(229, 112, 40)
+        text(no, 280, 100)
+      }
       pop()
     }
   }
@@ -97,12 +113,12 @@ class Bedroom {
 
   exit(){
     if (door.sprite.overlap(player.sprite) && player.direction === 'left'){
-       map = 'hall'
+       scene = 'hall'
       // this.sprite.remove();
       // desk.sprite.remove();
       // door.sprite.remove();
-       player.sprite.position.x = 325;
-       player.sprite.position.y = 365;
+
+       hall.start()
     }
   }
 

@@ -23,6 +23,14 @@ class Phone {
     pop();
   }
 
+  dynamicDisplay(){
+    push();
+    fill(57, 58, 56);
+    rect(player.sprite.position.x + 300, player.sprite.position.y + 100, this.width, this.height, 5);
+    image(this.screenImage, player.sprite.position.x + 300 + this.bezel, player.sprite.position.y + 100 + this.bezel);
+    pop();
+  }
+
   access() {
     if (this.up === false) {
       this.y = this.y + 80;
@@ -71,7 +79,7 @@ class Phone {
 
   camera(){
     if (this.selected === "camera") {
-      if (map === 'bedroom' || map === 'hall'){
+      if (scene === 'bedroom' || scene === 'hall'){
         image(selfieIndoor, this.x + this.bezel, this.y + this.bezel)
       }
     }
@@ -82,7 +90,7 @@ class Phone {
       mouseX > this.x + this.bezel  &&
       mouseX < this.x + this.bezel + 20 &&
       mouseY > this.y + this.bezel  &&
-      mouseY < this.y + this.bezel + 20 
+      mouseY < this.y + this.bezel + 20
 
     ) {
       this.selected = "menu";
