@@ -2,8 +2,8 @@ let buildings;
 let entities;
 
 class Outside{
-  constructor(bg_outside, house1, house2, house3, house4, dog, evildog){
-    this.bg = bg_outside
+  constructor(bg_outside, house1, house2, house3, house4, dog, evildog, growl, tree){
+    this.bg = bg_outside // background image
 
     house1.sprite = createSprite(280, 420);
     house1.sprite.addAnimation("house1", house1);
@@ -34,9 +34,16 @@ class Outside{
     dog.sprite.addAnimation("evildog", evildog)
     dog.sprite.addToGroup(entities)
 
+    tree.sprite = createSprite(-130, 670) //Made corner tree a sprite for multi-direction collision
+    tree.sprite.addAnimation("tree", tree)
+    tree.sprite.setCollider("rectangle", 0, 60, 90, 152);
+    tree.sprite.addToGroup(buildings)
+    tree.sprite.depth = 10;
 
     player.sprite.position.x = 65
     player.sprite.position.y = 620
+
+  //  bedroom.bed_sprite.remove()
   }
 
   display(){
@@ -52,6 +59,7 @@ class Outside{
     if (dog.sprite.overlap(player.sprite) && keyCode === SHIFT){
       dog.sprite.changeAnimation("evildog")
       player.sprite.position.x = player.sprite.position.x - 10
+      growl.play()
     }
   }
 
@@ -63,7 +71,7 @@ class Outside{
   }
 
   boundaries(){
-    if (player.sprite.position.x < -200) player.sprite.position.x = -200;
+    if (player.sprite.position.x < -145) player.sprite.position.x = -145;
     if (player.sprite.position.y < -100) player.sprite.position.y = -100;
     if (player.sprite.position.x > 650) player.sprite.position.x = 650;
     if (player.sprite.position.y > 660) player.sprite.position.y = 660;
@@ -73,5 +81,6 @@ class Outside{
     player.sprite.collide(house3.sprite);
     player.sprite.collide(house4.sprite);
     player.sprite.collide(dog.sprite);
+    player.sprite.collide(tree.sprite);
   }
 }

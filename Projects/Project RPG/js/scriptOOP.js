@@ -53,6 +53,8 @@ function preload() {
   house4 = loadAnimation("assets/images/exterior/house2.png");
   dog = loadAnimation("assets/images/exterior/dog_sprite1.png", "assets/images/exterior/dog_sprite2.png" );
   evildog = loadImage("assets/images/exterior/evildog_sprite1.png")
+  tree = loadAnimation("assets/images/exterior/tree.png")
+  growl = loadSound("assets/sounds/growl.mp3")
 }
 
 function setup() {
@@ -64,7 +66,7 @@ function setup() {
 
   bedroom = new Bedroom(bed, bg_bedroom, ting);
   hall = new Hall(bg_hall, mainDoor);
-  outside = new Outside(bg_outside, house1, house2, house3, house4, dog, evildog);
+  outside = new Outside(bg_outside, house1, house2, house3, house4, dog, evildog, growl, tree);
 
   phone = new Phone(phoneScreen, selfieIndoor);
 }
