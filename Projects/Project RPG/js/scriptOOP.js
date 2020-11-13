@@ -47,6 +47,11 @@ function preload() {
   selfieIndoor = loadImage("assets/images/phone/selfieIndoor.png");
 
   bg_outside = loadImage("assets/images/exterior/outside1.png");
+  house1 = loadAnimation("assets/images/exterior/house1.png");
+  house2 = loadAnimation("assets/images/exterior/house2.png");
+  house3 = loadAnimation("assets/images/exterior/house3.png");
+
+
 }
 
 function setup() {
@@ -58,7 +63,7 @@ function setup() {
 
   bedroom = new Bedroom(bed, bg_bedroom, ting);
   hall = new Hall(bg_hall, mainDoor);
-  outside = new Outside(bg_outside);
+  outside = new Outside(bg_outside, house1, house2, house3);
 
   phone = new Phone(phoneScreen, selfieIndoor);
 }
