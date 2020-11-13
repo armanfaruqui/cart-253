@@ -50,8 +50,9 @@ function preload() {
   house1 = loadAnimation("assets/images/exterior/house1.png");
   house2 = loadAnimation("assets/images/exterior/house2.png");
   house3 = loadAnimation("assets/images/exterior/house3.png");
-
-
+  house4 = loadAnimation("assets/images/exterior/house2.png");
+  dog = loadAnimation("assets/images/exterior/dog_sprite1.png", "assets/images/exterior/dog_sprite2.png" );
+  evildog = loadImage("assets/images/exterior/evildog_sprite1.png")
 }
 
 function setup() {
@@ -63,7 +64,7 @@ function setup() {
 
   bedroom = new Bedroom(bed, bg_bedroom, ting);
   hall = new Hall(bg_hall, mainDoor);
-  outside = new Outside(bg_outside, house1, house2, house3);
+  outside = new Outside(bg_outside, house1, house2, house3, house4, dog, evildog);
 
   phone = new Phone(phoneScreen, selfieIndoor);
 }
@@ -117,6 +118,7 @@ function draw() {
    if (scene === 'bedroom'){
    bedroom.keyPressed()//Interacts with bed
   }
+  outside.doggo()
  }
 
 

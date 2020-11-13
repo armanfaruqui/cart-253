@@ -1,28 +1,38 @@
-let buildings
+let buildings;
+let entities;
 
 class Outside{
-  constructor(bg_outside, house1, house2, house3){
+  constructor(bg_outside, house1, house2, house3, house4, dog, evildog){
     this.bg = bg_outside
 
-    house1.sprite = createSprite(280, 360);
+    house1.sprite = createSprite(280, 420);
     house1.sprite.addAnimation("house1", house1);
+    house1.sprite.setCollider("rectangle", 0, 0, 155, 144);
     house1.sprite.depth = 1;
-    house1.sprite.changeAnimation("house1");
     house1.sprite.addToGroup(buildings)
 
-    house2.sprite = createSprite(-14, 360);
+    house2.sprite = createSprite(-14, 420);
     house2.sprite.addAnimation("house2", house2);
-    house1.sprite.changeAnimation("house2");
-    //house2.sprite.setCollider("rectangle", 0, 0, 50, 30);
+    house2.sprite.setCollider("rectangle", 0, 0, 155, 144);
     house2.sprite.addToGroup(buildings)
     house2.sprite.depth = 1;
 
-    house3.sprite = createSprite(574, 360);
+    house3.sprite = createSprite(-14, 200);
     house3.sprite.addAnimation("house3", house3);
+    house3.sprite.setCollider("rectangle", 0, 0, 155, 144);
     house3.sprite.depth = 1;
-    house3.sprite.changeAnimation("house3");
     house3.sprite.addToGroup(buildings)
 
+    house4.sprite = createSprite(280, 200);
+    house4.sprite.addAnimation("house4", house4);
+    house4.sprite.setCollider("rectangle", 0, 0, 155, 144);
+    house4.sprite.addToGroup(buildings)
+    house4.sprite.depth = 1;
+
+    dog.sprite = createSprite(280, 600)
+    dog.sprite.addAnimation("dog", dog);
+    dog.sprite.addAnimation("evildog", evildog)
+    dog.sprite.addToGroup(entities)
 
 
     player.sprite.position.x = 65
@@ -38,6 +48,14 @@ class Outside{
 
   }
 
+  doggo(){
+    if (dog.sprite.overlap(player.sprite) && keyCode === SHIFT){
+      dog.sprite.changeAnimation("evildog")
+      player.sprite.position.x = player.sprite.position.x - 10
+    }
+  }
+
+
   camera(){
     camera.zoom = 1;
     camera.position.x = player.sprite.position.x;
@@ -49,5 +67,11 @@ class Outside{
     if (player.sprite.position.y < -100) player.sprite.position.y = -100;
     if (player.sprite.position.x > 650) player.sprite.position.x = 650;
     if (player.sprite.position.y > 660) player.sprite.position.y = 660;
+
+    player.sprite.collide(house1.sprite);
+    player.sprite.collide(house2.sprite);
+    player.sprite.collide(house3.sprite);
+    player.sprite.collide(house4.sprite);
+    player.sprite.collide(dog.sprite);
   }
 }
