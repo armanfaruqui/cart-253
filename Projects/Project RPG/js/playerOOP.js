@@ -12,7 +12,7 @@ let humans
 
 class Player {
 
-  constructor(player_stand, player_walkDown, player_standLeft, player_walkLeft, player_standRight, player_walkRight, player_standUp, player_walkUp, woodstep){
+  constructor(player_stand, player_walkDown, player_standLeft, player_walkLeft, player_standRight, player_walkRight, player_standUp, player_walkUp, woodstep, stoneStep){
       humans = new Group()
       this.sprite = createSprite(200, 200, 42, 42);
       this.sprite.addAnimation("stand", player_stand);
@@ -28,6 +28,8 @@ class Player {
       this.sprite.depth = 5; //Visualize depth as photoshop layers
       this.direction = "down";
       this.stepSound = woodstep;
+      this.stepSound2 = stoneStep;
+
   }
 
     update(){
@@ -35,9 +37,16 @@ class Player {
         this.sprite.changeAnimation("walkLeft");
         this.sprite.velocity.x = -2.4;
         this.direction = "left";
-        if (!woodstep.isPlaying()) {
-          woodstep.play();
+        if (scene === "bedroom"|| scene === "hall"){
+          if (!this.stepSound.isPlaying()) {
+            this.stepSound.play();
+          }
         }
+        if (scene === "outside"){
+          if (!this.stepSound2.isPlaying()) {
+            this.stepSound2.play();
+        }
+      }
       } else if (
         keyIsDown(83) &&
         !keyIsDown(65) &&
@@ -47,9 +56,16 @@ class Player {
         this.sprite.changeAnimation("walkDown");
         this.sprite.velocity.y = 2;
         this.direction = "down";
-        if (!woodstep.isPlaying()) {
-          woodstep.play();
+        if (scene === "bedroom"|| scene === "hall"){
+          if (!this.stepSound.isPlaying()) {
+            this.stepSound.play();
+          }
         }
+        if (scene === "outside"){
+          if (!this.stepSound2.isPlaying()) {
+            this.stepSound2.play();
+        }
+      }
       } else if (
         keyIsDown(68) &&
         !keyIsDown(83) &&
@@ -59,9 +75,17 @@ class Player {
         this.sprite.changeAnimation("walkRight");
         this.sprite.velocity.x = 2.4;
         this.direction = "right";
-        if (!woodstep.isPlaying()) {
-          woodstep.play();
+        if (scene === "bedroom"|| scene === "hall"){
+          if (!this.stepSound.isPlaying()) {
+            this.stepSound.play();
+          }
         }
+        if (scene === "outside"){
+          if (!this.stepSound2.isPlaying()) {
+            this.stepSound2.play();
+        }
+      }
+
       } else if (
         keyIsDown(87) &&
         !keyIsDown(83) &&
@@ -71,9 +95,16 @@ class Player {
         this.sprite.changeAnimation("walkUp");
         this.sprite.velocity.y = -2;
         this.direction = "up";
-        if (!woodstep.isPlaying()) {
-          woodstep.play();
+        if (scene === "bedroom"|| scene === "hall"){
+          if (!this.stepSound.isPlaying()) {
+            this.stepSound.play();
+          }
         }
+        if (scene === "outside"){
+          if (!this.stepSound2.isPlaying()) {
+            this.stepSound2.play();
+        }
+      }
       } else {
         this.sprite.velocity.x = 0;
         this.sprite.velocity.y = 0;
@@ -87,10 +118,20 @@ class Player {
           this.sprite.changeAnimation("standLeft");
         }
         woodstep.stop()
-      }
+        stoneStep.stop()
+            }
       this.sprite.collide(bedroom.sprite);
       drawSprites(humans)
     }
 
 
+
 }
+    // stopSound() {
+    //   if (scene === "bedroom" || scene === "hall"){
+    //     woodstep.stop()
+    //   }
+    //   if (scene === "outside"){
+    //     stoneStep.stop()
+    //   }
+    // }

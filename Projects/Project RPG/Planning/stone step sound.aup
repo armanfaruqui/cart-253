@@ -1,0 +1,33 @@
+<?xml version="1.0" standalone="no" ?>
+<!DOCTYPE project PUBLIC "-//audacityproject-1.3.0//DTD//EN" "http://audacity.sourceforge.net/xml/audacityproject-1.3.0.dtd" >
+<project xmlns="http://audacity.sourceforge.net/xml/" projname="stone step sound_data" version="1.3.0" audacityversion="2.4.2" sel0="0.0000000000" sel1="0.0000000000" vpos="0" h="0.0000000000" zoom="306.0652421682" rate="48000.0" snapto="off" selectionformat="hh:mm:ss + milliseconds" frequencyformat="Hz" bandwidthformat="octaves">
+	<tags>
+		<tag name="Software" value="Lavf56.25.101"/>
+	</tags>
+	<wavetrack name="3_5s_to_5_5s_OLD_SOUND_Minecraft_walking_on_ston" isSelected="1" height="150" minimized="0" channel="0" linked="1" mute="0" solo="0" rate="48000" gain="1.0" pan="0.0" colorindex="0">
+		<waveclip offset="0.00000000" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="15056">
+				<waveblock start="0">
+					<simpleblockfile filename="e0808313.au" len="6587" min="-0.056962" max="0.058097" rms="0.006121"/>
+				</waveblock>
+				<waveblock start="6587">
+					<simpleblockfile filename="e08084fa.au" len="8469" min="-0.043636" max="0.042166" rms="0.006254"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+	<wavetrack name="3_5s_to_5_5s_OLD_SOUND_Minecraft_walking_on_ston" isSelected="1" height="150" minimized="0" channel="1" linked="0" mute="0" solo="0" rate="48000" gain="1.0" pan="0.0" colorindex="0">
+		<waveclip offset="0.00000000" colorindex="0">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="15056">
+				<waveblock start="0">
+					<simpleblockfile filename="e080831b.au" len="6587" min="-0.056976" max="0.058094" rms="0.006121"/>
+				</waveblock>
+				<waveblock start="6587">
+					<simpleblockfile filename="e0808f63.au" len="8469" min="-0.043634" max="0.04217" rms="0.006254"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+</project>

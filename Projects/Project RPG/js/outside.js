@@ -2,7 +2,7 @@ let buildings;
 let entities;
 
 class Outside{
-  constructor(bg_outside, house1, house2, house3, house4, dog, evildog, growl, tree){
+  constructor(bg_outside, house1, house2, house3, house4, dog, evildog, growl, tree, outsideTheme){
     this.bg = bg_outside // background image
 
     house1.sprite = createSprite(280, 420);
@@ -42,6 +42,8 @@ class Outside{
 
     player.sprite.position.x = 65
     player.sprite.position.y = 620
+
+    outsideTheme.play()
 
   //  bedroom.bed_sprite.remove()
   }

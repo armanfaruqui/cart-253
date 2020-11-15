@@ -55,6 +55,8 @@ function preload() {
   evildog = loadImage("assets/images/exterior/evildog_sprite1.png")
   tree = loadAnimation("assets/images/exterior/tree.png")
   growl = loadSound("assets/sounds/growl.mp3")
+  stoneStep = loadSound("assets/sounds/stone_step.mp3")
+  outsideTheme = loadSound("assets/sounds/outsideTheme.mp3")
 }
 
 function setup() {
@@ -62,11 +64,11 @@ function setup() {
   createCanvas(507, 507);
 
 
-  player = new Player(player_stand, player_walkDown, player_standLeft, player_walkLeft, player_standRight, player_walkRight, player_standUp, player_walkUp, woodstep);
+  player = new Player(player_stand, player_walkDown, player_standLeft, player_walkLeft, player_standRight, player_walkRight, player_standUp, player_walkUp, woodstep, stoneStep);
 
   bedroom = new Bedroom(bed, bg_bedroom, ting);
   hall = new Hall(bg_hall, mainDoor);
-  outside = new Outside(bg_outside, house1, house2, house3, house4, dog, evildog, growl, tree);
+  outside = new Outside(bg_outside, house1, house2, house3, house4, dog, evildog, growl, tree, outsideTheme);
 
   phone = new Phone(phoneScreen, selfieIndoor);
 }
