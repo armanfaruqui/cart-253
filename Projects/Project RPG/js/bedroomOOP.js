@@ -1,7 +1,9 @@
 let showB1 = false
 let showB2 = false
+let showB3 = false
+let showB4 = false
 let things
-let deskSelector = true;
+let deskSelector = 0;
 
 class Bedroom {
 
@@ -25,6 +27,10 @@ class Bedroom {
     door.sprite.setCollider("rectangle", 0, 0, 50, 30);
     door.sprite.addToGroup(things)
     door.sprite.depth = 1;
+
+    player.sprite.position.x = 200
+    player.sprite.position.y = 200
+
   }
 
   display(){
@@ -49,58 +55,87 @@ class Bedroom {
       showB2 = false
     }
 
-    if (showB2 === true && keyCode === 65 || keyCode === 68){
-      deskSelector = false
-    }
-
-    if (showB2 === false && keyCode === 65 || keyCode === 68){
-      deskSelector = true
-    }
   }
 
   bedText(){
     if (showB1 === true){
       push()
-      fill(255)
-      rect(42, 22, 421, 116, 10)
-      fill(0)
-      rect(50, 30, 405, 100)
+      textBox()
       fill(255)
       let b1 = "You slept for 9 hours and 30 minutes last night"
-      textSize(16)
-      textFont('Press Start 2P')
-      text(b1, 80, 50, 427, 80)
+      textSize(12)
+      text(b1, x, y, width, height)
       pop()
     }
   }
 
   deskText(){
     if (showB2 === true){
+      choice()
       push()
+      textBox()
       fill(255)
-      rect(42, 22, 421, 116, 10)
-      fill(0)
-      rect(50, 30, 405, 100)
-      fill(255)
-      let b2 = "Play 'plenty of A̶L̶I̶E̶N̶  fish in the sea' ? "
+      let b2 = "Play the game ? "
       let yes = "Sure"
       let no = "Not Today"
-      textSize(16)
-      textFont('Press Start 2P')
-      text(b2, 80, 50, 427, 80)
-      if (deskSelector = true) {
-        fill(229, 112, 40)
-        text(yes, 80, 100)
+      textSize(12)
+      text(b2, x, y, width, height)
+      if (deskSelector === 0) {
+        fill(255)
+        text(yes, x, y2)
         fill(255);
-        text(no, 280, 100)
+        text(no, 280, y2)
       }
-      if (deskSelector = false) {
-        fill(255);
-        text(yes, 80, 100)
+      else if (deskSelector === 1) {
         fill(229, 112, 40)
-        text(no, 280, 100)
+        text(yes, x, y2)
+        fill(255)
+        text(no, 280, y2)
+      }
+      else if (deskSelector === 2){
+        fill(255)
+        text(yes, x, y2)
+        fill(229, 112, 40)
+        text(no, 280, y2)
       }
       pop()
+    }
+  }
+
+  deskText2(){
+    if (showB3 === true && desk.sprite.overlap(player.sprite)){
+    push()
+    textBox()
+    fill(255)
+    let b3 = "Okay ? "
+    textSize(12)
+    text(b3, x, y, width, height)
+    }
+  }
+
+  deskText3(){
+    if (showB4 === true && desk.sprite.overlap(player.sprite)){
+    push()
+    textBox()
+    fill(255)
+    let b4 = "weewoo ? "
+    textSize(12)
+    text(b4, x, y, width, height)
+    }
+  }
+
+  changeText(){
+    if (showB2 === true && deskSelector === 1){
+      showB2 = false
+      showB3 = true
+    }
+    if (showB2 === true && deskSelector === 2){
+      showB2 = false
+      showB4 = true
+    }
+    if (showB3 === true || showB4 === true){
+      showB3 = false
+      showB4 = false
     }
   }
 
@@ -121,6 +156,8 @@ class Bedroom {
        hall.start()
     }
   }
+
+
 
 
 }

@@ -25,9 +25,11 @@ class Phone {
 
   dynamicDisplay(){
     push();
+    this.x = player.sprite.position.x + 160
+    this.y = player.sprite.position.y + 140
     fill(57, 58, 56);
-    rect(player.sprite.position.x + 300, player.sprite.position.y + 100, this.width, this.height, 5);
-    image(this.screenImage, player.sprite.position.x + 300 + this.bezel, player.sprite.position.y + 100 + this.bezel);
+    rect(this.x, this.y, this.width, this.height, 5);
+    image(this.screenImage, this.x + this.bezel, this.y + this.bezel);
     pop();
   }
 

@@ -1,6 +1,15 @@
 let player;
 
-let scene = 'outside'
+let scene = 'bedroom'
+
+//TEXT VARIABLES
+let textShown = false
+let x = 80
+let y = 50
+let y2 = 122
+let width = 380
+let height = 80
+
 
 let phone; //Phone variables
 let phoneScreen;
@@ -32,6 +41,7 @@ function preload() {
     "assets/images/main/main-walk-up001.png",
     "assets/images/main/main-walk-up004.png"
   );
+  myFont = loadFont("assets/fonts/press_start.ttf")
   woodstep = loadSound("assets/sounds/step_wood.mp3");
   ting = loadSound("assets/sounds/ting.wav")
   //Bed sprite
@@ -68,8 +78,9 @@ function setup() {
 
   bedroom = new Bedroom(bed, bg_bedroom, ting);
   hall = new Hall(bg_hall, mainDoor);
+  if (scene === 'outside'){
   outside = new Outside(bg_outside, house1, house2, house3, house4, dog, evildog, growl, tree, outsideTheme);
-
+}
   phone = new Phone(phoneScreen, selfieIndoor);
 }
 
@@ -82,6 +93,8 @@ function draw() {
   bedroom.display()
   bedroom.bedText() // Displays text box from interacting with bed
   bedroom.deskText()
+  bedroom.deskText2()
+  bedroom.deskText3()
   bedroom.boundaries() // Sets walls/boundaries for player in the bedroom
   bedroom.exit()
   }
@@ -103,6 +116,7 @@ function draw() {
 
   if (scene == 'outside'){
     phone.dynamicDisplay()
+    console.log()
   }
   else {
   phone.display();
@@ -110,7 +124,7 @@ function draw() {
   phone.camera();
 
 
-  console.log(scene)
+  console.log(showB3)
   //console.log(phone.selected);
   //console.log(bed_sprite.overlap(player_sprite));
 
@@ -128,5 +142,24 @@ function draw() {
 
  function mousePressed() {
    phone.selectApp();
-   phone.exit()
+   phone.exit();
+   bedroom.changeText();
+
+}
+
+function textBox(){
+  fill(255)
+  rect(42, 22, 421, 116, 10)
+  fill(0)
+  rect(50, 30, 405, 100)
+  textFont(myFont)
+}
+
+function choice(){
+  if (mouseX < width / 2){
+    deskSelector = 1
+  }
+  else {
+    deskSelector = 2
+  }
 }
