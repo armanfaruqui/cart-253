@@ -61,6 +61,7 @@ function preload() {
   house2 = loadAnimation("assets/images/exterior/house2.png");
   house3 = loadAnimation("assets/images/exterior/house3.png");
   house4 = loadAnimation("assets/images/exterior/house2.png");
+  butchery = loadAnimation("assets/images/exterior/butchery.png");
   dog = loadAnimation("assets/images/exterior/dog_sprite1.png", "assets/images/exterior/dog_sprite2.png" );
   evildog = loadImage("assets/images/exterior/evildog_sprite1.png")
   tree = loadAnimation("assets/images/exterior/tree.png")
@@ -78,9 +79,8 @@ function setup() {
 
   bedroom = new Bedroom(bed, bg_bedroom, ting);
   hall = new Hall(bg_hall, mainDoor);
-  if (scene === 'outside'){
-  outside = new Outside(bg_outside, house1, house2, house3, house4, dog, evildog, growl, tree, outsideTheme);
-}
+  outside = new Outside(bg_outside, house1, house2, house3, house4, butchery, dog, evildog, growl, tree, outsideTheme);
+
   phone = new Phone(phoneScreen, selfieIndoor);
 }
 
@@ -102,6 +102,9 @@ function draw() {
   if (scene === 'hall'){
     hall.display()
     hall.boundaries()
+    hall.DoorText1()
+    hall.DoorText2()
+    hall.DoorText3()
     hall.exit()
     hall.anxiety()
   }
@@ -124,7 +127,7 @@ function draw() {
   phone.camera();
 
 
-  console.log(showB3)
+  console.log(textState)
   //console.log(phone.selected);
   //console.log(bed_sprite.overlap(player_sprite));
 
@@ -136,15 +139,19 @@ function draw() {
    if (scene === 'bedroom'){
    bedroom.keyPressed()//Interacts with bed
   }
+  if (scene === 'hall'){
+  hall.keyPressed()//Interacts with bed
+ }
   outside.doggo()
  }
 
 
  function mousePressed() {
    phone.selectApp();
-   phone.exit();
+   phone.exit()
    bedroom.changeText();
-
+   hall.changeTextState();
+   hall.exit2()
 }
 
 function textBox(){
@@ -158,8 +165,10 @@ function textBox(){
 function choice(){
   if (mouseX < width / 2){
     deskSelector = 1
+    doorSelector = 1
   }
   else {
     deskSelector = 2
+    doorSelector = 2
   }
 }

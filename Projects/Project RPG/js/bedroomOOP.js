@@ -10,6 +10,7 @@ class Bedroom {
   constructor(bed, bg_bedroom, ting){
 
     things = new Group()
+    if (scene === 'bedroom'){
     this.sprite = createSprite(370, 350, 12, 10);
     this.sprite.addAnimation("bed", bed);
     this.sprite.depth = 1;
@@ -30,7 +31,7 @@ class Bedroom {
 
     player.sprite.position.x = 200
     player.sprite.position.y = 200
-
+  }
   }
 
   display(){
@@ -133,10 +134,10 @@ class Bedroom {
       showB2 = false
       showB4 = true
     }
-    if (showB3 === true || showB4 === true){
-      showB3 = false
-      showB4 = false
-    }
+    // if (showB3 === true || showB4 === true){
+    //   showB3 = false
+    //   showB4 = false
+    // }
   }
 
   boundaries(){

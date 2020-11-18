@@ -124,10 +124,6 @@ class Player {
       drawSprites(humans)
     }
 
-    restrict() {
-      this.sprite.velocity.x = 0
-      this.sprite.velocity.y = 0
-    }
 
 }
     // stopSound() {
