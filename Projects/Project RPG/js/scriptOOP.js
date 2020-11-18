@@ -119,15 +119,15 @@ function draw() {
 
   if (scene == 'outside'){
     phone.dynamicDisplay()
-    console.log()
   }
   else {
   phone.display();
   }
+
   phone.camera();
 
 
-  console.log(textState)
+//  console.log(textState)
   //console.log(phone.selected);
   //console.log(bed_sprite.overlap(player_sprite));
 
@@ -149,7 +149,7 @@ function draw() {
  function mousePressed() {
    phone.selectApp();
    phone.exit()
-   bedroom.changeText();
+   bedroom.launchGame();
    hall.changeTextState();
    hall.exit2()
 }

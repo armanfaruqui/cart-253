@@ -5,6 +5,7 @@ class Outside{
   constructor(bg_outside, house1, house2, house3, house4, butchery, dog, evildog, growl, tree, outsideTheme){
     this.bg = bg_outside // background image
     this.song = outsideTheme
+    buildings = new Group()
 
     house1.sprite = createSprite(280, 420);
     house1.sprite.addAnimation("house1", house1);
