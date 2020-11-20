@@ -106,10 +106,10 @@ class Bedroom {
   launchGame(){
     if (showB2 === true && deskSelector === 1){
       window.open("https://armanfaruqui.github.io/cart253/Projects/project-1/")
+      showB2 = false
     }
     if (showB2 === true && deskSelector === 2){
       showB2 = false
-      showB4 = true
     }
     // if (showB3 === true || showB4 === true){
     //   showB3 = false

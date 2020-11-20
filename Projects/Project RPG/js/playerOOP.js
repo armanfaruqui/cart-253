@@ -37,7 +37,7 @@ class Player {
         this.sprite.changeAnimation("walkLeft");
         this.sprite.velocity.x = -2.4;
         this.direction = "left";
-        if (scene === "bedroom"|| scene === "hall"){
+        if (scene === "bedroom"|| scene === "hall" || scene === "butchery"){
           if (!this.stepSound.isPlaying()) {
             this.stepSound.play();
           }
@@ -56,7 +56,7 @@ class Player {
         this.sprite.changeAnimation("walkDown");
         this.sprite.velocity.y = 2;
         this.direction = "down";
-        if (scene === "bedroom"|| scene === "hall"){
+        if (scene === "bedroom"|| scene === "hall"|| scene === "butchery"){
           if (!this.stepSound.isPlaying()) {
             this.stepSound.play();
           }
@@ -75,7 +75,7 @@ class Player {
         this.sprite.changeAnimation("walkRight");
         this.sprite.velocity.x = 2.4;
         this.direction = "right";
-        if (scene === "bedroom"|| scene === "hall"){
+        if (scene === "bedroom"|| scene === "hall"|| scene === "butchery"){
           if (!this.stepSound.isPlaying()) {
             this.stepSound.play();
           }
@@ -95,7 +95,7 @@ class Player {
         this.sprite.changeAnimation("walkUp");
         this.sprite.velocity.y = -2;
         this.direction = "up";
-        if (scene === "bedroom"|| scene === "hall"){
+        if (scene === "bedroom"|| scene === "hall"|| scene === "butchery"){
           if (!this.stepSound.isPlaying()) {
             this.stepSound.play();
           }

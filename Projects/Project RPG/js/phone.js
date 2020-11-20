@@ -28,11 +28,11 @@ class Phone {
     fill(57, 58, 56);
     rect(this.x, this.y, this.width, this.height, 5);
     image(this.screenImage, this.x + this.bezel, this.y + this.bezel);
-    console.log(this.selected)
-    console.log(mouseX)
-    console.log(mouseY)
-    console.log(this.x)
-    console.log(this.y)
+    // console.log(this.selected)
+    // console.log(mouseX)
+    // console.log(mouseY)
+    // console.log(this.x)
+    // console.log(this.y)
     fill(255)
     rect(this.x,this.y, 10,10)
     }

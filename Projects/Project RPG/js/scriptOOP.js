@@ -10,6 +10,10 @@ let y2 = 122
 let width = 380
 let height = 80
 
+//DYNAMIC TEXT VARIABLES
+
+
+
 
 let phone; //Phone variables
 let phoneScreen;
@@ -68,6 +72,10 @@ function preload() {
   growl = loadSound("assets/sounds/growl.mp3")
   stoneStep = loadSound("assets/sounds/stone_step.mp3")
   outsideTheme = loadSound("assets/sounds/outsideTheme.mp3")
+  sheriff = loadImage("assets/images/chars/sheriff.png")
+
+  bg_butcher1 = loadImage("assets/images/interior/butchery_inside1.png");
+  bg_butcher2 = loadImage("assets/images/interior/butchery_inside2.png");
 }
 
 function setup() {
@@ -77,9 +85,10 @@ function setup() {
 
   player = new Player(player_stand, player_walkDown, player_standLeft, player_walkLeft, player_standRight, player_walkRight, player_standUp, player_walkUp, woodstep, stoneStep);
 
-  bedroom = new Bedroom(bed, bg_bedroom, ting);
+  bedroom = new Bedroom(bed, bg_bedroom, ting, door);
   hall = new Hall(bg_hall, mainDoor);
-  outside = new Outside(bg_outside, house1, house2, house3, house4, butchery, dog, evildog, growl, tree, outsideTheme);
+  outside = new Outside(bg_outside, house1, house2, house3, house4, butchery, dog, evildog, growl, tree, outsideTheme, door, sheriff);
+  butcherScene = new Butcher(bg_butcher1, bg_butcher2, ting)
 
   phone = new Phone(phoneScreen, selfieIndoor);
 }
@@ -93,8 +102,6 @@ function draw() {
   bedroom.display()
   bedroom.bedText() // Displays text box from interacting with bed
   bedroom.deskText()
-  bedroom.deskText2()
-  bedroom.deskText3()
   bedroom.boundaries() // Sets walls/boundaries for player in the bedroom
   bedroom.exit()
   }
@@ -113,6 +120,33 @@ function draw() {
     outside.display()
     outside.camera()
     outside.boundaries()
+    outside.enterButchery()
+    outside.talkToSheriff1()
+    outside.sheriffText1()
+    outside.sheriffText2()
+    outside.sheriffText3()
+    outside.sheriffText4()
+    outside.sheriffText5()
+    outside.sheriffText6()
+    outside.sheriffText7()
+  }
+
+ if (scene === 'butchery'){
+   butcherScene.display()
+   butcherScene.boundaries()
+   butcherScene.butcherText1()
+   butcherScene.butcherText2()
+   butcherScene.butcherText3()
+   butcherScene.butcherText4()
+   butcherScene.butcherText5()
+   butcherScene.butcherText6()
+   butcherScene.butcherText7()
+   butcherScene.butcherText8()
+   butcherScene.butcherText9()
+   butcherScene.butcherText10()
+   butcherScene.butcherText11()
+   butcherScene.butcherText12()
+   butcherScene.exit()
   }
 
   player.update() // Moves the player
@@ -125,14 +159,10 @@ function draw() {
   }
 
   phone.camera();
+  //console.log(player.sprite.position.x)
+  //console.log(player.sprite.position.y)
+  console.log(textStateSheriff)
 
-
-//  console.log(textState)
-  //console.log(phone.selected);
-  //console.log(bed_sprite.overlap(player_sprite));
-
-
-  //drawSprites();
 } //============================================================================================================
 
  function keyPressed(){
@@ -143,6 +173,12 @@ function draw() {
   hall.keyPressed()//Interacts with bed
  }
   outside.doggo()
+  if (scene === 'butchery'){
+    butcherScene.talkToButcher()
+  }
+  if (scene === 'outside'){
+  outside.changeTextStateSheriff()
+    }
  }
 
 
@@ -159,6 +195,14 @@ function textBox(){
   rect(42, 22, 421, 116, 10)
   fill(0)
   rect(50, 30, 405, 100)
+  textFont(myFont)
+}
+
+function dynamicTextBox(){
+  fill(255)
+  rect(player.sprite.position.x - 212, player.sprite.position.y - 230, 421, 116, 10)
+  fill(0)
+  rect(player.sprite.position.x - 204, player.sprite.position.y - 222, 405, 100)
   textFont(myFont)
 }
 

@@ -96,7 +96,7 @@ class Hall {
   }
 
   DoorText3() {
-    if (textState === 3 && mainDoor.sprite.overlap(player.sprite)){
+    if (textState === 4 && mainDoor.sprite.overlap(player.sprite)){
       choice()
       push()
       textBox()
@@ -124,7 +124,7 @@ class Hall {
   }
 
   changeTextState(){
-    if (textState === 1 && doorSelector === 1 || textState === 2 && doorSelector === 1){
+    if (textState === 1 && doorSelector === 1 || textState === 2 && doorSelector === 1 || textState === 3 && doorSelector === 1){
     textState += 1
   }
     else {
@@ -155,9 +155,10 @@ class Hall {
       player.sprite.position.x = 65
       player.sprite.position.y = 620
       oscillator.stop()
+      bedroom.spite.setCollider("rectangle", 0,0,0,0)
       bedroom.sprite.remove()
       bedroom.desk.sprite.remove()
-      bSedroom.door.sprite.remove()
+      bedroom.door.sprite.remove()
       this.sprite.remove()
       maindoor.sprite.remove()
     }
