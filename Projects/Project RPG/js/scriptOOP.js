@@ -211,7 +211,8 @@ function draw() {
   phone.camera();
   // console.log(player.sprite.position.x)
   // console.log(player.sprite.position.y)
-  console.log(selector)
+  console.log(mouseX)
+  console.log(mouseY)
 
 
 

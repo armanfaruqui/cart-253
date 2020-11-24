@@ -210,7 +210,7 @@ class Outside{
   }
 
 exitToForest(){
-  if (textStateSheriff > 6 && player.sprite.position.y < -170){
+  if (textStateSheriff > 6 && player.sprite.position.y < -169.6){
     scene = 'forestPath'
     forestPath.start()
   }

@@ -1,4 +1,5 @@
 let oscillator3;
+let newFreq2;
 let textStateFP = 1;
 let friendTalkedTo = false;
 let forestPathSelector = 1
@@ -42,7 +43,7 @@ class ForestPath {
       friend.sprite.position.x,
       friend.sprite.position.y
     ); // Measures distance between player and door
-    let newFreq2 = map(friendDistance, 280, 20, 0, 100); // Max dist = 270. Min = 20
+    newFreq2 = map(friendDistance, 280, 20, 0, 100); // Max dist = 270. Min = 20
     oscillator3.freq(newFreq2);
   }
 
@@ -69,6 +70,7 @@ class ForestPath {
       image(gif_squirrels, 0, 0);
       player.sprite.changeAnimation("blank")
       friend.sprite.changeAnimation("blank")
+      newFreq2 = 20
     }
   }
 
@@ -85,6 +87,7 @@ class ForestPath {
       friend.sprite.position.y = 392
       player.sprite.changeAnimation("standLeft")
       friend.sprite.changeAnimation("standLeft")
+      oscillator3.stop()
     }
   }
 
@@ -107,6 +110,7 @@ class ForestPath {
       tfp =
         "It's not often I bump into people my age near this town. Are you from somewhere else?";
       text(tfp, x, player.sprite.position.y - 202, width, height);
+      friend.sprite.changeAnimation("stand")
     }
   }
 
@@ -118,6 +122,7 @@ class ForestPath {
       tfp =
         "REALLY!? Wow its so nice to meet you!";
       text(tfp, x, player.sprite.position.y - 202, width, height);
+      friend.sprite.changeAnimation("stand")
     }
   }
 
@@ -129,6 +134,7 @@ class ForestPath {
       tfp =
         "My name is Munia";
       text(tfp, x, player.sprite.position.y - 202, width, height);
+        friend.sprite.changeAnimation("stand")
     }
   }
 
@@ -140,11 +146,13 @@ class ForestPath {
       tfp =
         "I really like your outfit and the earring. It's so hard to find people that dress colorfully here";
       text(tfp, x, player.sprite.position.y - 202, width, height);
+          friend.sprite.changeAnimation("stand")
     }
   }
 
   friendText8() {
     if (textStateFP === 9) {
+      friend.sprite.changeAnimation("stand")
       choice()
       dynamicTextBox2();
       forestPathChoice1 = "Thanks"
@@ -153,19 +161,20 @@ class ForestPath {
          fill(229, 112, 40)
          text(forestPathChoice1, x, player.sprite.position.y - 180)
          fill(255)
-         text(forestPathChoice2, x - 180, player.sprite.position.y - 180)
+         text(forestPathChoice2, x + 50, player.sprite.position.y - 150)
        }
        else if (selector === 2){
          fill(255)
          text(forestPathChoice1, x, player.sprite.position.y - 180)
          fill(229, 112, 40)
-         text(forestPathChoice2, 250, player.sprite.position.y - 180)
+         text(forestPathChoice2, x + 50, player.sprite.position.y - 150)
        }
     }
   }
 
   friendText9() {
     if (textStateFP === 10) {
+          friend.sprite.changeAnimation("stand")
       dynamicTextBox2();
       fill(65, 243, 252);
       textSize(12);
@@ -177,6 +186,7 @@ class ForestPath {
 
   friendText10() {
     if (textStateFP === 11) {
+          friend.sprite.changeAnimation("stand")
       dynamicTextBox2();
       fill(65, 243, 252);
       textSize(12);
