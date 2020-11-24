@@ -10,7 +10,7 @@ let y2 = 122
 let width = 380
 let height = 80
 
-//DYNAMIC TEXT VARIABLES
+let selector = 0
 
 
 
@@ -45,6 +45,30 @@ function preload() {
     "assets/images/main/main-walk-up001.png",
     "assets/images/main/main-walk-up004.png"
   );
+  friend_stand = loadAnimation("assets/images/chars/friend-walk001.png");
+  friend_walkDown = loadAnimation(
+    "assets/images/chars/friend-walk001.png",
+    "assets/images/chars/friend-walk004.png"
+  );
+  friend_standLeft = loadAnimation("assets/images/chars/friend-walkleft001.png");
+  friend_new = loadImage("assets/images/chars/friend-walkleft001.png");
+  friend_walkLeft = loadAnimation(
+    "assets/images/chars/friend-walkleft001.png",
+    "assets/images/chars/friend-walkleft003.png"
+  );
+  friend_standRight = loadAnimation(
+    "assets/images/chars/friend-walkright001.png"
+  );
+  friend_walkRight = loadAnimation(
+    "assets/images/chars/friend-walkright001.png",
+    "assets/images/chars/friend-walkright003.png"
+  );
+  friend_standUp = loadAnimation("assets/images/chars/friend-walkup001.png");
+  friend_walkUp = loadAnimation(
+    "assets/images/chars/friend-walkup001.png",
+    "assets/images/chars/friend-walkup004.png"
+  );
+
   myFont = loadFont("assets/fonts/press_start.ttf")
   woodstep = loadSound("assets/sounds/step_wood.mp3");
   ting = loadSound("assets/sounds/ting.wav")
@@ -74,8 +98,13 @@ function preload() {
   outsideTheme = loadSound("assets/sounds/outsideTheme.mp3")
   sheriff = loadImage("assets/images/chars/sheriff.png")
 
+  bg_forestPath = loadImage("assets/images/exterior/forest1.png")
+
   bg_butcher1 = loadImage("assets/images/interior/butchery_inside1.png");
   bg_butcher2 = loadImage("assets/images/interior/butchery_inside2.png");
+  grassStep = loadSound("assets/sounds/grass_step.mp3")
+  gif_squirrels = loadImage("assets/images/exterior/squirrels.gif")
+  blank = loadImage("assets/images/chars/blank.png")
 }
 
 function setup() {
@@ -83,13 +112,14 @@ function setup() {
   createCanvas(507, 507);
 
 
-  player = new Player(player_stand, player_walkDown, player_standLeft, player_walkLeft, player_standRight, player_walkRight, player_standUp, player_walkUp, woodstep, stoneStep);
+  player = new Player(player_stand, player_walkDown, player_standLeft, player_walkLeft, player_standRight, player_walkRight, player_standUp, player_walkUp, woodstep, stoneStep, blank);
 
   bedroom = new Bedroom(bed, bg_bedroom, ting, door);
   hall = new Hall(bg_hall, mainDoor);
   outside = new Outside(bg_outside, house1, house2, house3, house4, butchery, dog, evildog, growl, tree, outsideTheme, door, sheriff);
   butcherScene = new Butcher(bg_butcher1, bg_butcher2, ting)
-
+  forestPath = new ForestPath(bg_forestPath)
+  friend = new Friend(friend_stand, friend_walkDown, friend_standLeft, friend_walkLeft, friend_standRight, friend_walkRight, friend_standUp, friend_walkUp, friend_new, blank)
   phone = new Phone(phoneScreen, selfieIndoor);
 }
 
@@ -129,6 +159,7 @@ function draw() {
     outside.sheriffText5()
     outside.sheriffText6()
     outside.sheriffText7()
+    outside.exitToForest()
   }
 
  if (scene === 'butchery'){
@@ -149,9 +180,28 @@ function draw() {
    butcherScene.exit()
   }
 
+  if (scene === 'forestPath'){
+    forestPath.display()
+    forestPath.camera()
+    forestPath.boundaries()
+    friend.standingThere()
+    forestPath.anxiety()
+    forestPath.introduction1()
+    forestPath.introduction2()
+    forestPath.squirrels()
+    forestPath.friendText2()
+    forestPath.friendText3()
+    forestPath.friendText4()
+    forestPath.friendText5()
+    forestPath.friendText6()
+    forestPath.friendText7()
+    forestPath.friendText8()
+    forestPath.friendText9()
+  }
+
   player.update() // Moves the player
 
-  if (scene == 'outside'){
+  if (scene === 'outside' || scene === 'forestPath'){
     phone.dynamicDisplay()
   }
   else {
@@ -159,9 +209,11 @@ function draw() {
   }
 
   phone.camera();
-  //console.log(player.sprite.position.x)
-  //console.log(player.sprite.position.y)
-  console.log(textStateSheriff)
+  // console.log(player.sprite.position.x)
+  // console.log(player.sprite.position.y)
+  console.log(selector)
+
+
 
 } //============================================================================================================
 
@@ -179,6 +231,9 @@ function draw() {
   if (scene === 'outside'){
   outside.changeTextStateSheriff()
     }
+  if (scene === 'forestPath'){
+    forestPath.changeTextState()
+  }
  }
 
 
@@ -206,13 +261,19 @@ function dynamicTextBox(){
   textFont(myFont)
 }
 
+function dynamicTextBox2(){
+  fill(255)
+  rect(42, player.sprite.position.y - 230, 421, 116, 10)
+  fill(0)
+  rect(50, player.sprite.position.y - 222, 405, 100)
+  textFont(myFont)
+}
+
 function choice(){
   if (mouseX < width / 2){
-    deskSelector = 1
-    doorSelector = 1
+    selector = 1
   }
   else {
-    deskSelector = 2
-    doorSelector = 2
+    selector = 2
   }
 }

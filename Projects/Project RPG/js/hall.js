@@ -1,7 +1,6 @@
 let hallObjects
 let oscillator;
 let textState = 0
-let doorSelector = 0
 
 class Hall {
   constructor(bg_hall, mainDoor){
@@ -51,13 +50,13 @@ class Hall {
       textSize(12)
       text(t1, x, y, width, height)
 
-     if (doorSelector === 1) {
+     if (selector === 1) {
         fill(229, 112, 40)
         text(yesDoor, x, y2- 30)
         fill(255)
         text(noDoor, 280, y2- 30)
       }
-      else if (doorSelector === 2){
+      else if (selector === 2){
         fill(255)
         text(yesDoor, x, y2- 30)
         fill(229, 112, 40)
@@ -79,13 +78,13 @@ class Hall {
       textSize(12)
       text(t2, x, y, width, height)
 
-     if (doorSelector === 1) {
+     if (selector === 1) {
         fill(229, 112, 40)
         text(yesDoor2, x, y2 - 30)
         fill(255)
         text(noDoor2, 250, y2 - 30)
       }
-      else if (doorSelector === 2){
+      else if (selector === 2){
         fill(255)
         text(yesDoor2, x, y2 - 30)
         fill(229, 112, 40)
@@ -96,24 +95,24 @@ class Hall {
   }
 
   DoorText3() {
-    if (textState === 4 && mainDoor.sprite.overlap(player.sprite)){
+    if (textState === 3 && mainDoor.sprite.overlap(player.sprite)){
       choice()
       push()
       textBox()
       fill(255)
       let t3 = "Last chance to stay home. "
       let yesDoor3 = "I have to feed myself"
-      let noDoor3 = "I can't"
+      let noDoor3 = "1 more hour.."
       textSize(12)
       text(t3, x, y, width, height)
 
-     if (doorSelector === 1) {
+     if (selector === 1) {
         fill(229, 112, 40)
         text(yesDoor3, x - 30, y2 - 30)
         fill(255)
         text(noDoor3, 330, y2 - 30)
       }
-      else if (doorSelector === 2){
+      else if (selector === 2){
         fill(255)
         text(yesDoor3, x - 30, y2 - 30)
         fill(229, 112, 40)
@@ -124,7 +123,7 @@ class Hall {
   }
 
   changeTextState(){
-    if (textState === 1 && doorSelector === 1 || textState === 2 && doorSelector === 1 || textState === 3 && doorSelector === 1){
+    if (textState === 1 && selector === 1 || textState === 2 && selector === 1 || textState === 3 && selector === 1){
     textState += 1
   }
     else {
@@ -150,7 +149,7 @@ class Hall {
   }
 
   exit2(){
-    if (textState === 3 && doorSelector === 1){
+    if (textState === 4 && selector === 1){
       scene = 'outside'
       player.sprite.position.x = 65
       player.sprite.position.y = 620

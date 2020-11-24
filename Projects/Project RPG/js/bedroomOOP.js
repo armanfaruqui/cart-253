@@ -3,11 +3,10 @@ let showB2 = false
 let showB3 = false
 let showB4 = false
 let things
-let deskSelector = 0;
 
 class Bedroom {
 
-  constructor(bed, bg_bedroom, ting){
+  constructor(bed, bg_bedroom, ting, door){
 
     things = new Group()
     if (scene === 'bedroom'){
@@ -81,19 +80,19 @@ class Bedroom {
       let no = "Not Today"
       textSize(12)
       text(b2, x, y, width, height)
-      if (deskSelector === 0) {
+      if (selector === 0) {
         fill(255)
         text(yes, x, y2)
         fill(255);
         text(no, 280, y2)
       }
-      else if (deskSelector === 1) {
+      else if (selector === 1) {
         fill(229, 112, 40)
         text(yes, x, y2)
         fill(255)
         text(no, 280, y2)
       }
-      else if (deskSelector === 2){
+      else if (selector === 2){
         fill(255)
         text(yes, x, y2)
         fill(229, 112, 40)
@@ -104,11 +103,11 @@ class Bedroom {
   }
 
   launchGame(){
-    if (showB2 === true && deskSelector === 1){
+    if (showB2 === true && selector === 1){
       window.open("https://armanfaruqui.github.io/cart253/Projects/project-1/")
       showB2 = false
     }
-    if (showB2 === true && deskSelector === 2){
+    if (showB2 === true && selector === 2){
       showB2 = false
     }
     // if (showB3 === true || showB4 === true){

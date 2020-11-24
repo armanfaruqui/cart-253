@@ -38,7 +38,7 @@ class Butcher {
       textStateButcher = textStateButcher + 1
 
         ting.play()
-      
+
     }
   }
 
