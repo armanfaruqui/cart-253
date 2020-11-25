@@ -3,10 +3,10 @@ let entities;
 let textStateSheriff = 0
 let t1s = "Benny the Buther was looking for you. Head to him right now or else!"
 
-class Outside{
-  constructor(bg_outside, house1, house2, house3, house4, butchery, dog, evildog, growl, tree, outsideTheme, door, sheriff){
-    this.bg = bg_outside // background image
-    this.song = outsideTheme
+class Town{
+  constructor(town, house1, house2, house3, house4, butchery, dog, evildog, growl, tree, townTheme, door, sheriff){
+    this.bg = town // background image
+    this.song = townTheme
     this.door = door
     buildings = new Group()
     entities = new Group()
@@ -106,7 +106,7 @@ class Outside{
   }
 
   song(){
-    if (scene === "outside"){
+    if (scene === "town"){
       if (!this.song.isPlaying()) {
         this.song.play();
     }

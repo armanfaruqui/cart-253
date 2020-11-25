@@ -176,7 +176,7 @@ class Butcher {
 
   exit(){
      if (textStateButcher === 13){
-        scene = 'outside'
+        scene = 'town'
         player.sprite.position.x = 585
         player.sprite.position.y = 338
      }

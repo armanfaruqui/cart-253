@@ -43,7 +43,7 @@ class Player {
           this.stepSound.play();
         }
       }
-      if (scene === "outside") {
+      if (scene === "town") {
         if (!this.stepSound2.isPlaying()) {
           this.stepSound2.play();
         }
@@ -67,7 +67,7 @@ class Player {
           this.stepSound.play();
         }
       }
-      if (scene === "outside") {
+      if (scene === "town") {
         if (!this.stepSound2.isPlaying()) {
           this.stepSound2.play();
         }
@@ -91,7 +91,7 @@ class Player {
           this.stepSound.play();
         }
       }
-      if (scene === "outside") {
+      if (scene === "town") {
         if (!this.stepSound2.isPlaying()) {
           this.stepSound2.play();
         }
@@ -115,7 +115,7 @@ class Player {
           this.stepSound.play();
         }
       }
-      if (scene === "outside") {
+      if (scene === "town") {
         if (!this.stepSound2.isPlaying()) {
           this.stepSound2.play();
         }
@@ -151,7 +151,7 @@ class Player {
 //   if (scene === "bedroom" || scene === "hall"){
 //     woodstep.stop()
 //   }
-//   if (scene === "outside"){
+//   if (scene === "town"){
 //     stoneStep.stop()
 //   }
 // }

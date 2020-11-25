@@ -15,11 +15,13 @@ class Phone {
   }
 
   display() {
+    camera.off();
     push();
     fill(57, 58, 56);
     rect(this.x, this.y, this.width, this.height, 5);
     image(this.screenImage, this.x + this.bezel, this.y + this.bezel);
     pop();
+    camera.on();
   }
 
   dynamicDisplay(){
@@ -53,6 +55,8 @@ class Phone {
       }
 
   selectApp() {
+    console.log(mouseX, mouseY, this.x, this.y, this.bezel)
+
     if (
       mouseX > this.x + this.bezel + 8 &&
       mouseX < this.x + this.bezel + 27 &&
@@ -88,11 +92,12 @@ class Phone {
   }
 
   dynamicSelectApp(){
+
     if (
-      mouseX > this.x + this.bezel + 8 &&
-      mouseX < this.x + this.bezel + 27 &&
-      mouseY > this.y + this.bezel + 12 &&
-      mouseY < this.y + this.bezel + 31
+      mouseScenePosition.x > this.x + this.bezel + 8 &&
+      mouseScenePosition.x < this.x + this.bezel + 27 &&
+      mouseScenePosition.y > this.y + this.bezel + 12 &&
+      mouseScenePosition.y < this.y + this.bezel + 31
     ) {
       this.selected = "camera";
     }
@@ -124,8 +129,10 @@ class Phone {
 
   camera(){
     if (this.selected === "camera") {
-      if (scene === 'bedroom' || scene === 'hall'){
+      if (scene === 'bedroom' || scene === 'hall' || scene === 'town'){
+        camera.off()
         image(selfieIndoor, this.x + this.bezel, this.y + this.bezel)
+        camera.on()
       }
     }
   }

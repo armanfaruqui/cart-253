@@ -44,7 +44,7 @@ class Hall {
       push()
       textBox()
       fill(255)
-      let t1 = "Leave home and go outside? "
+      let t1 = "Leave home and go town? "
       let yesDoor = "erm... yes?"
       let noDoor = "No way in hell"
       textSize(12)
@@ -150,7 +150,7 @@ class Hall {
 
   exit2(){
     if (textState === 4 && selector === 1){
-      scene = 'outside'
+      scene = 'town'
       player.sprite.position.x = 65
       player.sprite.position.y = 620
       oscillator.stop()
