@@ -106,14 +106,14 @@ class Bedroom {
       showB2 = false;
     }
   }
-
+  // Sets walls/boundaries for the player
   boundaries() {
     if (player.sprite.position.x < 120) player.sprite.position.x = 120;
     if (player.sprite.position.y < 150) player.sprite.position.y = 150;
     if (player.sprite.position.x > 380) player.sprite.position.x = 380;
     if (player.sprite.position.y > 450) player.sprite.position.y = 450;
   }
-
+  // Switches scene from bedroom to hall
   exit() {
     if (door.sprite.overlap(player.sprite) && player.direction === "left") {
       scene = "hall";

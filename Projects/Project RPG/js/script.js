@@ -2,6 +2,8 @@ let player;
 
 let scene = "bedroom";
 
+let i = 0 //For loops
+
 //Variables which positions text within textboxes
 let textShown = false;
 let x = 80;
@@ -82,6 +84,15 @@ function preload() {
   stoneStep = loadSound("assets/sounds/stone_step.mp3");
   grassStep = loadSound("assets/sounds/grass_step.mp3");
 
+  // Dialogue sound
+  friendDialogue1 = loadSound("assets/sounds/friend_dialogue1.mp3")
+  friendDialogue2 = loadSound("assets/sounds/friend_dialogue2.mp3")
+  friendDialogue3 = loadSound("assets/sounds/friend_dialogue3.mp3")
+  friendDialogue4 = loadSound("assets/sounds/friend_dialogue4.mp3")
+  friendDialogue5 = loadSound("assets/sounds/friend_dialogue5.mp3")
+  friendDialogue6 = loadSound("assets/sounds/friend_dialogue6.mp3")
+
+
   // Music
   townTheme = loadSound("assets/sounds/OutsideTheme.mp3");
 
@@ -122,6 +133,7 @@ function preload() {
   bg_forestPath = loadImage("assets/images/exterior/forest1.png");
   gif_squirrels = loadImage("assets/images/exterior/squirrels.gif");
   blank = loadImage("assets/images/chars/blank.png");
+  blank2 = loadImage("assets/images/chars/blank2.png");
 }
 
 //======================================================================================================================
@@ -130,9 +142,9 @@ function setup() {
   createCanvas(507, 507);
 
   //Initializes objects
-  player = new Player(player_stand, player_walkDown, player_standLeft, player_walkLeft, player_standRight, player_walkRight, player_standUp, player_walkUp, woodstep, stoneStep, blank);
+  player = new Player(player_stand, player_walkDown, player_standLeft, player_walkLeft, player_standRight, player_walkRight, player_standUp, player_walkUp, woodstep, stoneStep, blank2);
 
-  friend = new Friend(friend_stand, friend_walkDown, friend_standLeft, friend_walkLeft, friend_standRight, friend_walkRight, friend_standUp, friend_walkUp, friend_new, blank);
+  friend = new Friend(friend_stand, friend_walkDown, friend_standLeft, friend_walkLeft, friend_standRight, friend_walkRight, friend_standUp, friend_walkUp, friend_new, blank, friendDialogue1,friendDialogue2,friendDialogue3,friendDialogue4,friendDialogue5, friendDialogue6);
 
   phone = new Phone(phoneScreen, selfieIndoor);
 
@@ -207,7 +219,7 @@ function draw() {
     forestPath.camera(); // Y position of camera depends on the y position of the player. X remains fixed
     forestPath.boundaries();
     friend.standingThere(); // Draws the friend sprite
-    forestPath.anxiety(); // //Plays oscillator with frequency which changes depending on players distance from friend
+    forestPath.anxiety(); // Plays oscillator with frequency which changes depending on players distance from friend
     forestPath.introduction1(); // If player talks to friend
     forestPath.introduction2(); // If player tries to walk past friend
     forestPath.squirrels(); // Displays gif of squirrels on tree
@@ -219,6 +231,16 @@ function draw() {
     forestPath.friendText7();
     forestPath.friendText8();
     forestPath.friendText9();
+    forestPath.friendText10();
+    forestPath.friendText11();
+    forestPath.friendText12();
+    forestPath.friendText13();
+    forestPath.friendText14();
+    forestPath.startWalkingTogether();
+    if (textStateFP > 15){
+    friend.checkDistanceFromPlayer();
+  }
+    //forestPath.exit();
   }
 
   player.update(); // Moves the player
@@ -226,6 +248,7 @@ function draw() {
   phone.display();
   phone.camera(); // Contains code for the camera app
 
+  //console.log(textStateFP)
   //console.log(mouseScenePosition.x)
   // console.log(player.sprite.position.x)
   // console.log(player.sprite.position.y)
@@ -258,6 +281,8 @@ function mousePressed() {
   bedroom.launchGame(); // Launces 'Plent of Alien Fish in the Sea' from the player interacting with the desk
   hall.changeTextState(); // Changes text state for text boxes with options
   hall.exit2(); // Switches scene from hall to town
+  forestPath.selectChoice1()
+  forestPath.selectChoice2()
 }
 
 // Draws the text box and assigns font

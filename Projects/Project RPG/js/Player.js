@@ -11,7 +11,7 @@ let humans
 
 class Player {
 
-  constructor(player_stand, player_walkDown, player_standLeft, player_walkLeft, player_standRight, player_walkRight, player_standUp, player_walkUp, woodstep, stoneStep, blank) {
+  constructor(player_stand, player_walkDown, player_standLeft, player_walkLeft, player_standRight, player_walkRight, player_standUp, player_walkUp, woodstep, stoneStep, blank2) {
     humans = new Group()
     this.sprite = createSprite(200, 200, 42, 42);
     this.sprite.addAnimation("stand", player_stand);
@@ -22,7 +22,7 @@ class Player {
     this.sprite.addAnimation("walkRight", player_walkRight);
     this.sprite.addAnimation("standUp", player_standUp);
     this.sprite.addAnimation("walkUp", player_walkUp);
-    this.sprite.addAnimation("blank", blank);
+    this.sprite.addAnimation("blank2", blank2);
     this.sprite.setCollider("rectangle", 0, 20, 22, 35);
     this.sprite.addToGroup(humans)
     this.sprite.depth = 5; //Visualize depth as photoshop layers
@@ -36,7 +36,7 @@ class Player {
   update() {
     if (keyIsDown(65) && !keyIsDown(83) && !keyIsDown(68) && !keyIsDown(87)) {
       this.sprite.changeAnimation("walkLeft");
-      this.sprite.velocity.x = -2.4;
+      this.sprite.velocity.x = -4.4;
       this.direction = "left";
       if (scene === "bedroom" || scene === "hall" || scene === "butchery") {
         if (!this.stepSound.isPlaying()) {
@@ -60,7 +60,7 @@ class Player {
       !keyIsDown(87)
     ) {
       this.sprite.changeAnimation("walkDown");
-      this.sprite.velocity.y = 2;
+      this.sprite.velocity.y = 4;
       this.direction = "down";
       if (scene === "bedroom" || scene === "hall" || scene === "butchery") {
         if (!this.stepSound.isPlaying()) {
@@ -84,7 +84,7 @@ class Player {
       !keyIsDown(87)
     ) {
       this.sprite.changeAnimation("walkRight");
-      this.sprite.velocity.x = 2.4;
+      this.sprite.velocity.x = 4.4;
       this.direction = "right";
       if (scene === "bedroom" || scene === "hall" || scene === "butchery") {
         if (!this.stepSound.isPlaying()) {
@@ -108,7 +108,7 @@ class Player {
       !keyIsDown(65)
     ) {
       this.sprite.changeAnimation("walkUp");
-      this.sprite.velocity.y = -2;
+      this.sprite.velocity.y = -4;
       this.direction = "up";
       if (scene === "bedroom" || scene === "hall" || scene === "butchery") {
         if (!this.stepSound.isPlaying()) {

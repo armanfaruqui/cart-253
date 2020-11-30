@@ -1,21 +1,22 @@
 let oscillator3;
 let newFreq2;
 let textStateFP = 1;
-let friendTalkedTo = false;
+let friendTalkedTo = false; // Boolean which checks if interaction with friend has begun
 let forestPathSelector = 1
 let forestPathChoice1
 let forestPathChoice2
 let forestPathChoice3
 
+
 class ForestPath {
-  constructor(bg_forest1) {
+  constructor(bg_forest1, friendDialogue1,friendDialogue2,friendDialogue3,friendDialogue4,friendDialogue5, friendDialogue6) {
     this.bg = bg_forest1;
   }
 
   display() {
     image(this.bg, 0, 0);
   }
-
+  // Assigns player position and starts oscillator
   start() {
     player.sprite.position.x = 270;
     player.sprite.position.y = 950;
@@ -27,15 +28,20 @@ class ForestPath {
     if (player.sprite.position.x < 180) player.sprite.position.x = 180;
     if (player.sprite.position.x > 370) player.sprite.position.x = 370;
     if (player.sprite.position.y > 956) player.sprite.position.y = 956;
+    if (friend.sprite.position.x < 180) friend.sprite.position.x = 180;
+    if (friend.sprite.position.x > 370) friend.sprite.position.x = 370;
+    if (friend.sprite.position.y > 956) friend.sprite.position.y = 956;
+  if (textStateFP < 15){
     if (player.sprite.position.y < 286) player.sprite.position.y = 286;
   }
-
+  }
+  // Y position of camera depends on the Y position of the player. X remains fixed
   camera() {
     camera.zoom = 1;
     camera.position.x = 270;
     camera.position.y = player.sprite.position.y;
   }
-
+  // Plays oscillator with frequency which changes depending on players distance from friend
   anxiety() {
     let friendDistance = dist(
       player.sprite.position.x,
@@ -46,13 +52,15 @@ class ForestPath {
     newFreq2 = map(friendDistance, 280, 20, 0, 100); // Max dist = 270. Min = 20
     oscillator3.freq(newFreq2);
   }
-
+  // If player talks to friend
   introduction1() {
     if (player.sprite.position.y < 288 && textStateFP === 1) {
       friend.forestPathText1();
       friendTalkedTo = true;
+
+      }
     }
-  }
+
 
   introduction2() {
     if (
@@ -62,13 +70,18 @@ class ForestPath {
     ) {
       friend.forestPathText1();
       friendTalkedTo = true;
+
+    
+
     }
   }
 
   squirrels() {
     if (textStateFP === 2) {
+      camera.off()
       image(gif_squirrels, 0, 0);
-      player.sprite.changeAnimation("blank")
+      player.sprite.position.x =-100
+      player.sprite.position.y =-100
       friend.sprite.changeAnimation("blank")
       newFreq2 = 20
     }
@@ -88,6 +101,10 @@ class ForestPath {
       player.sprite.changeAnimation("standLeft")
       friend.sprite.changeAnimation("standLeft")
       oscillator3.stop()
+      if (!friendDialogue4.isPlaying()) {
+        friendDialogue4.play();
+      }
+
     }
   }
 
@@ -196,13 +213,95 @@ class ForestPath {
     }
   }
 
-  friendText11(){
+  friendText11() {
+    if (textStateFP === 12) {
+      friend.sprite.changeAnimation("stand")
+      choice()
+      dynamicTextBox2();
+      forestPathChoice1 = "I've got this job..."
+      forestPathChoice2 = "Why not"
+      if (selector === 1) {
+         fill(229, 112, 40)
+         text(forestPathChoice1, x, player.sprite.position.y - 180)
+         fill(255)
+         text(forestPathChoice2, x + 275, player.sprite.position.y - 180)
+       }
+       else if (selector === 2){
+         fill(255)
+         text(forestPathChoice1, x, player.sprite.position.y - 180)
+         fill(229, 112, 40)
+         text(forestPathChoice2, x + 275, player.sprite.position.y - 180)
+       }
+    }
+  }
 
+  friendText12() {
+    if (textStateFP === 13) {
+          friend.sprite.changeAnimation("stand")
+      dynamicTextBox2();
+      fill(65, 243, 252);
+      textSize(12);
+      tfp =
+        "Come on don't be shy. We can stop where you need to go on the way";
+      text(tfp, x, player.sprite.position.y - 202, width, height);
+    }
+  }
+
+  friendText13() {
+    if (textStateFP === 14) {
+          friend.sprite.changeAnimation("stand")
+      dynamicTextBox2();
+      fill(65, 243, 252);
+      textSize(12);
+      tfp =
+        "That's the spirit!";
+      text(tfp, x, player.sprite.position.y - 202, width, height);
+    }
+  }
+
+  friendText14() {
+    if (textStateFP === 15) {
+          friend.sprite.changeAnimation("standLeft")
+          friend.adjustPostion()
+      dynamicTextBox2();
+      fill(65, 243, 252);
+      textSize(12);
+      tfp =
+        "Let's go then. This should be nice :)";
+      text(tfp, x, player.sprite.position.y - 202, width, height);
+    }
+  }
+
+  startWalkingTogether() {
+    if (textStateFP > 15){
+      friend.update()
+    }
   }
 
   changeTextState() {
-    if ((friendTalkedTo === true) & (keyCode === SHIFT)) {
+    if ((friendTalkedTo === true) && (keyCode === SHIFT)) {
       textStateFP = textStateFP + 1;
+    }
+  }
+
+  selectChoice1() {
+    if ((friendTalkedTo === true) && textStateFP === 9) {
+      textStateFP = textStateFP + 1;
+    }
+  }
+
+  selectChoice2(){
+    if ((friendTalkedTo === true) && textStateFP === 12 && selector === 1) {
+      textStateFP = textStateFP + 1;
+    }
+    if ((friendTalkedTo === true) && textStateFP === 12 && selector === 2){
+      textStateFP = textStateFP + 2
+    }
+  }
+
+  exit(){
+    if (player.sprite.position.y < 286){
+      scene = "forest2"
     }
   }
 }
