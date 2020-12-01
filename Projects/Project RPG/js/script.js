@@ -92,7 +92,6 @@ function preload() {
   friendDialogue5 = loadSound("assets/sounds/friend_dialogue5.mp3")
   friendDialogue6 = loadSound("assets/sounds/friend_dialogue6.mp3")
 
-
   // Music
   townTheme = loadSound("assets/sounds/OutsideTheme.mp3");
 
@@ -134,6 +133,7 @@ function preload() {
   gif_squirrels = loadImage("assets/images/exterior/squirrels.gif");
   blank = loadImage("assets/images/chars/blank.png");
   blank2 = loadImage("assets/images/chars/blank2.png");
+  bg_forestPath2 = loadImage("assets/images/exterior/forest2.png")
 }
 
 //======================================================================================================================
@@ -151,11 +151,14 @@ function setup() {
   bedroom = new Bedroom(bed, bg_bedroom, ting, door);
 
   hall = new Hall(bg_hall, mainDoor);
+
   town = new Town(town, house1, house2, house3, house4, butchery, dog, evildog, growl, tree, townTheme, door, sheriff);
 
   butcherScene = new Butcher(bg_butcher1, bg_butcher2, ting);
 
   forestPath = new ForestPath(bg_forestPath);
+
+  forestPath2 = new ForestPath2(bg_forestPath2)
 }
 //======================================================================================================================
 function draw() {
@@ -240,8 +243,27 @@ function draw() {
     if (textStateFP > 15){
     friend.checkDistanceFromPlayer();
   }
-    //forestPath.exit();
+    forestPath.exit();
   }
+
+  if (scene === "forest2"){
+    forestPath2.display()
+    forestPath2.boundaries()
+    forestPath.camera();
+    friend.update()
+    friend.checkDistanceFromPlayer()
+    forestPath2.friendText1()
+    forestPath2.friendText2()
+    forestPath2.friendText3()
+    forestPath2.friendText4()
+    forestPath2.friendText5()
+    forestPath2.friendText6()
+    forestPath2.friendText7()
+    forestPath2.friendText8()
+    forestPath2.friendText9()
+    forestPath2.friendText10()
+}
+
 
   player.update(); // Moves the player
 
@@ -251,7 +273,7 @@ function draw() {
   //console.log(textStateFP)
   //console.log(mouseScenePosition.x)
   // console.log(player.sprite.position.x)
-  // console.log(player.sprite.position.y)
+   //console.log(player.sprite.position.y)
   // console.log(mouseX)
   // console.log(mouseY)
 } //============================================================================================================
@@ -273,6 +295,9 @@ function keyPressed() {
   if (scene === "forestPath") {
     forestPath.changeTextState();
   }
+  if (scene === "forest2") {
+    forestPath2.changeTextState();
+  }
 }
 
 function mousePressed() {
@@ -283,6 +308,7 @@ function mousePressed() {
   hall.exit2(); // Switches scene from hall to town
   forestPath.selectChoice1()
   forestPath.selectChoice2()
+  forestPath2.selectChoice1()
 }
 
 // Draws the text box and assigns font

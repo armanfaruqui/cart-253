@@ -55,7 +55,7 @@ class Phone {
       }
 
   selectApp() {
-    console.log(mouseX, mouseY, this.x, this.y, this.bezel)
+  //  console.log(mouseX, mouseY, this.x, this.y, this.bezel)
 
     if (
       mouseX > this.x + this.bezel + 8 &&

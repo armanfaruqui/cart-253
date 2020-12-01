@@ -71,7 +71,7 @@ class ForestPath {
       friend.forestPathText1();
       friendTalkedTo = true;
 
-    
+
 
     }
   }
@@ -300,8 +300,9 @@ class ForestPath {
   }
 
   exit(){
-    if (player.sprite.position.y < 286){
+    if (player.sprite.position.y < 286 && textStateFP > 15){
       scene = "forest2"
+      forestPath2.start()
     }
   }
 }
