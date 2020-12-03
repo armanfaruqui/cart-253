@@ -5,16 +5,16 @@ let forestPath2Choice2
 let forestPath2Choice3
 
 class ForestPath2 {
-  constructor(bg_forestPath2){
+  constructor(bg_forestPath2) {
     this.bg = bg_forestPath2
   }
 
-  display(){
+  display() {
     image(this.bg, 0, 0);
     console.log(textStateFP2)
   }
 
-  start(){
+  start() {
     player.sprite.position.y = 1326;
     friend.sprite.position.y = 1326;
   }
@@ -26,10 +26,15 @@ class ForestPath2 {
     if (friend.sprite.position.x < 180) friend.sprite.position.x = 180;
     if (friend.sprite.position.x > 370) friend.sprite.position.x = 370;
     if (friend.sprite.position.y > 1326) friend.sprite.position.y = 1326;
+
+  if (textStateFP2 < 11){
+      if (player.sprite.position.y < 258) player.sprite.position.y = 258;
+      if (friend.sprite.position.y < 258) friend.sprite.position.y = 258;
+    }
   }
 
-  friendText1(){
-    if (textStateFP2 === 1 && player.sprite.position.y < 1202){
+  friendText1() {
+    if (textStateFP2 === 1 && player.sprite.position.y < 1202) {
       dynamicTextBox2();
       fill(65, 243, 252);
       textSize(12);
@@ -39,8 +44,8 @@ class ForestPath2 {
     }
   }
 
-  friendText2(){
-    if (textStateFP2 === 2){
+  friendText2() {
+    if (textStateFP2 === 2) {
       choice()
       dynamicTextBox2();
       fill(65, 243, 252);
@@ -48,22 +53,21 @@ class ForestPath2 {
       forestPath2Choice1 = "Play video games (Truth)"
       forestPath2Choice2 = "Spend time outdoors (Lie)"
       if (selector === 1) {
-         fill(229, 112, 40)
-         text(forestPath2Choice1, x, player.sprite.position.y - 180)
-         fill(255)
-         text(forestPath2Choice2, x + 50, player.sprite.position.y - 150)
-       }
-       else if (selector === 2){
-         fill(255)
-         text(forestPath2Choice1, x, player.sprite.position.y - 180)
-         fill(229, 112, 40)
-         text(forestPath2Choice2, x + 50, player.sprite.position.y - 150)
-       }
+        fill(229, 112, 40)
+        text(forestPath2Choice1, x, player.sprite.position.y - 180)
+        fill(255)
+        text(forestPath2Choice2, x + 50, player.sprite.position.y - 150)
+      } else if (selector === 2) {
+        fill(255)
+        text(forestPath2Choice1, x, player.sprite.position.y - 180)
+        fill(229, 112, 40)
+        text(forestPath2Choice2, x + 50, player.sprite.position.y - 150)
+      }
     }
   }
 
-  friendText3(){
-    if (textStateFP2 === 3){
+  friendText3() {
+    if (textStateFP2 === 3) {
       dynamicTextBox2();
       fill(65, 243, 252);
       textSize(12);
@@ -73,8 +77,8 @@ class ForestPath2 {
     }
   }
 
-  friendText4(){
-    if (textStateFP2 === 4){
+  friendText4() {
+    if (textStateFP2 === 4) {
       dynamicTextBox2();
       fill(65, 243, 252);
       textSize(12);
@@ -84,8 +88,8 @@ class ForestPath2 {
     }
   }
 
-  friendText5(){
-    if (textStateFP2 === 5){
+  friendText5() {
+    if (textStateFP2 === 5) {
       dynamicTextBox2();
       fill(65, 243, 252);
       textSize(12);
@@ -95,8 +99,8 @@ class ForestPath2 {
     }
   }
 
-  friendText6(){
-    if (textStateFP2 === 6){
+  friendText6() {
+    if (textStateFP2 === 6) {
       dynamicTextBox2();
       fill(65, 243, 252);
       textSize(12);
@@ -106,8 +110,8 @@ class ForestPath2 {
     }
   }
 
-  friendText7(){
-    if (textStateFP2 === 7){
+  friendText7() {
+    if (textStateFP2 === 7) {
       dynamicTextBox2();
       fill(65, 243, 252);
       textSize(12);
@@ -117,8 +121,8 @@ class ForestPath2 {
     }
   }
 
-  friendText8(){
-    if (textStateFP2 === 8){
+  friendText8() {
+    if (textStateFP2 === 8) {
       dynamicTextBox2();
       fill(65, 243, 252);
       textSize(12);
@@ -127,26 +131,29 @@ class ForestPath2 {
       text(tfp2, x, player.sprite.position.y - 202, width, height);
     }
   }
-    friendText9(){
-      if (textStateFP2 === 9){
-        dynamicTextBox2();
-        fill(65, 243, 252);
-        textSize(12);
-        tfp2 =
-          "I rambled too long there didn't I";
-        text(tfp2, x, player.sprite.position.y - 202, width, height);
-      }
+  friendText9() {
+    if (textStateFP2 === 9) {
+      dynamicTextBox2();
+      fill(65, 243, 252);
+      textSize(12);
+      tfp2 =
+        "I rambled too long there didn't I";
+      text(tfp2, x, player.sprite.position.y - 202, width, height);
     }
-      friendText10(){
-        if (textStateFP2 === 10){
-          dynamicTextBox2();
-          fill(65, 243, 252);
-          textSize(12);
-          tfp2 =
-            "You're saying I didn't? I'm glad you don't mind this type of conversation. Being open and vulnerable is super important to me";
-          text(tfp2, x, player.sprite.position.y - 202, width, height);
-        }
-      }
+  }
+  friendText10() {
+    if (textStateFP2 === 10) {
+      dynamicTextBox2();
+      fill(65, 243, 252);
+      textSize(12);
+      tfp2 =
+        "You're saying I didn't? I'm glad you don't mind talking about these kinds of things :)";
+      text(tfp2, x, player.sprite.position.y - 202, width, height);
+    }
+  }
+
+
+
   changeTextState() {
     if (textStateFP2 > 0 && (keyCode === SHIFT)) {
       textStateFP2 = textStateFP2 + 1;

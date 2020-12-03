@@ -281,8 +281,26 @@ class ForestPath {
   changeTextState() {
     if ((friendTalkedTo === true) && (keyCode === SHIFT)) {
       textStateFP = textStateFP + 1;
+      switch(textStateFP)  {
+        case 4: dialogueText4.play(); break;
+        case 5: dialogueText4.play(); break;
+        case 6: dialogueText4.play(); break;
+        case 7: dialogueText4.play(); break;
+        case 8: dialogueText4.play(); break;
+        case 10: dialogueText4.play(); break;
+        case 11: dialogueText4.play(); break;
+        case 13: dialogueText4.play(); break;
+        case 14: dialogueText4.play(); break;
+        case 15: dialogueText4.play(); break;
+      }
     }
   }
+
+  // playDialogueSound(){
+  //   if ((friendTalkedTo === true) && (keyCode === SHIFT)) {
+  //
+  //   }
+  // }
 
   selectChoice1() {
     if ((friendTalkedTo === true) && textStateFP === 9) {

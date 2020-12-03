@@ -89,12 +89,12 @@ class Town {
   // Draws and interacts with dog
   doggo() {
     if (dog.sprite.overlap(player.sprite) && keyCode === SHIFT) {
-      dog.sprite.changeAnimation("evildog");
-      player.sprite.position.x = player.sprite.position.x - 10;
-      fill(255,0,0)
-      rect(0, 0, 3000, 3000)
-      growl.play();
-
+      // dog.sprite.changeAnimation("evildog");
+      // player.sprite.position.x = player.sprite.position.x - 10;
+      // fill(255,0,0)
+      // rect(0, 0, 3000, 3000)
+      // growl.play();
+      game = "fishingGame"
     }
   }
   // Assigns a virtual camera which keeps the player at the center of the canvas
