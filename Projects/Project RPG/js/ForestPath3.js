@@ -1,5 +1,6 @@
 let redFlowersColumn1
 let redFlowersColumn2
+let questionAsked = 0
 let firstFlower = {
   x1: 182,
   x2: 366,
@@ -54,13 +55,13 @@ class ForestPath3 {
     if (friend.sprite.position.y > 1326) friend.sprite.position.y = 1326;
   }
 
-  friendText1() {
+  questionForFriend1() {
     if (textStateFP3 === 1 && player.sprite.position.y < 1320) {
       choice()
       dynamicTextBox2();
       question = "Ask a question"
       choice1 = "What motivates you"
-      choice2 = "What worries you"
+      choice2 = "What worries you the most"
       textSize(12)
       fill(255)
       text(question, x, player.sprite.position.y - 205, width, height)
@@ -79,6 +80,36 @@ class ForestPath3 {
     }
   }
 
+  questionForFriend2() {
+    if (textStateFP3 === 12 && player.sprite.position.y < 1320) {
+      choice()
+      dynamicTextBox2();
+      question = "That went okay"
+      if (questionAsked === 1){
+        choice1 = "What motivates you"
+      }
+      else if (questionAsked === 2){
+        choice1 = "What worries you the most"
+      }
+        choice2 = "What's your favourite part of hiking"
+      textSize(12)
+      fill(255)
+      text(question, x, player.sprite.position.y - 205, width, height)
+      if (selector === 1) {
+         fill(229, 112, 40)
+         text(choice1, x, player.sprite.position.y - 160, width/2, height)
+         fill(255)
+         text(choice2, x + 190, player.sprite.position.y - 175, width/2, height)
+       }
+       else if (selector === 2){
+         fill(255)
+         text(choice1, x, player.sprite.position.y - 160, width/2, height)
+         fill(229, 112, 40)
+         text(choice2, x + 190, player.sprite.position.y - 175, width/2, height)
+       }
+    }
+  }
+
   friendAnswer1(stateOfText, dialogue) {
     if (textStateFP3 === stateOfText) {
       dynamicTextBox2();
@@ -92,9 +123,29 @@ class ForestPath3 {
   selectChoice1(){
     if (textStateFP3 === 1 & selector === 1){
       textStateFP3 = textStateFP3 + 1
+      questionChose = 1
     }
     else if(textStateFP3 === 1 & selector === 2){
       textStateFP3 = textStateFP3 + 7
+      questionChose = 2
+    }
+  }
+
+  selectChoice2(){
+    if (textStateFP3 === 12 & selector === 1 && questionAsked === 2){
+      textStateFP3 = 2
+    }
+    else if(textStateFP3 === 12 & selector === 1 && questionAsked === 1){
+      textStateFP3 = 8
+    }
+    else if(textStateFP3 === 12 & selector === 2){
+      textStateFP3 = textStateFP3 + 1
+    }
+  }
+
+  changeTextState(){
+    if(keyCode === SHIFT && textStateFP3 > 0 && textStateFP3 !== 1){
+      textStateFP3 = textStateFP3 + 1
     }
   }
 

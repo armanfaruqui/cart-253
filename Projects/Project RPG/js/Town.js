@@ -207,6 +207,7 @@ class Town {
   }
 
   // Switches scene from town to forest path
+
   exitToForest() {
     if (textStateSheriff > 6 && player.sprite.position.y < -169.6) {
       scene = "forestPath";

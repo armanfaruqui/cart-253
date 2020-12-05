@@ -269,8 +269,9 @@ class ForestPath {
   }
 
   // Updates the text box displayed and plays the relevant dialogue sound effect on each click of shift
+  //&& textStateFP !== 9 && textStateFP !== 12
   changeTextState() {
-    if ((friendTalkedTo === true) && (keyCode === SHIFT)) {
+    if ((friendTalkedTo === true) && keyCode === SHIFT ) {
       textStateFP = textStateFP + 1;
       switch(textStateFP)  {
         case 4: friendDialogue4.play(); break;

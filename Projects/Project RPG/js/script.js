@@ -421,19 +421,18 @@ function draw() {
     forestPath2.boundaries()
     friend.update()
     friend.updateDistanceFromPlayer(50)
-    forestPath3.friendText1()
-    forestPath3.friendAnswer(2, "Honestly, just making the most of the one life I have..")
-    forestPath3.friendAnswer(3, "... and making sure that I'm in a position to help and give back to the world which has given me so much");
-    forestPath3.friendAnswer(4, "I couldn't have given you such a fancy answer a few months ago when I had given up on everything")
-    forestPath3.friendAnswer(5, "Goal clarity, gratefulness, acceptance")
-    forestPath3.friendAnswer(6, "I started practicing these instead of letting myself constantly drown in sorrow and despair")
-    forestPath3.friendAnswer(7, "It took A LOT of time and it wasn't fun. It was worth it in the end though")
-    forestPath3.friendAnswer(8, "I constantly feel a sense of existential dread when I don't keep my mind distracted")
-    forestPath3.friendAnswer(9, "I hate when thoughts like 'whats the point', and 'who even why' flood my mind")
-    forestPath3.friendAnswer(10, "We are all gonna die one day, but I guess that's just what gives life its value")
-    forestPath3.friendAnswer(11, "I hate when thoughts like 'whats the point', and 'who even why' flood my mind")
-
-    forestPath2.changeTextState()
+    forestPath3.questionForFriend1()
+    forestPath3.friendAnswer1(2, "Honestly, just making the most of the one life I have..")
+    forestPath3.friendAnswer1(3, "... and making sure that I'm in a position to help and give back to the world which has given me so much");
+    forestPath3.friendAnswer1(4, "I couldn't have given you such a fancy answer a few months ago when I had given up on everything")
+    forestPath3.friendAnswer1(5, "Goal clarity, gratefulness, acceptance")
+    forestPath3.friendAnswer1(6, "I started practicing these instead of letting myself constantly drown in sorrow and despair")
+    forestPath3.friendAnswer1(7, "It took A LOT of time and it wasn't fun. It was worth it in the end though")
+    forestPath3.friendAnswer1(8, "I constantly feel a sense of existential dread when I don't keep my mind distracted")
+    forestPath3.friendAnswer1(9, "I hate when thoughts like 'whats the point', and 'who even why' flood my mind")
+    forestPath3.friendAnswer1(10, "We are all gonna die one day, but I guess that's just what gives life its value")
+    forestPath3.friendAnswer1(11, "I hate when thoughts like 'whats the point', and 'who even why' flood my mind")
+    forestPath3.questionForFriend2()
   }
 
   player.update(); // Moves the player
@@ -519,6 +518,9 @@ function keyPressed() {
     forestLake.changeTextState4()
     forestLake.keyPressed()
   }
+  else if (scene === "forestPath3"){
+    forestPath3.changeTextState()
+  }
 }
 
 function mousePressed() {
@@ -532,6 +534,10 @@ function mousePressed() {
   forestPath2.selectChoice1()
   if (scene === "lake"){
     forestLake.changeTextState3()
+  }
+  if (scene === "forestPath3"){
+    forestPath3.selectChoice1()
+    forestPath3.selectChoice2()
   }
 }
 
