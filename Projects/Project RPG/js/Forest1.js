@@ -195,7 +195,7 @@ class ForestPath {
       dynamicTextBox2();
       fill(65, 243, 252);
       textSize(12);
-      tfp =
+      tfp =forestPath2
         "What are you up to right now? I was just going on my usual forest hike";
       text(tfp, x, player.sprite.position.y - 202, width, height);
     }
@@ -282,25 +282,19 @@ class ForestPath {
     if ((friendTalkedTo === true) && (keyCode === SHIFT)) {
       textStateFP = textStateFP + 1;
       switch(textStateFP)  {
-        case 4: dialogueText4.play(); break;
-        case 5: dialogueText4.play(); break;
-        case 6: dialogueText4.play(); break;
-        case 7: dialogueText4.play(); break;
-        case 8: dialogueText4.play(); break;
-        case 10: dialogueText4.play(); break;
-        case 11: dialogueText4.play(); break;
-        case 13: dialogueText4.play(); break;
-        case 14: dialogueText4.play(); break;
-        case 15: dialogueText4.play(); break;
+        case 4: friendDialogue4.play(); break;
+        case 5: friendDialogue4.play(); break;
+        case 6: friendDialogue4.play(); break;
+        case 7: friendDialogue4.play(); break;
+        case 8: friendDialogue4.play(); break;
+        case 10: friendDialogue4.play(); break;
+        case 11: friendDialogue4.play(); break;
+        case 13: friendDialogue4.play(); break;
+        case 14: friendDialogue4.play(); break;
+        case 15: friendDialogue4.play(); break;
       }
     }
   }
-
-  // playDialogueSound(){
-  //   if ((friendTalkedTo === true) && (keyCode === SHIFT)) {
-  //
-  //   }
-  // }
 
   selectChoice1() {
     if ((friendTalkedTo === true) && textStateFP === 9) {
@@ -319,7 +313,7 @@ class ForestPath {
 
   exit(){
     if (player.sprite.position.y < 286 && textStateFP > 15){
-      scene = "forest2"
+      scene = "forestPath2"
       forestPath2.start()
     }
   }

@@ -30,6 +30,7 @@ class Hall {
   display(){
     image(bg_hall, 0, 0);
     drawSprites(hallObjects)
+    console.log(textState)
   }
 
   keyPressed() {
@@ -124,7 +125,7 @@ class Hall {
 
   changeTextState(){
     if (textState === 1 && selector === 1 || textState === 2 && selector === 1 || textState === 3 && selector === 1){
-    textState += 1
+    textState = textState + 1
   }
     else {
       textState = 0

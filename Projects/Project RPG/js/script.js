@@ -157,21 +157,21 @@ function preload() {
   // Music
   townTheme = loadSound("assets/sounds/OutsideTheme.mp3");
 
-  //Phone pictures
+  //Phone assets
   phoneScreen = loadImage("assets/images/phone/screen.png");
   selfieIndoor = loadImage("assets/images/phone/selfieIndoor.png");
 
-  //Bedroom pictures
+  //Bedroom assets
   bg_bedroom = loadImage("assets/images/interior/demo bg.png");
   bed = loadAnimation("assets/images/interior/bed.png");
   desk = loadAnimation("assets/images/interior/desk.png");
   door = loadAnimation("assets/images/interior/door.png");
   mainDoor = loadAnimation("assets/images/interior/maindoor.png");
 
-  //Hall pictures
+  //Hall assets
   bg_hall = loadImage("assets/images/interior/hall.png");
 
-  //Town Pictures
+  //Town assets
   town = loadImage("assets/images/exterior/outside1.png");
   house1 = loadAnimation("assets/images/exterior/house1.png");
   house2 = loadAnimation("assets/images/exterior/house2.png");
@@ -186,16 +186,25 @@ function preload() {
   tree = loadAnimation("assets/images/exterior/tree.png");
   sheriff = loadImage("assets/images/chars/sheriff.png");
 
-  // Inside butchery pictures
+  // Inside butchery assets
   bg_butcher1 = loadImage("assets/images/interior/butchery_inside1.png");
   bg_butcher2 = loadImage("assets/images/interior/butchery_inside2.png");
 
-  // Forest path pictures
+  // Forest path assets
   bg_forestPath = loadImage("assets/images/exterior/forest1.png");
   gif_squirrels = loadImage("assets/images/exterior/squirrels.gif");
   blank = loadImage("assets/images/chars/blank.png");
   blank2 = loadImage("assets/images/chars/blank2.png");
   bg_forestPath2 = loadImage("assets/images/exterior/forest2.png")
+  bg_forestPath3 = loadImage("assets/images/exterior/forest3.png")
+
+  // Forest Lake assets
+  bg_forestLake = loadImage("assets/images/exterior/forest-lake.gif");
+  flowerPurple = loadAnimation("assets/images/flowers/flowerPurple1.png","assets/images/flowers/flowerPurple12.png")
+  flowerPink = loadAnimation("assets/images/flowers/flowerPink1.png","assets/images/flowers/flowerPink12.png")
+  flowerYellow = loadAnimation("assets/images/flowers/flowerYellow1.png","assets/images/flowers/flowerYellow12.png")
+  flowerRed = loadAnimation("assets/images/exterior/flowerRed1.png","assets/images/exterior/flowerRed4.png")
+  fishingSign = loadAnimation("assets/images/fishing/sign.png")
 
 //FISHING ASSETS==========================================================================================================
 
@@ -244,7 +253,12 @@ function setup() {
   forestPath = new ForestPath(bg_forestPath);
 
   forestPath2 = new ForestPath2(bg_forestPath2)
+
+  forestLake = new ForestLake(bg_forestLake, flowerRed, flowerPink, flowerPurple, flowerYellow, fishingSign)
+
+  forestPath3 = new ForestPath3(bg_forestPath3, flowerRed)
   }
+
   else if (game === "fishingGame"){
 
 
@@ -349,17 +363,17 @@ function draw() {
     forestPath.friendText14();
     forestPath.startWalkingTogether();
     if (textStateFP > 15){
-    friend.checkDistanceFromPlayer();
+    friend.updateDistanceFromPlayer(80);
   }
     forestPath.exit();
   }
 
-  if (scene === "forest2"){
+  if (scene === "forestPath2"){
     forestPath2.display()
     forestPath2.boundaries()
     forestPath.camera();
     friend.update()
-    friend.checkDistanceFromPlayer()
+    friend.updateDistanceFromPlayer(80)
     forestPath2.friendText1()
     forestPath2.friendText2()
     forestPath2.friendText3()
@@ -370,8 +384,38 @@ function draw() {
     forestPath2.friendText8()
     forestPath2.friendText9()
     forestPath2.friendText10()
+    forestPath2.exit()
 }
 
+  if (scene === "lake"){
+    forestLake.display()
+    forestLake.camera()
+    friend.update()
+    friend.updateDistanceFromPlayer(60)
+    forestLake.boundaries()
+    forestLake.friendText1()
+    forestLake.friendText2()
+    forestLake.friendText3()
+    forestLake.friendText4()
+    forestLake.askToFish1()
+    forestLake.askToFish2()
+    forestLake.startFishing()
+    forestLake.flowerText1()
+    forestLake.flowerText2()
+    forestLake.flowerText3()
+    forestLake.flowerText4()
+    forestLake.flowerText5()
+    forestLake.endCutScene()
+    forestLake.exit()
+  }
+
+  if (scene === "forestPath3"){
+    forestPath3.display()
+    forestPath.camera()
+    //forestPath2.boundaries()
+    friend.update()
+    friend.updateDistanceFromPlayer(50)
+  }
 
   player.update(); // Moves the player
 
@@ -380,8 +424,8 @@ function draw() {
 
   //console.log(textStateFP)
   //console.log(mouseScenePosition.x)
-  console.log(player.sprite.position.x)
-  console.log(player.sprite.position.y)
+  // console.log(player.sprite.position.x)
+  // console.log(player.sprite.position.y)
   // console.log(mouseX)
   // console.log(mouseY)
   }
@@ -434,21 +478,27 @@ function keyPressed() {
   if (scene === "bedroom") {
     bedroom.keyPressed(); // Interacts with bed
   }
-  if (scene === "hall") {
+  else if (scene === "hall") {
     hall.keyPressed(); // Interacts with main door
   }
-  if (scene === "town") {
+  else if (scene === "town") {
     town.changeTextStateSheriff(); // Changes text box content
     town.doggo();  // Interacts with dog
   }
-  if (scene === "butchery") {
+  else if (scene === "butchery") {
     butcherScene.talkToButcher(); // Starts interaction with butcher and changes the background
   }
-  if (scene === "forestPath") {
+  else if (scene === "forestPath") {
     forestPath.changeTextState();
   }
-  if (scene === "forest2") {
+  else if (scene === "forestPath2") {
     forestPath2.changeTextState();
+  }
+  else if (scene === "lake"){
+    forestLake.changeTextState1()
+    forestLake.changeTextState2()
+    forestLake.changeTextState4()
+    forestLake.keyPressed()
   }
 }
 
@@ -461,6 +511,10 @@ function mousePressed() {
   forestPath.selectChoice1()
   forestPath.selectChoice2()
   forestPath2.selectChoice1()
+  if (scene === "lake"){
+    forestLake.changeTextState3()
+  }
+}
 
   if (game === "fishingGame"){
     if (
@@ -488,7 +542,7 @@ function mousePressed() {
       bigSplash.play();
     }
   }
-}
+
 
 // Draws the text box and assigns font
 function textBox() {

@@ -8,6 +8,7 @@ let player_walkRight;
 let player_standUp;
 let player_walkup;
 let humans
+let standStill = false
 
 class Player {
 
@@ -34,6 +35,7 @@ class Player {
   }
 
   update() {
+  if(standStill === false){
     if (keyIsDown(65) && !keyIsDown(83) && !keyIsDown(68) && !keyIsDown(87)) {
       this.sprite.changeAnimation("walkLeft");
       this.sprite.velocity.x = -4.4;
@@ -141,10 +143,16 @@ class Player {
       stoneStep.stop()
       grassStep.stop()
     }
-    this.sprite.collide(bedroom.sprite);
-    drawSprites(humans)
+    this.sprite.collide(bedroom.sprite)
   }
+  drawSprites(humans)
+}
 
+  standStill(){
+    standStill = true
+    this.sprite.velocity.x = 0
+    this.sprite.velocity.y = 0
+  }
 
 }
 // stopSound() {

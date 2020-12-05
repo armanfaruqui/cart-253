@@ -36,9 +36,7 @@ class Butcher {
     if (this.sprite.overlap(player.sprite) && keyCode === SHIFT){
       butcherTalkedTo = true
       textStateButcher = textStateButcher + 1
-
         ting.play()
-
     }
   }
 

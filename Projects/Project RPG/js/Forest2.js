@@ -166,4 +166,11 @@ class ForestPath2 {
     }
   }
 
+  exit(){
+    if (player.sprite.position.y < 250){
+      scene = "lake"
+      forestLake.start()
+    }
+  }
+
 }
