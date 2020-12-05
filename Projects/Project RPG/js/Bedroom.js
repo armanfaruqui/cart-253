@@ -59,9 +59,9 @@ class Bedroom {
       push();
       textBox();
       fill(255);
-      let b1 = "You slept for 9 hours and 30 minutes last night";
+      comment = "You slept for 9 hours and 30 minutes last night";
       textSize(12);
-      text(b1, x, y, width, height);
+      text(comment, x, y, width, height);
       pop();
     }
   }
@@ -72,26 +72,26 @@ class Bedroom {
       push();
       textBox();
       fill(255);
-      let b2 = "Play the game ? ";
-      let yes = "Sure";
-      let no = "Not Today";
+      question = "Play the game ? ";
+      choice1 = "Sure";
+      choice2 = "Not Today";
       textSize(12);
-      text(b2, x, y, width, height);
+      text(question, x, y, width, height);
       if (selector === 0) {
         fill(255);
-        text(yes, x, y2);
+        text(choice1, x, y2);
         fill(255);
-        text(no, 280, y2);
+        text(choice2, 280, y2);
       } else if (selector === 1) {
         fill(229, 112, 40);
-        text(yes, x, y2);
+        text(choice1, x, y2);
         fill(255);
-        text(no, 280, y2);
+        text(choice2, 280, y2);
       } else if (selector === 2) {
         fill(255);
-        text(yes, x, y2);
+        text(choice1, x, y2);
         fill(229, 112, 40);
-        text(no, 280, y2);
+        text(choice2, 280, y2);
       }
       pop();
     }

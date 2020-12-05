@@ -1,19 +1,16 @@
-let textStateFP2 = 1
-let tfp2;
-let forestPath2Choice1
-let forestPath2Choice2
-let forestPath2Choice3
+let textStateFP2 = 1 // A variable which represents if a text box should be displayed, and which one if so
 
 class ForestPath2 {
   constructor(bg_forestPath2) {
     this.bg = bg_forestPath2
   }
 
+// Displays background
   display() {
     image(this.bg, 0, 0);
-    console.log(textStateFP2)
   }
 
+// Assigns player and friend's starting Y position
   start() {
     player.sprite.position.y = 1326;
     friend.sprite.position.y = 1326;
@@ -38,9 +35,9 @@ class ForestPath2 {
       dynamicTextBox2();
       fill(65, 243, 252);
       textSize(12);
-      tfp2 =
+      comment =
         "So what do you like to do for fun";
-      text(tfp2, x, player.sprite.position.y - 202, width, height);
+      text(comment, x, player.sprite.position.y - 202, width, height);
     }
   }
 
@@ -50,18 +47,18 @@ class ForestPath2 {
       dynamicTextBox2();
       fill(65, 243, 252);
       textSize(12);
-      forestPath2Choice1 = "Play video games (Truth)"
-      forestPath2Choice2 = "Spend time outdoors (Lie)"
+      choice1 = "Play video games (Truth)"
+      choice2 = "Spend time outdoors (Lie)"
       if (selector === 1) {
         fill(229, 112, 40)
-        text(forestPath2Choice1, x, player.sprite.position.y - 180)
+        text(choice1, x, player.sprite.position.y - 180)
         fill(255)
-        text(forestPath2Choice2, x + 50, player.sprite.position.y - 150)
+        text(choice2, x + 50, player.sprite.position.y - 150)
       } else if (selector === 2) {
         fill(255)
-        text(forestPath2Choice1, x, player.sprite.position.y - 180)
+        text(choice1, x, player.sprite.position.y - 180)
         fill(229, 112, 40)
-        text(forestPath2Choice2, x + 50, player.sprite.position.y - 150)
+        text(choice2, x + 50, player.sprite.position.y - 150)
       }
     }
   }
@@ -71,9 +68,9 @@ class ForestPath2 {
       dynamicTextBox2();
       fill(65, 243, 252);
       textSize(12);
-      tfp2 =
+      comment =
         "Same! I've been super busy lately so I haven't had the time to enjoy enough of it";
-      text(tfp2, x, player.sprite.position.y - 202, width, height);
+      text(comment, x, player.sprite.position.y - 202, width, height);
     }
   }
 
@@ -82,9 +79,9 @@ class ForestPath2 {
       dynamicTextBox2();
       fill(65, 243, 252);
       textSize(12);
-      tfp2 =
+      comment =
         "I have such a bad habit of avoiding the work and tasks that stress me out";
-      text(tfp2, x, player.sprite.position.y - 202, width, height);
+      text(comment, x, player.sprite.position.y - 202, width, height);
     }
   }
 
@@ -93,9 +90,9 @@ class ForestPath2 {
       dynamicTextBox2();
       fill(65, 243, 252);
       textSize(12);
-      tfp2 =
+      comment =
         "It needs to change. Avoidance makes doing what you are dreading 100 times harder because it completely disempowers you";
-      text(tfp2, x, player.sprite.position.y - 202, width, height);
+      text(comment, x, player.sprite.position.y - 202, width, height);
     }
   }
 
@@ -104,9 +101,9 @@ class ForestPath2 {
       dynamicTextBox2();
       fill(65, 243, 252);
       textSize(12);
-      tfp2 =
+      comment =
         "When you let your goal become avoidance, your brain makes progression feel very uncomfortable";
-      text(tfp2, x, player.sprite.position.y - 202, width, height);
+      text(comment, x, player.sprite.position.y - 202, width, height);
     }
   }
 
@@ -115,9 +112,9 @@ class ForestPath2 {
       dynamicTextBox2();
       fill(65, 243, 252);
       textSize(12);
-      tfp2 =
+      comment =
         "Since I became aware of this and shifted my goal towards progress its been so much easier.";
-      text(tfp2, x, player.sprite.position.y - 202, width, height);
+      text(comment, x, player.sprite.position.y - 202, width, height);
     }
   }
 
@@ -126,9 +123,9 @@ class ForestPath2 {
       dynamicTextBox2();
       fill(65, 243, 252);
       textSize(12);
-      tfp2 =
+      comment =
         "Goal clarity is like giving your brain a quest marker. It becomes your friend instead of your enemy";
-      text(tfp2, x, player.sprite.position.y - 202, width, height);
+      text(comment, x, player.sprite.position.y - 202, width, height);
     }
   }
   friendText9() {
@@ -136,9 +133,9 @@ class ForestPath2 {
       dynamicTextBox2();
       fill(65, 243, 252);
       textSize(12);
-      tfp2 =
+      comment =
         "I rambled too long there didn't I";
-      text(tfp2, x, player.sprite.position.y - 202, width, height);
+      text(comment, x, player.sprite.position.y - 202, width, height);
     }
   }
   friendText10() {
@@ -146,13 +143,11 @@ class ForestPath2 {
       dynamicTextBox2();
       fill(65, 243, 252);
       textSize(12);
-      tfp2 =
-        "You're saying I didn't? I'm glad you don't mind talking about these kinds of things :)";
-      text(tfp2, x, player.sprite.position.y - 202, width, height);
+      comment =
+        "You're saying I didn't? I'm glad you don't find talking about these kinds of things to be weird :)";
+      text(comment, x, player.sprite.position.y - 202, width, height);
     }
   }
-
-
 
   changeTextState() {
     if (textStateFP2 > 0 && (keyCode === SHIFT)) {

@@ -1,18 +1,18 @@
+// Multiple text state variables used due to the number of different interactions which take place which uses text boxes
 let textStateFL_1 = 0;
 let textStateFL_2 = 0;
 let textStateFL_3 = 0;
 let textStateFL_4 = 1;
+// Variables used to create sprite groups
 let purpleFlowers
 let pinkFlowers
 let yellowFlowers
-let tl
+
+// Booleans which check if each separate interaction has taken place
 let friendTalkedToLake1 = false
 let friendTalkedToLake2 = false
 let friendTalkedToLake3 = false
 let askToFish = false
-let question
-let choice1
-let choice2
 
 class ForestLake{
   constructor(bg_forestLake, flowerRed, flowerPink, flowerPurple, flowerYellow, fishingSign){
@@ -101,8 +101,8 @@ class ForestLake{
       dynamicTextBox()
       fill(65, 243, 252);
       textSize(12);
-      tl = "Welcome to my sanctuary"
-      text(tl, player.sprite.position.x - 174, player.sprite.position.y - 202, width, height);
+      comment = "Welcome to my sanctuary"
+      text(comment, player.sprite.position.x - 174, player.sprite.position.y - 202, width, height);
       friendTalkedToLake1 = true
     }
   }
@@ -114,8 +114,8 @@ class ForestLake{
       dynamicTextBox()
       fill(65, 243, 252);
       textSize(12);
-      tl = "It's where I come to relax and catch some fish."
-      text(tl, player.sprite.position.x - 174, player.sprite.position.y - 202, width, height);
+      comment = "It's where I come to relax and catch some fish."
+      text(comment, player.sprite.position.x - 174, player.sprite.position.y - 202, width, height);
       friendTalkedToLake1 = true
     }
   }
@@ -125,8 +125,8 @@ class ForestLake{
       dynamicTextBox()
       fill(65, 243, 252);
       textSize(12);
-      tl = "Come on its perfect weather for some fishing"
-      text(tl, player.sprite.position.x - 174, player.sprite.position.y - 202, width, height);
+      comment = "Come on its perfect weather for some fishing"
+      text(comment, player.sprite.position.x - 174, player.sprite.position.y - 202, width, height);
       friendTalkedToLake2 = true
     }
   }
@@ -136,8 +136,8 @@ class ForestLake{
       dynamicTextBox()
       fill(65, 243, 252);
       textSize(12);
-      tl = "My uncle leaves his fishing rod behind the sign here. He won't mind if we use it"
-      text(tl, player.sprite.position.x - 174, player.sprite.position.y - 202, width - 20, height);
+      comment = "My uncle leaves his fishing rod behind the sign here. He won't mind if we use it"
+      text(comment, player.sprite.position.x - 174, player.sprite.position.y - 202, width - 20, height);
       friendTalkedToLake2 = true
     }
   }
@@ -153,7 +153,7 @@ class ForestLake{
       choice()
       dynamicTextBox()
       fill(255)
-      question = "Start fishing "
+      question = "Start fishing"
       choice1 = "Yes"
       choice2 = "No"
       textSize(12)
@@ -216,8 +216,8 @@ class ForestLake{
       dynamicTextBox()
       fill(65, 243, 252);
       textSize(12);
-      tl = "I'm sure you can tell why I come here so often :D"
-      text(tl, player.sprite.position.x - 174, player.sprite.position.y - 202, width, height);
+      comment = "I'm sure you can tell why I come here so often :D"
+      text(comment, player.sprite.position.x - 174, player.sprite.position.y - 202, width, height);
     }
   }
 
@@ -231,8 +231,8 @@ class ForestLake{
       dynamicTextBox()
       fill(65, 243, 252);
       textSize(12);
-      tl = "This field of flowers is my favourite place to kick back and listen to music"
-      text(tl, player.sprite.position.x - 174, player.sprite.position.y - 202, width, height);
+      comment = "This field of flowers is my favourite place to kick back and listen to music"
+      text(comment, player.sprite.position.x - 174, player.sprite.position.y - 202, width, height);
     }
   }
 
@@ -246,8 +246,8 @@ class ForestLake{
       dynamicTextBox()
       fill(65, 243, 252);
       textSize(12);
-      tl = "What kind of music do you like listening to. Show me your playlist"
-      text(tl, player.sprite.position.x - 174, player.sprite.position.y - 202, width, height);
+      comment = "What kind of music do you like listening to. Show me your playlist"
+      text(comment, player.sprite.position.x - 174, player.sprite.position.y - 202, width, height);
     }
   }
 
@@ -261,8 +261,8 @@ class ForestLake{
       dynamicTextBox()
       fill(65, 243, 252);
       textSize(12);
-      tl = "Awwww. These songs won't fit this scenery"
-      text(tl, player.sprite.position.x - 174, player.sprite.position.y - 202, width, height);
+      comment = "Awwww. These songs won't fit this scenery"
+      text(comment, player.sprite.position.x - 174, player.sprite.position.y - 202, width, height);
     }
   }
 
@@ -276,8 +276,8 @@ class ForestLake{
       dynamicTextBox()
       fill(65, 243, 252);
       textSize(12);
-      tl = "Here. I just sent you this song I found recently. Play it right now and tell me what you think"
-      text(tl, player.sprite.position.x - 174, player.sprite.position.y - 202, width, height);
+      comment = "Here. I just sent you this song I found recently. Play it right now and tell me what you think"
+      text(comment, player.sprite.position.x - 174, player.sprite.position.y - 202, width, height);
     }
   }
 

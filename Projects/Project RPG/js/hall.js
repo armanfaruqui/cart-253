@@ -1,9 +1,9 @@
 let hallObjects
 let oscillator;
-let textState = 0
+let textState = 0 // A variable which represents if a text box should be displayed, and which one if so
 
 class Hall {
-  constructor(bg_hall, mainDoor){
+  constructor(bg_hall, mainDoor) {
     hallObjects = new Group()
     this.sprite = createSprite(372, 370, 50, 100);
     this.sprite.addAnimation("door", door);
@@ -16,160 +16,106 @@ class Hall {
     mainDoor.sprite.addAnimation("mainDoor", mainDoor);
     mainDoor.sprite.depth = 1;
     mainDoor.sprite.addToGroup(hallObjects);
-
-
   }
 
-  start(){
+  start() {
     oscillator = new p5.Oscillator(220, 'triangle')
     oscillator.start()
     player.sprite.position.x = 325;
     player.sprite.position.y = 365;
   }
 
-  display(){
+  display() {
     image(bg_hall, 0, 0);
     drawSprites(hallObjects)
     console.log(textState)
   }
 
   keyPressed() {
-    if (mainDoor.sprite.overlap(player.sprite) && keyCode === SHIFT){
-       textState = 1
+    if (mainDoor.sprite.overlap(player.sprite) && keyCode === SHIFT) {
+      textState = 1
+    }
   }
-}
 
-  DoorText1() {
-    if (textState === 1 && mainDoor.sprite.overlap(player.sprite)){
+  doorText(stateOfText, q, c1, c2) {
+    if (textState === stateOfText && mainDoor.sprite.overlap(player.sprite)) {
       choice()
       push()
       textBox()
       fill(255)
-      let t1 = "Leave home and go town? "
-      let yesDoor = "erm... yes?"
-      let noDoor = "No way in hell"
+      question = q
+      choice1 = c1
+      choice2 = c2
       textSize(12)
-      text(t1, x, y, width, height)
+      text(question, x, y, width, height)
 
-     if (selector === 1) {
+      if (selector === 1) {
         fill(229, 112, 40)
-        text(yesDoor, x, y2- 30)
+        text(choice1, x, y2 - 30)
         fill(255)
-        text(noDoor, 280, y2- 30)
-      }
-      else if (selector === 2){
+        if (textState === 1) {
+          text(choice2, 280, y2 - 30)
+        } else if (textState === 2) {
+          text(choice2, 240, y2 - 30)
+        }
+      } else if (selector === 2) {
         fill(255)
-        text(yesDoor, x, y2- 30)
+        text(choice1, x, y2 - 30)
         fill(229, 112, 40)
-        text(noDoor, 280, y2- 30)
+        if (textState === 1) {
+          text(choice2, 280, y2 - 30)
+        } else if (textState === 2) {
+          text(choice2, 240, y2 - 30)
+        }
       }
       pop()
     }
   }
 
-  DoorText2() {
-    if (textState === 2 && mainDoor.sprite.overlap(player.sprite)){
-      choice()
-      push()
-      textBox()
-      fill(255)
-      let t2 = "Are you sure? "
-      let yesDoor2 = "yes"
-      let noDoor2 = "No I'm really not"
-      textSize(12)
-      text(t2, x, y, width, height)
-
-     if (selector === 1) {
-        fill(229, 112, 40)
-        text(yesDoor2, x, y2 - 30)
-        fill(255)
-        text(noDoor2, 250, y2 - 30)
-      }
-      else if (selector === 2){
-        fill(255)
-        text(yesDoor2, x, y2 - 30)
-        fill(229, 112, 40)
-        text(noDoor2, 250, y2 - 30)
-      }
-      pop()
-    }
-  }
-
-  DoorText3() {
-    if (textState === 3 && mainDoor.sprite.overlap(player.sprite)){
-      choice()
-      push()
-      textBox()
-      fill(255)
-      let t3 = "Last chance to stay home. "
-      let yesDoor3 = "I have to feed myself"
-      let noDoor3 = "1 more hour.."
-      textSize(12)
-      text(t3, x, y, width, height)
-
-     if (selector === 1) {
-        fill(229, 112, 40)
-        text(yesDoor3, x - 30, y2 - 30)
-        fill(255)
-        text(noDoor3, 330, y2 - 30)
-      }
-      else if (selector === 2){
-        fill(255)
-        text(yesDoor3, x - 30, y2 - 30)
-        fill(229, 112, 40)
-        text(noDoor3, 330, y2 - 30)
-      }
-      pop()
-    }
-  }
-
-  changeTextState(){
-    if (textState === 1 && selector === 1 || textState === 2 && selector === 1 || textState === 3 && selector === 1){
-    textState = textState + 1
-  }
-    else {
+  changeTextState() {
+    if (textState === 1 && selector === 1 || textState === 2 && selector === 1 || textState === 3 && selector === 1) {
+      textState = textState + 1
+    } else {
       textState = 0
     }
-}
+  }
 
 
-  boundaries(){
+  boundaries() {
     if (player.sprite.position.x < 170) player.sprite.position.x = 170;
     if (player.sprite.position.y < 120) player.sprite.position.y = 120;
     if (player.sprite.position.x > 330) player.sprite.position.x = 330;
     if (player.sprite.position.y > 400) player.sprite.position.y = 400;
   }
 
-  exit(){
-    if (this.sprite.overlap(player.sprite) && player.direction === 'right'){
-       scene = 'bedroom'
-       player.sprite.position.x = 120
-       player.sprite.position.y = 420
-       oscillator.stop()
+  exit() {
+    if (this.sprite.overlap(player.sprite) && player.direction === 'right') {
+      scene = 'bedroom'
+      player.sprite.position.x = 120
+      player.sprite.position.y = 420
+      oscillator.stop()
     }
   }
 
-  exit2(){
-    if (textState === 4 && selector === 1){
+  exit2() {
+    if (textState === 4 && selector === 1) {
       scene = 'town'
       player.sprite.position.x = 65
       player.sprite.position.y = 620
       oscillator.stop()
-      bedroom.spite.setCollider("rectangle", 0,0,0,0)
+      bedroom.spite.setCollider("rectangle", 0, 0, 0, 0)
       bedroom.sprite.remove()
       bedroom.desk.sprite.remove()
       bedroom.door.sprite.remove()
       this.sprite.remove()
       maindoor.sprite.remove()
     }
-
   }
 
-
   //Oscillator which increases its frequency the closer you get to the main door
-  anxiety(){
+  anxiety() {
     let doorDistance = dist(player.sprite.position.x, player.sprite.position.y, mainDoor.sprite.position.x, mainDoor.sprite.position.y) // Measures distance between player and door
-    let newFreq = map(doorDistance, 280, 20, 0, 100)// Max dist = 270. Min = 20
+    let newFreq = map(doorDistance, 280, 20, 0, 100) // Max dist = 270. Min = 20
     oscillator.freq(newFreq);
     console.log(newFreq);
   }

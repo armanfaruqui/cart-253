@@ -1,12 +1,8 @@
 let oscillator3;
 let newFreq2;
-let textStateFP = 1;
+let textStateFP = 1; // A variable which represents if a text box should be displayed, and which one if so
 let friendTalkedTo = false; // Boolean which checks if interaction with friend has begun
 let forestPathSelector = 1
-let forestPathChoice1
-let forestPathChoice2
-let forestPathChoice3
-
 
 class ForestPath {
   constructor(bg_forest1, friendDialogue1,friendDialogue2,friendDialogue3,friendDialogue4,friendDialogue5, friendDialogue6) {
@@ -52,16 +48,16 @@ class ForestPath {
     newFreq2 = map(friendDistance, 280, 20, 0, 100); // Max dist = 270. Min = 20
     oscillator3.freq(newFreq2);
   }
-  // If player talks to friend
+
+  // If the player interacts directly with the friend
   introduction1() {
     if (player.sprite.position.y < 288 && textStateFP === 1) {
       friend.forestPathText1();
       friendTalkedTo = true;
-
-      }
     }
+  }
 
-
+  // If the player walks past ignoring the friend
   introduction2() {
     if (
       friend.sprite.overlap(player.sprite) &&
@@ -70,12 +66,10 @@ class ForestPath {
     ) {
       friend.forestPathText1();
       friendTalkedTo = true;
-
-
-
     }
   }
 
+  //Display a GIF of squirrels on a tree
   squirrels() {
     if (textStateFP === 2) {
       camera.off()
@@ -92,8 +86,8 @@ class ForestPath {
       dynamicTextBox2();
       fill(65, 243, 252);
       textSize(12);
-      tfp = "Its beautiful isnt it";
-      text(tfp, x, player.sprite.position.y - 202, width, height);
+      comment = "This is the sweetest";
+      text(comment, x, player.sprite.position.y - 202, width, height);
       player.sprite.position.x = 201
       player.sprite.position.y = 415
       friend.sprite.position.x = 190
@@ -101,21 +95,17 @@ class ForestPath {
       player.sprite.changeAnimation("standLeft")
       friend.sprite.changeAnimation("standLeft")
       oscillator3.stop()
-      if (!friendDialogue4.isPlaying()) {
-        friendDialogue4.play();
       }
-
     }
-  }
 
   friendText3() {
     if (textStateFP === 4) {
       dynamicTextBox2();
       fill(65, 243, 252);
       textSize(12);
-      tfp =
-        "Watching these 2 build their home where they will have to survive the cold winter with nothing but each other";
-      text(tfp, x, player.sprite.position.y - 202, width, height);
+      comment =
+        "Watching these two build their home to survive the cold winter with each other";
+      text(comment, x, player.sprite.position.y - 202, width, height);
     }
   }
 
@@ -124,9 +114,9 @@ class ForestPath {
       dynamicTextBox2();
       fill(65, 243, 252);
       textSize(12);
-      tfp =
+      comment =
         "It's not often I bump into people my age near this town. Are you from somewhere else?";
-      text(tfp, x, player.sprite.position.y - 202, width, height);
+      text(comment, x, player.sprite.position.y - 202, width, height);
       friend.sprite.changeAnimation("stand")
     }
   }
@@ -136,9 +126,9 @@ class ForestPath {
       dynamicTextBox2();
       fill(65, 243, 252);
       textSize(12);
-      tfp =
+      comment =
         "REALLY!? Wow its so nice to meet you!";
-      text(tfp, x, player.sprite.position.y - 202, width, height);
+      text(comment, x, player.sprite.position.y - 202, width, height);
       friend.sprite.changeAnimation("stand")
     }
   }
@@ -148,9 +138,9 @@ class ForestPath {
       dynamicTextBox2();
       fill(65, 243, 252);
       textSize(12);
-      tfp =
-        "My name is Munia";
-      text(tfp, x, player.sprite.position.y - 202, width, height);
+      comment =
+        "I really like your outfit and the earring";
+      text(comment, x, player.sprite.position.y - 202, width, height);
         friend.sprite.changeAnimation("stand")
     }
   }
@@ -160,9 +150,9 @@ class ForestPath {
       dynamicTextBox2();
       fill(65, 243, 252);
       textSize(12);
-      tfp =
-        "I really like your outfit and the earring. It's so hard to find people that dress colorfully here";
-      text(tfp, x, player.sprite.position.y - 202, width, height);
+      comment =
+        "It's so hard to find people that dress colorfully here";
+      text(comment, x, player.sprite.position.y - 202, width, height);
           friend.sprite.changeAnimation("stand")
     }
   }
@@ -172,19 +162,19 @@ class ForestPath {
       friend.sprite.changeAnimation("stand")
       choice()
       dynamicTextBox2();
-      forestPathChoice1 = "Thanks"
-      forestPathChoice2 = "Thanks. I like your's too"
+      choice1 = "Thanks"
+      choice2 = "Thanks. I like your's too"
       if (selector === 1) {
          fill(229, 112, 40)
-         text(forestPathChoice1, x, player.sprite.position.y - 180)
+         text(choice1, x, player.sprite.position.y - 180)
          fill(255)
-         text(forestPathChoice2, x + 50, player.sprite.position.y - 150)
+         text(choice2, x + 50, player.sprite.position.y - 150)
        }
        else if (selector === 2){
          fill(255)
-         text(forestPathChoice1, x, player.sprite.position.y - 180)
+         text(choice1, x, player.sprite.position.y - 180)
          fill(229, 112, 40)
-         text(forestPathChoice2, x + 50, player.sprite.position.y - 150)
+         text(choice2, x + 50, player.sprite.position.y - 150)
        }
     }
   }
@@ -195,9 +185,9 @@ class ForestPath {
       dynamicTextBox2();
       fill(65, 243, 252);
       textSize(12);
-      tfp =forestPath2
+      comment =
         "What are you up to right now? I was just going on my usual forest hike";
-      text(tfp, x, player.sprite.position.y - 202, width, height);
+      text(comment, x, player.sprite.position.y - 202, width, height);
     }
   }
 
@@ -207,9 +197,9 @@ class ForestPath {
       dynamicTextBox2();
       fill(65, 243, 252);
       textSize(12);
-      tfp =
+      comment =
         "It would be nice to have some company during it for a change";
-      text(tfp, x, player.sprite.position.y - 202, width, height);
+      text(comment, x, player.sprite.position.y - 202, width, height);
     }
   }
 
@@ -218,19 +208,19 @@ class ForestPath {
       friend.sprite.changeAnimation("stand")
       choice()
       dynamicTextBox2();
-      forestPathChoice1 = "I've got this job..."
-      forestPathChoice2 = "Why not"
+      choice1 = "I've got this job..."
+      choice2 = "Why not"
       if (selector === 1) {
          fill(229, 112, 40)
-         text(forestPathChoice1, x, player.sprite.position.y - 180)
+         text(choice1, x, player.sprite.position.y - 180)
          fill(255)
-         text(forestPathChoice2, x + 275, player.sprite.position.y - 180)
+         text(choice2, x + 275, player.sprite.position.y - 180)
        }
        else if (selector === 2){
          fill(255)
-         text(forestPathChoice1, x, player.sprite.position.y - 180)
+         text(choice1, x, player.sprite.position.y - 180)
          fill(229, 112, 40)
-         text(forestPathChoice2, x + 275, player.sprite.position.y - 180)
+         text(choice2, x + 275, player.sprite.position.y - 180)
        }
     }
   }
@@ -241,9 +231,9 @@ class ForestPath {
       dynamicTextBox2();
       fill(65, 243, 252);
       textSize(12);
-      tfp =
+      comment =
         "Come on don't be shy. We can stop where you need to go on the way";
-      text(tfp, x, player.sprite.position.y - 202, width, height);
+      text(comment, x, player.sprite.position.y - 202, width, height);
     }
   }
 
@@ -253,9 +243,9 @@ class ForestPath {
       dynamicTextBox2();
       fill(65, 243, 252);
       textSize(12);
-      tfp =
+      comment =
         "That's the spirit!";
-      text(tfp, x, player.sprite.position.y - 202, width, height);
+      text(comment, x, player.sprite.position.y - 202, width, height);
     }
   }
 
@@ -266,9 +256,9 @@ class ForestPath {
       dynamicTextBox2();
       fill(65, 243, 252);
       textSize(12);
-      tfp =
+      comment =
         "Let's go then. This should be nice :)";
-      text(tfp, x, player.sprite.position.y - 202, width, height);
+      text(comment, x, player.sprite.position.y - 202, width, height);
     }
   }
 
@@ -278,6 +268,7 @@ class ForestPath {
     }
   }
 
+  // Updates the text box displayed and plays the relevant dialogue sound effect on each click of shift
   changeTextState() {
     if ((friendTalkedTo === true) && (keyCode === SHIFT)) {
       textStateFP = textStateFP + 1;
@@ -306,7 +297,7 @@ class ForestPath {
     if ((friendTalkedTo === true) && textStateFP === 12 && selector === 1) {
       textStateFP = textStateFP + 1;
     }
-    if ((friendTalkedTo === true) && textStateFP === 12 && selector === 2){
+    else if ((friendTalkedTo === true) && textStateFP === 12 && selector === 2){
       textStateFP = textStateFP + 2
     }
   }

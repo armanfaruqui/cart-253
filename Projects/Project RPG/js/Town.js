@@ -1,8 +1,6 @@
 let buildings;
 let entities;
 let textStateSheriff = 0;
-let t1s =
-  "Benny the Buther was looking for you. Head to him right now or else!";
 
 class Town {
   constructor(town,
@@ -25,6 +23,8 @@ class Town {
     buildings = new Group();
     entities = new Group();
 
+
+    // Displays and sets collision for the houses
     house1.sprite = createSprite(280, 420);
     house1.sprite.addAnimation("house1", house1);
     house1.sprite.setCollider("rectangle", 0, 0, 155, 144);
@@ -49,28 +49,32 @@ class Town {
     house4.sprite.addToGroup(buildings);
     house4.sprite.depth = 1;
 
+    // Displays and sets collision for the butchery
     butchery.sprite = createSprite(560, 174);
     butchery.sprite.addAnimation("butchery", butchery);
     butchery.sprite.addToGroup(buildings);
     butchery.sprite.depth = 1;
 
+    // Displays and sets collision for the dog
     dog.sprite = createSprite(280, 600);
     dog.sprite.addAnimation("dog", dog);
     dog.sprite.addAnimation("evildog", evildog);
     dog.sprite.addToGroup(entities);
 
-    tree.sprite = createSprite(-130, 670); //Made corner tree a sprite for multi-direction collision
+    //Corner tree coded as a sprite for multi-direction collision
+    tree.sprite = createSprite(-130, 670);
     tree.sprite.addAnimation("tree", tree);
     tree.sprite.setCollider("rectangle", 0, 60, 90, 152);
     tree.sprite.addToGroup(buildings);
     tree.sprite.depth = 10;
-
-    this.sprite = createSprite(580, 238); //Made corner tree a sprite for multi-direction collision
+    //Corner tree coded as a sprite for multi-direction collision. Using variable names such as 'tree2' was causing errors, so used the object variable for the sake of convenience
+    this.sprite = createSprite(580, 238);
     this.sprite.addAnimation("door", this.door);
     this.sprite.addToGroup(buildings);
     this.sprite.setCollider("rectangle", 0, 0, 70, 100);
     this.sprite.depth = 2;
 
+    // Displays and sets collision for the sheriff
     sheriff.sprite = createSprite(250, -150);
     sheriff.sprite.addAnimation("sheriff", sheriff);
     sheriff.sprite.addToGroup(entities);
@@ -78,15 +82,15 @@ class Town {
     sheriff.sprite.depth = 1;
   }
 
+  // Displays background and draws sprites
   display() {
-    push();
     imageMode(CENTER);
     image(this.bg, 249, 249);
-    pop();
     drawSprites(buildings);
     drawSprites(entities);
   }
-  // Draws and interacts with dog
+
+  // Changes dog sprite and plays its sound when interacted with
   doggo() {
     if (dog.sprite.overlap(player.sprite) && keyCode === SHIFT) {
       // dog.sprite.changeAnimation("evildog");
@@ -97,6 +101,7 @@ class Town {
       game = "fishingGame"
     }
   }
+
   // Assigns a virtual camera which keeps the player at the center of the canvas
   camera() {
     camera.zoom = 1;
@@ -104,6 +109,7 @@ class Town {
     camera.position.y = player.sprite.position.y;
   }
 
+  // Defines walls and gives sprite a collision property
   boundaries() {
     if (player.sprite.position.x < -145) player.sprite.position.x = -145;
     if (player.sprite.position.y < -170) player.sprite.position.y = -170;
@@ -128,12 +134,13 @@ class Town {
     }
   }
 
-  talkToSheriff1() {
+  // Interaction with sheriff before player talks to butcher
+  talkToSheriff() {
     if (
       (sheriff.sprite.overlap(player.sprite) &&
         keyCode === SHIFT &&
         butcherTalkedTo === false) ||
-      (butcherTalkedTo === false &&
+        (butcherTalkedTo === false &&
         player.sprite.position.x > 129 &&
         player.sprite.position.x < 424 &&
         player.sprite.position.y < -146)
@@ -141,8 +148,9 @@ class Town {
       dynamicTextBox();
       fill(251, 223, 107);
       textSize(12);
+      comment = "Benny the Buther was looking for you. Head to him right now or else!";
       text(
-        t1s,
+        comment,
         player.sprite.position.x - 174,
         player.sprite.position.y - 202,
         width,
@@ -151,6 +159,7 @@ class Town {
     }
   }
 
+  // Switches scene from town to butchery and adjusts camera
   enterButchery() {
     if (this.sprite.overlap(player.sprite) && player.direction === "up") {
       scene = "butchery";
@@ -161,6 +170,7 @@ class Town {
     }
   }
 
+  // Checks if player is in the correct position and cycles through text boxes upon each click of shift
   changeTextStateSheriff() {
     if (
       keyCode === SHIFT &&
@@ -173,20 +183,21 @@ class Town {
     }
   }
 
-  sheriffText1() {
+  // Displays text inside text boxes
+  sheriffText(stateOfText, dialogue) {
     if (
       butcherTalkedTo === true &&
       player.sprite.position.x > 129 &&
       player.sprite.position.x < 424 &&
       player.sprite.position.y < -146 &&
-      textStateSheriff === 0
+      textStateSheriff === stateOfText
     ) {
       dynamicTextBox();
       fill(251, 223, 107);
       textSize(12);
-      t1s = "Whoa whoa whoa! Where do you think youre goin boy!";
+      comment = dialogue;
       text(
-        t1s,
+        comment,
         player.sprite.position.x - 174,
         player.sprite.position.y - 202,
         width,
@@ -195,138 +206,12 @@ class Town {
     }
   }
 
-  sheriffText2() {
-    if (
-      textStateSheriff === 1 &&
-      player.sprite.position.x > 129 &&
-      player.sprite.position.x < 424 &&
-      player.sprite.position.y < -146
-    ) {
-      dynamicTextBox();
-      fill(251, 223, 107);
-      textSize(12);
-      t1s = "The forest of course! Why though?";
-      text(
-        t1s,
-        player.sprite.position.x - 174,
-        player.sprite.position.y - 202,
-        width,
-        height
-      );
-    }
-  }
-
-  sheriffText3() {
-    if (
-      textStateSheriff === 2 &&
-      player.sprite.position.x > 129 &&
-      player.sprite.position.x < 424 &&
-      player.sprite.position.y < -146
-    ) {
-      dynamicTextBox();
-      fill(251, 223, 107);
-      textSize(12);
-      t1s =
-        "Are you trying to go somewhere secluded to smoke upon the devils lettuce again?";
-      text(
-        t1s,
-        player.sprite.position.x - 174,
-        player.sprite.position.y - 202,
-        width,
-        height
-      );
-    }
-  }
-
-  sheriffText4() {
-    if (
-      textStateSheriff === 3 &&
-      player.sprite.position.x > 129 &&
-      player.sprite.position.x < 424 &&
-      player.sprite.position.y < -146
-    ) {
-      dynamicTextBox();
-      fill(251, 223, 107);
-      textSize(12);
-      t1s = "EMPTY YOUR POCKETS OR I WILL SHOOT";
-      text(
-        t1s,
-        player.sprite.position.x - 174,
-        player.sprite.position.y - 202,
-        width,
-        height
-      );
-    }
-  }
-
-  sheriffText5() {
-    if (
-      textStateSheriff === 4 &&
-      player.sprite.position.x > 129 &&
-      player.sprite.position.x < 424 &&
-      player.sprite.position.y < -146
-    ) {
-      dynamicTextBox();
-      fill(251, 223, 107);
-      textSize(12);
-      t1s = "Ok lets see here. Phone, gum, wallet, keys... ";
-      text(
-        t1s,
-        player.sprite.position.x - 174,
-        player.sprite.position.y - 202,
-        width,
-        height
-      );
-    }
-  }
-
-  sheriffText6() {
-    if (
-      textStateSheriff === 5 &&
-      player.sprite.position.x > 129 &&
-      player.sprite.position.x < 424 &&
-      player.sprite.position.y < -146
-    ) {
-      dynamicTextBox();
-      fill(251, 223, 107);
-      textSize(12);
-      t1s = "You are lucky this time punk";
-      text(
-        t1s,
-        player.sprite.position.x - 174,
-        player.sprite.position.y - 202,
-        width,
-        height
-      );
-    }
-  }
-
-  sheriffText7() {
-    if (
-      textStateSheriff === 6 &&
-      player.sprite.position.x > 129 &&
-      player.sprite.position.x < 424 &&
-      player.sprite.position.y < -146
-    ) {
-      dynamicTextBox();
-      fill(251, 223, 107);
-      textSize(12);
-      t1s =
-        "Go through and do not give me a reason to give you a hard time again okay";
-      text(
-        t1s,
-        player.sprite.position.x - 174,
-        player.sprite.position.y - 202,
-        width,
-        height
-      );
-    }
-  }
-
+  // Switches scene from town to forest path
   exitToForest() {
     if (textStateSheriff > 6 && player.sprite.position.y < -169.6) {
       scene = "forestPath";
       forestPath.start();
     }
   }
+
 }

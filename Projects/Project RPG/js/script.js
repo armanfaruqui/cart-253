@@ -1,19 +1,25 @@
 let game = "mainGame"
 
-// MAIN GAME VARIABLES====================================================================================================
-let player;
+// MAIN GAME VARIABLES===================================================================================================
+let player; // The user controlled sprite
 
-let scene = "bedroom";
+let scene = "bedroom"; // The scene/map that the player is currently in. Assigned bedroom here since that is the first scene
 
 let i = 0 //For loops
 
 //Variables which positions text within textboxes
 let textShown = false;
-let x = 80;
-let y = 50;
-let y2 = 122;
-let width = 380;
-let height = 80;
+let x = 80; // General X position for where text should be displayed
+let y = 50; // General Y position for where text should be displayed
+let y2 = 122; // General Y position for where the second or third line of text should be displayed
+let width = 380; // Used for horizontal text box wrapping
+let height = 80; // Used for vertical text box wrapping
+
+// Variables for text displayed within textboxes
+let question = "" // Used for text which prompts the user to make a choice
+let comment = "" //  A general variable for text to be displayed
+let choice1 = "" // Used as a variable for the first selectable text option
+let choice2 = "" // Used as a variable for the second selectable text option
 
 let selector = 0; // Used for multiple choice text boxes
 
@@ -23,7 +29,7 @@ let phoneScreen;
 
 let bed_sprite; //Object variables
 
-// FISHING GAME VARIABLES=================================================================================================
+// FISHING GAME VARIABLES================================================================================================
 let fish1;
 let fish2;
 
@@ -82,7 +88,7 @@ let bettaFish = 0;
 
 function preload() {
 
-// MAIN GAME ASSETS=======================================================================================================
+// MAIN GAME ASSETS======================================================================================================
 
   //load Animation creates an animation from a sequence of numbered images. Automatically detects frames inbetween the first and the last.
 
@@ -203,7 +209,7 @@ function preload() {
   flowerPurple = loadAnimation("assets/images/flowers/flowerPurple1.png","assets/images/flowers/flowerPurple12.png")
   flowerPink = loadAnimation("assets/images/flowers/flowerPink1.png","assets/images/flowers/flowerPink12.png")
   flowerYellow = loadAnimation("assets/images/flowers/flowerYellow1.png","assets/images/flowers/flowerYellow12.png")
-  flowerRed = loadAnimation("assets/images/exterior/flowerRed1.png","assets/images/exterior/flowerRed4.png")
+  flowerRed = loadAnimation("assets/images/flowers/flowerRed1.png","assets/images/flowers/flowerRed12.png")
   fishingSign = loadAnimation("assets/images/fishing/sign.png")
 
 //FISHING ASSETS==========================================================================================================
@@ -298,9 +304,9 @@ function draw() {
   if (scene === "hall") {
     hall.display();
     hall.boundaries();
-    hall.DoorText1();
-    hall.DoorText2();
-    hall.DoorText3();
+    hall.doorText(1, "Leave home and go town?", "erm... yes?", "No way in hell");
+    hall.doorText(2, "Are you sure?", "Yes", "No I'm really not");
+    hall.doorText(3, "Last chance to stay home", "I have to feed myself", "1 more hour..");
     hall.exit(); // Switches scene from hall to bedroom
     hall.anxiety(); //Plays oscillator with frequency which changes depending on players distance from door
   }
@@ -310,32 +316,32 @@ function draw() {
     town.camera(); // Assigns a virtual camera which keeps the player at the center of the canvas
     town.boundaries();
     town.enterButchery(); // Switches scene from town to butchery
-    town.talkToSheriff1(); // Interaction with sheriff before player talks to butcher
-    town.sheriffText1(); // Interaction with sheriff after player talks to butcher
-    town.sheriffText2();
-    town.sheriffText3();
-    town.sheriffText4();
-    town.sheriffText5();
-    town.sheriffText6();
-    town.sheriffText7();
+    town.talkToSheriff(); // Interaction with sheriff before player talks to butcher
+    town.sheriffText(0, "Just where do you think you're going boy?"); // Interaction with sheriff after player talks to butcher
+    town.sheriffText(1, "To forest of course! But why?");
+    town.sheriffText(2, "Are you trying to go somewhere secluded to smoke upon the devils lettuce again?");
+    town.sheriffText(3, "EMPTY YOUR POCKETS OR I WILL SHOOT");
+    town.sheriffText(4, "Ok lets see here. Phone, gum, wallet, keys... ");
+    town.sheriffText(5, "You are lucky this time punk");
+    town.sheriffText(6, "Go through and do not give me a reason to give you a hard time again okay");
     town.exitToForest(); //Switches scene from town to forest path
   }
 
   if (scene === "butchery") {
     butcherScene.display();
     butcherScene.boundaries();
-    butcherScene.butcherText1();
-    butcherScene.butcherText2();
-    butcherScene.butcherText3();
-    butcherScene.butcherText4();
-    butcherScene.butcherText5();
-    butcherScene.butcherText6();
-    butcherScene.butcherText7();
-    butcherScene.butcherText8();
-    butcherScene.butcherText9();
-    butcherScene.butcherText10();
-    butcherScene.butcherText11();
-    butcherScene.butcherText12();
+    butcherScene.butcherText(1, "THERE YOU ARE BOY!!");
+    butcherScene.butcherText(2, "ABOUT TIME YOU PUT THOSE SCRAWNY LEGS TO WORK!");
+    butcherScene.butcherText(3, "YOU ARE 10 MINUTES LATE FROM BEING 15 MINUTES EARLY");
+    butcherScene.butcherText(4, "YOU KNOW THAT'S NOT ACCEPTABLE BY MY STANDARDS!");
+    butcherScene.butcherText(5, "Okay so here's the scoop");
+    butcherScene.butcherText(6, "Remember how the state passed that ban on veal?");
+    butcherScene.butcherText(7, "OUTRAGEOUS HUH! HALF MY PROFITS WERE THANKS TO THOSE JUICE BABY COWS");
+    butcherScene.butcherText(8, "But don't fret. When Benny the Butcher wants something he gets it done!");
+    butcherScene.butcherText(9, "I've got a package full of those bad boys being delivered deep within the forest");
+    butcherScene.butcherText(10, "Your job for the day is to bring it back here without getting caught");
+    butcherScene.butcherText(11, "Got it?");
+    butcherScene.butcherText(12, "THEN WHY ARE YOU STILL LOOKING AT ME? TIME I$ MONEY!!!!");
     butcherScene.exit(); //Switches scene from butcher to town
   }
 
@@ -412,9 +418,22 @@ function draw() {
   if (scene === "forestPath3"){
     forestPath3.display()
     forestPath.camera()
-    //forestPath2.boundaries()
+    forestPath2.boundaries()
     friend.update()
     friend.updateDistanceFromPlayer(50)
+    forestPath3.friendText1()
+    forestPath3.friendAnswer(2, "Honestly, just making the most of the one life I have..")
+    forestPath3.friendAnswer(3, "... and making sure that I'm in a position to help and give back to the world which has given me so much");
+    forestPath3.friendAnswer(4, "I couldn't have given you such a fancy answer a few months ago when I had given up on everything")
+    forestPath3.friendAnswer(5, "Goal clarity, gratefulness, acceptance")
+    forestPath3.friendAnswer(6, "I started practicing these instead of letting myself constantly drown in sorrow and despair")
+    forestPath3.friendAnswer(7, "It took A LOT of time and it wasn't fun. It was worth it in the end though")
+    forestPath3.friendAnswer(8, "I constantly feel a sense of existential dread when I don't keep my mind distracted")
+    forestPath3.friendAnswer(9, "I hate when thoughts like 'whats the point', and 'who even why' flood my mind")
+    forestPath3.friendAnswer(10, "We are all gonna die one day, but I guess that's just what gives life its value")
+    forestPath3.friendAnswer(11, "I hate when thoughts like 'whats the point', and 'who even why' flood my mind")
+
+    forestPath2.changeTextState()
   }
 
   player.update(); // Moves the player
