@@ -1,5 +1,7 @@
+// Variable for sprite groups
 let buildings;
 let entities;
+
 let textStateSheriff = 0;
 
 class Town {
@@ -206,7 +208,7 @@ class Town {
   }
 
   // Switches scene from town to forest path
-  //textStateSheriff > 6 && 
+  //textStateSheriff > 6 &&
 
   exitToForest() {
     if (player.sprite.position.y < -169.6) {

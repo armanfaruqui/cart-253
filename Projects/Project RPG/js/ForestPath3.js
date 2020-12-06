@@ -1,16 +1,18 @@
+// Variables to create groups for both columns of flowers
 let redFlowersColumn1
 let redFlowersColumn2
-let questionAsked = 0
-let questionAsked2 = 0
-let conversationEnded = false
+
+let questionAsked = 0 // Stores which question the player selected
+let questionAsked2 = 0 // Stores which question the player selected on the second time of asking
+let conversationEnded = false // Checks if the conversation is finished
 let firstFlower = {
-  x1: 182,
-  x2: 366,
-  y1: 1526,
-  y2: 1526,
+  x1: 182, // X value of the first flower drawn in the first row
+  x2: 366, // X value of the second flower drawn in the second row
+  y1: 1526, // Y value of the first flower drawn in the first row
+  y2: 1526, // Y value of the first flower drawn in the second row
 }
 
-let textStateFP3 = 1
+let textStateFP3 = 1 // A variable which represents if a text box should be displayed, and which one if so
 
 class ForestPath3 {
   constructor(bg_forestPath3, flowerRed) {
@@ -34,21 +36,20 @@ class ForestPath3 {
       firstFlower.y2 = firstFlower.y2 - 108
     }
   }
-
+  // Displays background and draws flower sprites
   display() {
     image(this.bg, 0, 0);
     drawSprites(redFlowersColumn1)
     drawSprites(redFlowersColumn2)
-    console.log(questionAsked)
   }
-
+  // Assigns player's and friend's starting position
   start(){
     player.sprite.position.x = 270;
     friend.sprite.position.x = 320;
     player.sprite.position.y = 1326;
     friend.sprite.position.y = 1326;
   }
-
+  // Defines walls
   boundaries(){
     if (player.sprite.position.x < 180) player.sprite.position.x = 180;
     if (player.sprite.position.x > 370) player.sprite.position.x = 370;

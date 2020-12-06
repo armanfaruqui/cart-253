@@ -7,12 +7,12 @@ class Butcher {
     this.bg1 = bg_butcher1
     this.bg2 = bg_butcher2
 
-
+    // Invisible sprite put that the butcher's position to facilitate an overlap interaction
     this.sprite = createSprite(338, 336)
     this.sprite.setCollider("rectangle", 0, 0, 5, 5)
   }
 
-//  Displays relevant background image
+//  Displays relevant background image. Instead of using a sprite to change the butcher's direction, 2 different background images were used instead
   display(){
     if (butcherTalkedTo === false){
     image(this.bg1, 0, 0)
@@ -22,14 +22,14 @@ class Butcher {
   }
 }
 
-
+  // Defines walls
   boundaries(){
     if (player.sprite.position.x < 100) player.sprite.position.x = 100;
     if (player.sprite.position.y < 336) player.sprite.position.y = 336;
     if (player.sprite.position.x > 407) player.sprite.position.x = 407;
     if (player.sprite.position.y > 462) player.sprite.position.y = 462;
   }
-
+  // Starts conversation when player interacts with butcher
   talkToButcher(){
     if (this.sprite.overlap(player.sprite) && keyCode === SHIFT){
       butcherTalkedTo = true
@@ -37,7 +37,7 @@ class Butcher {
         ting.play()
     }
   }
-
+  // Displays relevant text in the text box
   butcherText(stateOfText, dialogue) {
     if (textStateButcher === stateOfText && this.sprite.overlap(player.sprite)){
       push()
@@ -48,7 +48,7 @@ class Butcher {
       text(comment, x, y, width, height)
     }
   }
-
+  // Switches scene from butchery to town
   exit(){
      if (textStateButcher === 13){
         scene = 'town'

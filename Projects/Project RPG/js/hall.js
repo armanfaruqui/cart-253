@@ -1,5 +1,5 @@
-let hallObjects
-let oscillator;
+let hallObjects // Variable to create a sprite group
+let oscillator;  // Variable for the oscillator
 let textState = 0 // A variable which represents if a text box should be displayed, and which one if so
 
 class Hall {
@@ -17,25 +17,25 @@ class Hall {
     mainDoor.sprite.depth = 1;
     mainDoor.sprite.addToGroup(hallObjects);
   }
-
+  // Assigns players starting postition when this scene is drawn and initilaizes the oscillator
   start() {
     oscillator = new p5.Oscillator(220, 'triangle')
     oscillator.start()
     player.sprite.position.x = 325;
     player.sprite.position.y = 365;
   }
-
+  // Draws background and draws sprites
   display() {
     image(bg_hall, 0, 0);
     drawSprites(hallObjects)
   }
-
+  // Starts interaction with door
   keyPressed() {
     if (mainDoor.sprite.overlap(player.sprite) && keyCode === SHIFT) {
       textState = 1
     }
   }
-
+  //
   doorText(stateOfText, q, c1, c2) {
     if (textState === stateOfText && mainDoor.sprite.overlap(player.sprite)) {
       choice()

@@ -1,19 +1,20 @@
-let showB1 = false; //Booleans which checks if text boxes should be displayed
+//  Booleans which checks if text boxes should be displayed
+let showB1 = false;
 let showB2 = false;
 let showB3 = false;
 let showB4 = false;
-let things;
+let things; // Variable which is used below to create a sprite group
 
 class Bedroom {
   constructor(bed, bg_bedroom, ting, door) {
-    things = new Group(); // Spites are assigned into groups to help determine when they should be drawn
+    things = new Group(); // Spites are assigned into groups. Groups can be drawn separately
     if (scene === "bedroom") {
       // Bed sprite
-      this.sprite = createSprite(370, 350, 12, 10);
-      this.sprite.addAnimation("bed", bed);
-      this.sprite.depth = 1;
-      this.sprite.changeAnimation("bed");
-      this.sprite.addToGroup(things);
+      this.sprite = createSprite(370, 350, 12, 10); // Initializes a sprite
+      this.sprite.addAnimation("bed", bed); // Adds the preloaded animation
+      this.sprite.depth = 1; // Depth determines the order in which sprites are displayed. Sprites with higher depths are drawn on top of sprites with lower depths
+      this.sprite.changeAnimation("bed"); // Decides which animation should be displayed since sprites can hold multiple
+      this.sprite.addToGroup(things); // Adds a sprite to a defined group
       // Desk sprite
       desk.sprite = createSprite(270, 150, 12, 10);
       desk.sprite.addAnimation("desk", desk);
@@ -23,7 +24,7 @@ class Bedroom {
       // Door sprite
       door.sprite = createSprite(88, 432, 50, 100);
       door.sprite.addAnimation("door", door);
-      door.sprite.setCollider("rectangle", 0, 0, 50, 30);
+      door.sprite.setCollider("rectangle", 0, 0, 50, 30); // Defines a custom collider. First paramter refers to its shape. The 2 after refer the offset x and y position from where the sprite is drawn. The last 2 represent the width and height of the collider respectively
       door.sprite.addToGroup(things);
       door.sprite.depth = 1;
       // Assigns players starting position
@@ -31,12 +32,12 @@ class Bedroom {
       player.sprite.position.y = 200;
     }
   }
-
+  // Displays the background and draws spites
   display() {
     image(bg_bedroom, 0, 0);
     drawSprites(things); // Draws sprites in the group 'things'
   }
-
+ // Plays a sound and changes a boolean to allow the relevant text to be displayed
   keyPressed() {
     // Interacts with bed
     if (this.sprite.overlap(player.sprite) && keyCode === SHIFT) {
@@ -53,7 +54,7 @@ class Bedroom {
       showB2 = false;
     }
   }
-
+  // Displays relevant text when player interacts with the desk/computer
   bedText() {
     if (showB1 === true) {
       push();
@@ -65,7 +66,7 @@ class Bedroom {
       pop();
     }
   }
-
+  // Displays relevant text when player interacts with the desk/computer
   deskText() {
     if (showB2 === true) {
       choice();
@@ -96,7 +97,7 @@ class Bedroom {
       pop();
     }
   }
-
+  // Opens a game in a separate tab
   launchGame() {
     if (showB2 === true && selector === 1) {
       window.open("https://armanfaruqui.github.io/cart253/Projects/project-1/"); // Launches plenty of fish in the sea in a seprate tab

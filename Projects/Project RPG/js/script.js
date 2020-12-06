@@ -270,43 +270,44 @@ function draw() {
 
     background(100);
 
+    // State functions used to call the methods relevant to each scene
     if (scene === "bedroom") {
-      bedroom.display(); // Displays background
-      bedroom.bedText(); // Displays text box from interacting with bed
-      bedroom.deskText(); // Displays text box from interacting with desk
-      bedroom.boundaries(); // // Defines walls and gives sprite(s) a collision property
-      bedroom.exit(); // Switches scene from bedroom to hall
+      bedroom.display();
+      bedroom.bedText();
+      bedroom.deskText();
+      bedroom.boundaries();
+      bedroom.exit();
     }
 
     if (scene === "hall") {
-      hall.display(); // Displays background
-      hall.boundaries(); // Defines walls and gives sprite(s) a collision property
+      hall.display();
+      hall.boundaries();
       hall.doorText(1, "Leave home and go town?", "erm... yes?", "No way in hell");
       hall.doorText(2, "Are you sure?", "Yes", "No I'm really not");
       hall.doorText(3, "Last chance to stay home", "I have to feed myself", "1 more hour..");
-      hall.exit(); // Switches scene from hall to bedroom
-      hall.anxiety(); //Plays oscillator with frequency which changes depending on players distance from door
+      hall.exit();
+      hall.anxiety();
     }
 
     if (scene === "town") {
       town.display();
-      town.camera(); // Assigns a virtual camera which keeps the player at the center of the canvas
-      town.boundaries(); // Defines walls and gives sprite(s) a collision property
-      town.enterButchery(); // Switches scene from town to butchery
-      town.talkToSheriff(); // Interaction with sheriff before player talks to butcher
-      town.sheriffText(0, "Just where do you think you're going boy?"); // Interaction with sheriff after player talks to butcher
+      town.camera();
+      town.boundaries();
+      town.enterButchery();
+      town.talkToSheriff();
+      town.sheriffText(0, "Just where do you think you're going boy?");
       town.sheriffText(1, "To forest of course! But why?");
       town.sheriffText(2, "Are you trying to go somewhere secluded to smoke upon the devils lettuce again?");
       town.sheriffText(3, "EMPTY YOUR POCKETS OR I WILL SHOOT");
       town.sheriffText(4, "Ok lets see here. Phone, gum, wallet, keys... ");
       town.sheriffText(5, "You are lucky this time punk");
       town.sheriffText(6, "Go through and do not give me a reason to give you a hard time again okay");
-      town.exitToForest(); //Switches scene from town to forest path
+      town.exitToForest();
     }
 
     if (scene === "butchery") {
       butcherScene.display();
-      butcherScene.boundaries(); // Defines walls and gives sprite(s) a collision property
+      butcherScene.boundaries();
       butcherScene.butcherText(1, "THERE YOU ARE BOY!!");
       butcherScene.butcherText(2, "ABOUT TIME YOU PUT THOSE SCRAWNY LEGS TO WORK!");
       butcherScene.butcherText(3, "YOU ARE 10 MINUTES LATE FROM BEING 15 MINUTES EARLY");
@@ -319,31 +320,30 @@ function draw() {
       butcherScene.butcherText(10, "Your job for the day is to bring it back here without getting caught");
       butcherScene.butcherText(11, "Got it?");
       butcherScene.butcherText(12, "THEN WHY ARE YOU STILL LOOKING AT ME? TIME I$ MONEY!!!!");
-      butcherScene.exit(); //Switches scene from butcher to town
+      butcherScene.exit();
     }
 
     if (scene === "forestPath") {
       forestPath.display();
-      forestPath.camera(); // Y position of camera depends on the y position of the player. X remains fixed
-      forestPath.boundaries(); // Defines walls and gives sprite(s) a collision property
-      friend.standingThere(); // Draws the friend sprite
-      forestPath.anxiety(); // Plays oscillator with frequency which changes depending on players distance from friend
-      forestPath.introduction1(); // If player talks to friend
-      forestPath.introduction2(); // If player tries to walk past friend
-      forestPath.squirrels(); // Displays gif of squirrels on tree
-      forestPath.friendText2();
-      forestPath.friendText3();
-      forestPath.friendText4();
-      forestPath.friendText5();
-      forestPath.friendText6();
-      forestPath.friendText7();
-      forestPath.friendText8();
-      forestPath.friendText9();
-      forestPath.friendText10();
-      forestPath.friendText11();
-      forestPath.friendText12();
-      forestPath.friendText13();
-      forestPath.friendText14();
+      forestPath.camera();
+      forestPath.boundaries();
+      friend.standingThere();
+      forestPath.anxiety();
+      forestPath.introduction();
+      forestPath.squirrels();
+      forestPath.friendText(3, "This is the sweetest");
+      forestPath.friendText(4, "Watching these two build their home to survive the cold winter with each other");
+      forestPath.friendText(5, "It's not often I bump into people my age near this town. Are you from somewhere else?");
+      forestPath.friendText(6, "REALLY!? Wow its so nice to meet you!");
+      forestPath.friendText(7, "I really like your outfit and the earring");
+      forestPath.friendText(8, "It's so hard to find people that like to dress colorfully here");
+      forestPath.playerReply(9, "Thanks", "Thanks. I like your's too");
+      forestPath.friendText(10, "What are you up to right now? I was just going on my usual forest hike");
+      forestPath.friendText(11, "It would be nice to have some company during it for a change");
+      forestPath.playerReply(12, "I've got this job...", "Why not")
+      forestPath.friendText(13, "Come on don't be shy. We can stop where you need to go on the way");
+      forestPath.friendText(14, "That's the spirit!");
+      forestPath.friendText(15, "Let's go then. This should be nice :)");
       forestPath.startWalkingTogether();
       if (textStateFP > 15) {
         friend.updateDistanceFromPlayer(80);
@@ -357,16 +357,16 @@ function draw() {
       forestPath.camera();
       friend.update()
       friend.updateDistanceFromPlayer(80)
-      forestPath2.friendText1()
-      forestPath2.friendText2()
-      forestPath2.friendText3()
-      forestPath2.friendText4()
-      forestPath2.friendText5()
-      forestPath2.friendText6()
-      forestPath2.friendText7()
-      forestPath2.friendText8()
-      forestPath2.friendText9()
-      forestPath2.friendText10()
+      forestPath2.friendText(1, "So what do you like to do for fun")
+      forestPath2.friendAnswer(2, "I play video games", "I spend time outdoors (Questionable)")
+      forestPath2.friendText(3, "Same! I've been super busy lately so I haven't had the time to enjoy enough of it")
+      forestPath2.friendText(4, "I have such a bad habit of avoiding the work and tasks that stress me out")
+      forestPath2.friendText(5, "It needs to change. Avoidance makes doing what you are dreading 100 times harder because it completely disempowers you")
+      forestPath2.friendText(6, "When you let your goal become avoidance, your brain makes progression feel very uncomfortable")
+      forestPath2.friendText(7, "Since I became aware of this and shifted my goal towards progress its been so much easier.")
+      forestPath2.friendText(8, "Goal clarity is like giving your brain a quest marker. It becomes your friend instead of your enemy")
+      forestPath2.friendText(9, "I rambled too long there didn't I")
+      forestPath2.friendText(10, "You're saying I didn't? I'm glad you don't find talking about these kinds of things to be weird :)")
       forestPath2.exit()
     }
 
@@ -375,27 +375,27 @@ function draw() {
       forestLake.camera()
       friend.update()
       friend.updateDistanceFromPlayer(60)
-      forestLake.boundaries() // Defines walls and gives sprite(s) a collision property
-      forestLake.friendText1()
-      forestLake.friendText2()
-      forestLake.friendText3()
-      forestLake.friendText4()
-      forestLake.askToFish1()
-      forestLake.askToFish2()
+      forestLake.boundaries()
+      forestLake.friendText1(0, "Welcome to my sanctuary")
+      forestLake.friendText1(1, "It's where I come to relax and catch some fish.")
+      forestLake.friendText2(0, "Come on its perfect weather for some fishing")
+      forestLake.friendText2(1, "My aunt let me borrow her fishing rod. She won't mind if you use it")
+      forestLake.askToFish(1, "Start fishing", "Yes", "No", 1)
+      forestLake.askToFish(2, "Are you sure? You don't want them to see you mess up", "Whatever", "I just need a minute", 2)
       forestLake.startFishing()
-      forestLake.flowerText1()
-      forestLake.flowerText2()
-      forestLake.flowerText3()
-      forestLake.flowerText4()
-      forestLake.flowerText5()
+      forestLake.flowerText(1, "I'm sure you can tell why I come here so often :D")
+      forestLake.flowerText(2, "This flower field is my favourite place to kick back and listen to music")
+      forestLake.flowerText(3, "What kind of music do you like listening to. Show me your playlist")
+      forestLake.flowerText(4, "Awwww. These songs won't fit this scenery")
+      forestLake.flowerText(5, "Here. I just sent you this song I found recently. Play it right now and tell me what you think")
       forestLake.endCutScene()
       forestLake.exit()
     }
 
     if (scene === "forestPath3") {
       forestPath3.display()
-      forestPath.camera()
-      forestPath2.boundaries() // Defines walls and gives sprite(s) a collision property
+      forestPath.camera() // Uses the same camera as the one in forestPath so that method is called here
+      forestPath2.boundaries() // Has the same walls as the ones in forestPath2 so that method is called here
       friend.update()
       friend.updateDistanceFromPlayer(50)
       forestPath3.questionForFriend1()
@@ -408,7 +408,7 @@ function draw() {
       forestPath3.friendAnswer(8, "I constantly feel a sense of existential dread when I don't keep my mind distracted")
       forestPath3.friendAnswer(9, "I hate when thoughts like 'whats the point', and 'who even why' flood my mind")
       forestPath3.friendAnswer(10, "We are all gonna die one day, but I guess that's just what gives life its value")
-      forestPath3.friendAnswer(11, "I hate when thoughts like 'whats the point', and 'who even why' flood my mind")
+      forestPath3.friendAnswer(11, "Also cockroaches. They suck")
       forestPath3.questionForFriend2()
       forestPath3.friendAnswer(13, "The sound and feeling of the wind blowing past me")
       forestPath3.friendAnswer(14, "Being absorbed in the beauty of the plants and animals around me")
@@ -416,6 +416,7 @@ function draw() {
       forestPath3.friendAnswer(16, "I could go on forever hahaha")
       forestPath3.friendAnswer(17, "Nothing clears my mind and gives me a greater sense of peace than a good hike")
       forestPath3.resetPosition()
+      forestPath3.exit()
     }
 
     player.update(); // Moves the player
@@ -429,8 +430,7 @@ function draw() {
     // console.log(player.sprite.position.y)
     // console.log(mouseX)
     // console.log(mouseY)
-  }
-  else if (game === "fishingGameSetup") { //Simulates the setup function for the fishing minigame
+  } else if (game === "fishingGameSetup") { //Simulates the setup function for the fishing minigame
 
     fish1 = createFish()
     fish2 = createFish()
@@ -451,20 +451,19 @@ function draw() {
     pop();
 
     game = "fishingGameplay" // Switches from the fishing game setup to its draw function once setup is complete
-  }
-
-  else if (game === "fishingGameplay") { // Simulates the draw function of the fishing mini game
+  } else if (game === "fishingGameplay") { // Simulates the draw function of the fishing mini game
     createCanvas(windowWidth, windowHeight);
     background(150);
 
     moveFish(fish1);
-    moveFish(fish2); //Controls movement of fish
+    moveFish(fish2);
 
-    checkDist(fish1); // Checks if fish gets within catching range
+    checkDist(fish1);
     checkDist(fish2);
-    checkOffScreen(); // Repositions fish if they go too far
 
-    baitFish(fish1); // Moves fish towards hook with user input if within range
+    checkOffScreen();
+
+    baitFish(fish1);
     baitFish(fish2);
 
     scareFish(fish1)
@@ -475,27 +474,22 @@ function draw() {
     displayLake()
     displayBackground()
 
-    setHook(); // Sets position of hook on rod
-    dropHook(); // Drops hook into water
+    setHook();
+    dropHook();
 
     displayRod()
 
     displaySign()
     displayInstructions()
-
-    //  Displays last caught fish and plays their cry
     displayFishOnSign()
 
-    // Controls fireflies movement and appearance
     displayFireflies()
 
-    textBoxFishing(); // Displays the black text box
-    displayText(); //Displays the correct text onto the text box
+    textBoxFishing();
+    displayText();
 
     returnToMainGame()
-  }
-
-  else if (game === "resetCanvas"){
+  } else if (game === "resetCanvas") {
     createCanvas(507, 507)
     game = "mainGame"
   }
@@ -505,14 +499,14 @@ function draw() {
 
 function keyPressed() {
   if (scene === "bedroom") {
-    bedroom.keyPressed(); // Interacts with bed
+    bedroom.keyPressed();
   } else if (scene === "hall") {
-    hall.keyPressed(); // Interacts with main door
+    hall.keyPressed();
   } else if (scene === "town") {
-    town.changeTextStateSheriff(); // Changes text box content
-    town.doggo(); // Interacts with dog
+    town.changeTextStateSheriff();
+    town.doggo();
   } else if (scene === "butchery") {
-    butcherScene.talkToButcher(); // Starts interaction with butcher and changes the background
+    butcherScene.talkToButcher();
   } else if (scene === "forestPath") {
     forestPath.changeTextState();
   } else if (scene === "forestPath2") {
@@ -521,7 +515,7 @@ function keyPressed() {
     forestLake.changeTextState1()
     forestLake.changeTextState2()
     forestLake.changeTextState4()
-    forestLake.keyPressed()
+    forestLake.interactWithLake()
   } else if (scene === "forestPath3") {
     forestPath3.changeTextState()
   }
@@ -535,7 +529,7 @@ function mousePressed() {
   hall.exit2(); // Switches scene from hall to town
   forestPath.selectChoice1()
   forestPath.selectChoice2()
-  forestPath2.selectChoice1()
+  forestPath2.selectChoice()
   if (scene === "lake") {
     forestLake.changeTextState3()
   }
@@ -543,7 +537,7 @@ function mousePressed() {
     forestPath3.selectChoice1()
     forestPath3.selectChoice2()
   }
-  if (game === "fishingGameplay") {
+if (game === "fishingGameplay") {
     if (
       hookDown === 0 &&
       mouseX > 0 &&
@@ -551,14 +545,15 @@ function mousePressed() {
       mouseY > lake.topLeftY &&
       mouseY < lake.bottomLeftY + lake.padding
     ) {
-      // Toggles hookDown
+      // Toggles hookDown and plays relevant sound
       hookDown = 1;
-      reelsound.play();
+      reelsound.play(); // When hook is dropped
       smallSplash.play();
     } else if (hookDown === 1) {
       hookDown = 0;
-      reelsound.play();
+      reelsound.play(); // When hook is reeled back
     }
+    // When hook is reeled back once it has caught a fish
     if (fish1.reeled === 1) {
       //Catches reeled fish
       fish1.caught = 1;
@@ -618,7 +613,9 @@ function choice() {
   }
 }
 
-//=======================================================================================================================
+//FUNCTIONS EXCLUSIVE TO FISHING SIMULATION==============================================================================
+
+// Displays lake and lowers its opacity
 function displayLake() {
   push();
   imageMode(CENTER);
@@ -626,21 +623,21 @@ function displayLake() {
   image(pool, 400, 280, 750, 700);
   pop();
 }
-
+// Displays the background containing the lake and grass
 function displayBackground() {
   push();
   imageMode(CORNER);
   image(grass, 0, 0, windowWidth, windowHeight);
   pop();
 }
-
+// Displays the rod on the mouse
 function displayRod() {
   push();
   imageMode(CENTER);
   image(rod, mouseX, mouseY, 138, 138); //  Displays rod
   pop();
 }
-
+// Displays the sign
 function displaySign() {
   push();
   fill(145, 126, 97);
@@ -652,7 +649,7 @@ function displaySign() {
   text("Last Caught Fish", 915, 340);
   pop();
 }
-
+// Displays the instructions in the top right hand corner
 function displayInstructions() {
   push();
   fill(10, 150);
@@ -665,7 +662,7 @@ function displayInstructions() {
   text("towards you if it comes close enough", 800, 68);
   pop();
 }
-
+// Checks which was the last caught fish and calls the relevant function to display them on the sign
 function displayFishOnSign() {
   push();
   if (goldFish === 1) {
@@ -735,10 +732,11 @@ function setFish(fish) {
 // Controls fish's movement
 function moveFish(fish) {
   let change = random();
-  if (change < 0.05 && hookDown === 0) {
+  if (change < 0.05 && hookDown === 0) { // Creates random movement for the fish
     fish.vx = random(-fish.speed, fish.speed);
     fish.vy = random(-fish.speed, fish.speed);
   }
+  // Negates fish movement if they are attatched to the hook
   if (hookDown === 1) {
     if (fish.x > hookDown.x) {
       fish.vx = fish.speed;
@@ -753,9 +751,10 @@ function moveFish(fish) {
       fish.vy = -fish.speed;
     }
   }
+  // Moves fish
   fish.x += fish.vx;
   fish.y += fish.vy;
-
+  // The dark circles representing the fish still in the water
   fill(0);
   noStroke();
   ellipse(fish.x, fish.y, fish.size);
@@ -769,7 +768,7 @@ function checkDist(fish) {
   }
 }
 
-// Repositions fish if they go too far
+// Checks if the fish have strayed too far away from the fool and calls the setFish function to reset their position
 function checkOffScreen(fish) {
   if (
     fish1.x > lake.topRightX + (3 / 4) * lake.padding ||
@@ -844,7 +843,7 @@ function dropHook() {
     line(droppedhook.x, droppedhook.y, mouseX + 70, mouseY - 70);
   }
 }
-
+// Resets fish if they enter catching range whilst the sound from the hook being dropped in the water is still playing
 function scareFish(fish) {
   if (fish.d < 40 && smallSplash.isPlaying()) {
     setFish(fish);
@@ -873,6 +872,7 @@ function checkAndCatchFish() {
   }
 }
 
+// Checks the size property of the fish to determine which type it is. It then plays the relevant sound for each fish, whilst also calling the relevant function which displays text regarding the fish in the text box
 function checkFish(fish) {
   if (fish.size > 39 && fish.size < 54) {
     goldsound.play();
@@ -906,6 +906,7 @@ function checkFish(fish) {
   }
 }
 
+// The following 4 functions contain information on how the fish should be displayed on the sign once it is caught
 function displayGoldFish() {
   image(gold, 940, 380, 200, 170);
   textStyle(ITALIC);
@@ -942,7 +943,7 @@ function displayPike() {
   text(nPikeName, 930, 600, 250, 200);
 }
 
-
+// Draws the black text box
 function textBoxFishing() {
   fill(255);
   rect(812, 122, 421, 116, 10);
@@ -950,7 +951,7 @@ function textBoxFishing() {
   rect(820, 130, 405, 100);
   textFont(myFont);
 }
-
+// Stores the text to be shown before a fish is caught
 function warningText() {
   fill(65, 243, 252);
   textSize(12);
@@ -959,6 +960,7 @@ function warningText() {
   text(comment, 840, 150, 395, 80);
 }
 
+// The following 4 functions store the text and its properties for the 4 types of fish you can catch in this simulation
 function textGoldfish() {
   fill(65, 243, 252);
   textSize(12);
@@ -993,7 +995,7 @@ function textBetta() {
     "Look how beautiful that Betta Fish is. I'm seeing a lot fewer of them in these waters so lets put it back ";
   text(comment, 840, 150, 405, 80);
 }
-
+// Displays the relevant text regarding the fish last caught in the text box
 function displayText() {
   if (goldFish === 1) {
     textGoldfish();
@@ -1067,8 +1069,9 @@ function drawFlies(X, Y) {
   }
 }
 
+// Once 5 fish are caught, the fishing simulation ends returning you to the main game
 function returnToMainGame() {
-  if (fishCaught === 1) {
+  if (fishCaught === 5) {
     game = "resetCanvas"
     diresong.stop()
   }
