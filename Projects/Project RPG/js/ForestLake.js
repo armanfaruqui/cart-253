@@ -202,7 +202,7 @@ class ForestLake{
 
   startFishing(){
     if (textStateFL_3 === 3){
-      game = "fishingGame"
+      game = "fishingGameSetup"
     }
   }
 

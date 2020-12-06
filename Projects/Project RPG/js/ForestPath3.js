@@ -1,6 +1,8 @@
 let redFlowersColumn1
 let redFlowersColumn2
 let questionAsked = 0
+let questionAsked2 = 0
+let conversationEnded = false
 let firstFlower = {
   x1: 182,
   x2: 366,
@@ -37,11 +39,12 @@ class ForestPath3 {
     image(this.bg, 0, 0);
     drawSprites(redFlowersColumn1)
     drawSprites(redFlowersColumn2)
+    console.log(questionAsked)
   }
 
   start(){
     player.sprite.position.x = 270;
-    friend.sprite.position.x = 270;
+    friend.sprite.position.x = 320;
     player.sprite.position.y = 1326;
     friend.sprite.position.y = 1326;
   }
@@ -81,14 +84,14 @@ class ForestPath3 {
   }
 
   questionForFriend2() {
-    if (textStateFP3 === 12 && player.sprite.position.y < 1320) {
+    if (textStateFP3 === 12 && player.sprite.position.y < 1320 && questionAsked2 === 0) {
       choice()
       dynamicTextBox2();
       question = "That went okay"
-      if (questionAsked === 1){
+      if (questionAsked === 2){
         choice1 = "What motivates you"
       }
-      else if (questionAsked === 2){
+      else if (questionAsked === 1){
         choice1 = "What worries you the most"
       }
         choice2 = "What's your favourite part of hiking"
@@ -110,7 +113,7 @@ class ForestPath3 {
     }
   }
 
-  friendAnswer1(stateOfText, dialogue) {
+  friendAnswer(stateOfText, dialogue) {
     if (textStateFP3 === stateOfText) {
       dynamicTextBox2();
       fill(65, 243, 252);
@@ -123,31 +126,58 @@ class ForestPath3 {
   selectChoice1(){
     if (textStateFP3 === 1 & selector === 1){
       textStateFP3 = textStateFP3 + 1
-      questionChose = 1
+      questionAsked = 1
     }
     else if(textStateFP3 === 1 & selector === 2){
       textStateFP3 = textStateFP3 + 7
-      questionChose = 2
+      questionAsked = 2
     }
   }
 
   selectChoice2(){
     if (textStateFP3 === 12 & selector === 1 && questionAsked === 2){
       textStateFP3 = 2
+      questionAsked2 = 1
     }
     else if(textStateFP3 === 12 & selector === 1 && questionAsked === 1){
       textStateFP3 = 8
+      questionAsked2 = 2
     }
     else if(textStateFP3 === 12 & selector === 2){
       textStateFP3 = textStateFP3 + 1
+      questionAsked2 = 3
     }
   }
 
   changeTextState(){
-    if(keyCode === SHIFT && textStateFP3 > 0 && textStateFP3 !== 1){
+    if(keyCode === SHIFT && textStateFP3 > 0 && textStateFP3 !== 1 && textStateFP3 !== 12 && textStateFP3 !== 7){
       textStateFP3 = textStateFP3 + 1
+    }
+    if(keyCode === SHIFT && textStateFP3 === 7){
+      textStateFP3 = 12
+    }
+    if (keyCode === SHIFT && textStateFP3 === 11 && questionAsked2 === 2){
+      conversationEnded = true
+    }
+    if (keyCode === SHIFT && textStateFP3 === 12 && questionAsked2 === 1){
+      conversationEnded = true
+    }
+    if (keyCode === SHIFT && textStateFP3 === 17){
+      conversationEnded = true
     }
   }
 
+  resetPosition(){
+    if (player.sprite.position.y < 258 && conversationEnded === false){
+      player.sprite.position.y = 1326;
+      friend.sprite.position.y = 1326;
+    }
+  }
+
+  exit(){
+    if (player.sprite.position.y < 250){
+      scene === "booty"
+    }
+  }
 
 }

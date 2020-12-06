@@ -93,12 +93,11 @@ class Town {
   // Changes dog sprite and plays its sound when interacted with
   doggo() {
     if (dog.sprite.overlap(player.sprite) && keyCode === SHIFT) {
-      // dog.sprite.changeAnimation("evildog");
-      // player.sprite.position.x = player.sprite.position.x - 10;
-      // fill(255,0,0)
-      // rect(0, 0, 3000, 3000)
-      // growl.play();
-      game = "fishingGame"
+      dog.sprite.changeAnimation("evildog");
+      player.sprite.position.x = player.sprite.position.x - 10;
+      fill(255,0,0)
+      rect(0, 0, 3000, 3000)
+      growl.play();
     }
   }
 
@@ -109,7 +108,7 @@ class Town {
     camera.position.y = player.sprite.position.y;
   }
 
-  // Defines walls and gives sprite a collision property
+  // Defines walls and gives sprite(s) a collision property
   boundaries() {
     if (player.sprite.position.x < -145) player.sprite.position.x = -145;
     if (player.sprite.position.y < -170) player.sprite.position.y = -170;
@@ -207,9 +206,10 @@ class Town {
   }
 
   // Switches scene from town to forest path
+  //textStateSheriff > 6 && 
 
   exitToForest() {
-    if (textStateSheriff > 6 && player.sprite.position.y < -169.6) {
+    if (player.sprite.position.y < -169.6) {
       scene = "forestPath";
       forestPath.start();
     }

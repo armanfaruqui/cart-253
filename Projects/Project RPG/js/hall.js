@@ -28,7 +28,6 @@ class Hall {
   display() {
     image(bg_hall, 0, 0);
     drawSprites(hallObjects)
-    console.log(textState)
   }
 
   keyPressed() {
@@ -103,6 +102,8 @@ class Hall {
       player.sprite.position.x = 65
       player.sprite.position.y = 620
       oscillator.stop()
+
+      // For some reason, these sprites needed to be manually removed or have their collider set to 0 to prevent them from being drawn on other scenes in their respective positions
       bedroom.spite.setCollider("rectangle", 0, 0, 0, 0)
       bedroom.sprite.remove()
       bedroom.desk.sprite.remove()
