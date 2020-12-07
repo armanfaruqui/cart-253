@@ -2,7 +2,7 @@ let tfp;
 let standStill2 = false
 
 class Friend {
-  constructor(friend_stand, friend_walkDown, friend_standLeft, friend_walkLeft, friend_standRight, friend_walkRight, friend_standUp, friend_walkUp, friend_new, blank) {
+  constructor(friend_stand, friend_walkDown, friend_standLeft, friend_walkLeft, friend_standRight, friend_walkRight, friend_standUp, friend_walkUp, friend_new, friendDialogue1, friendDialogue2, friendDialogue3, friendDialogue4, friendDialogue5, friendDialogue6) {
     this.sprite = createSprite(-400, -400, 42, 42);
     this.sprite.addAnimation("stand", friend_stand);
     this.sprite.addAnimation("walkDown", friend_walkDown);
@@ -12,12 +12,16 @@ class Friend {
     this.sprite.addAnimation("walkRight", friend_walkRight);
     this.sprite.addAnimation("standUp", friend_standUp);
     this.sprite.addAnimation("walkUp", friend_walkUp);
-    this.sprite.addAnimation("blank", blank);
     this.sprite.setCollider("rectangle", 0, 20, 22, 35);
     this.sprite.addToGroup(humans)
     this.sprite.depth = 4; //Visualize depth as photoshop layers
     this.direction = "down";
-
+    this.dialogue1 = friendDialogue1
+    this.dialogue2 = friendDialogue2
+    this.dialogue3 = friendDialogue3
+    this.dialogue4 = friendDialogue4
+    this.dialogue5 = friendDialogue5
+    this.dialogue6 = friendDialogue6
   }
 
   standingThere() {
@@ -27,14 +31,6 @@ class Friend {
       this.sprite.changeAnimation("standLeft")
       player.sprite.collide(this.sprite)
     }
-  }
-
-  forestPathText1() {
-    dynamicTextBox2()
-    fill(65, 243, 252)
-    textSize(12)
-    tfp = 'Psst hey check this out!'
-    text(tfp, x, player.sprite.position.y - 202, width, height)
   }
 
   update() {
@@ -110,5 +106,6 @@ class Friend {
     this.sprite.velocity.x = 0
     this.sprite.velocity.y = 0
   }
+
 
 }

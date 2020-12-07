@@ -86,10 +86,9 @@ let kingFish = 0;
 let pike = 0;
 let bettaFish = 0;
 
-
 function preload() {
 
-  // MAIN GAME ASSETS====================================================================================================
+// MAIN GAME ASSETS====================================================================================================
 
   //load Animation creates an animation from a sequence of numbered images. Automatically detects frames inbetween the first and the last.
 
@@ -131,9 +130,7 @@ function preload() {
     "assets/images/chars/friend-walkleft001.png",
     "assets/images/chars/friend-walkleft003.png"
   );
-  friend_standRight = loadAnimation(
-    "assets/images/chars/friend-walkright001.png"
-  );
+  friend_standRight = loadAnimation("assets/images/chars/friend-walkright001.png");
   friend_walkRight = loadAnimation(
     "assets/images/chars/friend-walkright001.png",
     "assets/images/chars/friend-walkright003.png"
@@ -166,7 +163,15 @@ function preload() {
 
   //Phone assets
   phoneScreen = loadImage("assets/images/phone/screen.png");
+  musicScreen = loadImage("assets/images/phone/musicScreen.png");
   selfieIndoor = loadImage("assets/images/phone/selfieIndoor.png");
+  selfieTown = loadImage("assets/images/phone/selfieOutdoor.png");
+  selfieForestPath = loadImage("assets/images/phone/selfieForestPath.png");
+  selfieForestPath3 = loadImage("assets/images/phone/selfieForestPath3.png");
+  selfieLake = loadImage("assets/images/phone/selfieLak.png");
+  phoneSong1 = loadSound("assets/images/phone/breakfast.mp3");
+  phoneSong2 = loadSound("assets/images/phone/DFTB.mp3");
+  phoneSong3 = loadSound("assets/images/phone/cabinFever.mp3");
 
   //Bedroom assets
   bg_bedroom = loadImage("assets/images/interior/demo bg.png");
@@ -213,7 +218,7 @@ function preload() {
   flowerRed = loadAnimation("assets/images/flowers/flowerRed1.png", "assets/images/flowers/flowerRed12.png")
   fishingSign = loadAnimation("assets/images/fishing/sign.png")
 
-  //FISHING ASSETS=========================================================================================================
+  //FISHING ASSETS=======================================================================================================
 
   // Background images
   pool = loadImage("assets/images/fishing/pixelwater.gif");
@@ -246,7 +251,7 @@ function setup() {
 
   friend = new Friend(friend_stand, friend_walkDown, friend_standLeft, friend_walkLeft, friend_standRight, friend_walkRight, friend_standUp, friend_walkUp, friend_new, blank, friendDialogue1, friendDialogue2, friendDialogue3, friendDialogue4, friendDialogue5, friendDialogue6);
 
-  phone = new Phone(phoneScreen, selfieIndoor);
+  phone = new Phone(phoneScreen, musicScreen, selfieIndoor, selfieTown, selfieForestPath, selfieForestPath3, selfieLake, phoneSong1, phoneSong2, phoneSong3);
 
   bedroom = new Bedroom(bed, bg_bedroom, ting, door);
 
@@ -330,6 +335,7 @@ function draw() {
       friend.standingThere();
       forestPath.anxiety();
       forestPath.introduction();
+      forestPath.friendText(1, "Psssst  Check this out");
       forestPath.squirrels();
       forestPath.friendText(3, "This is the sweetest");
       forestPath.friendText(4, "Watching these two build their home to survive the cold winter with each other");
@@ -358,7 +364,7 @@ function draw() {
       friend.update()
       friend.updateDistanceFromPlayer(80)
       forestPath2.friendText(1, "So what do you like to do for fun")
-      forestPath2.friendAnswer(2, "I play video games", "I spend time outdoors (Questionable)")
+      forestPath2.friendAnswer(2, "I play video games", "I spend time outdoors")
       forestPath2.friendText(3, "Same! I've been super busy lately so I haven't had the time to enjoy enough of it")
       forestPath2.friendText(4, "I have such a bad habit of avoiding the work and tasks that stress me out")
       forestPath2.friendText(5, "It needs to change. Avoidance makes doing what you are dreading 100 times harder because it completely disempowers you")
@@ -423,8 +429,8 @@ function draw() {
 
     phone.display();
     phone.camera(); // Contains code for the camera app
+    phone.displayMusic();
 
-    //console.log(textStateFP)
     //console.log(mouseScenePosition.x)
     // console.log(player.sprite.position.x)
     // console.log(player.sprite.position.y)
@@ -523,6 +529,7 @@ function keyPressed() {
 
 function mousePressed() {
   phone.selectApp(); // Select an app on the phone
+  phone.playMusic();
   phone.exit(); // Returns to phone homepage from an app
   bedroom.launchGame(); // Launces 'Plent of Alien Fish in the Sea' from the player interacting with the desk
   hall.changeTextState(); // Changes text state for text boxes with options
@@ -1073,6 +1080,6 @@ function drawFlies(X, Y) {
 function returnToMainGame() {
   if (fishCaught === 5) {
     game = "resetCanvas"
-    diresong.stop()
+    song.stop()
   }
 }

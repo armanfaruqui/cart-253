@@ -5,6 +5,7 @@ let redFlowersColumn2
 let questionAsked = 0 // Stores which question the player selected
 let questionAsked2 = 0 // Stores which question the player selected on the second time of asking
 let conversationEnded = false // Checks if the conversation is finished
+
 let firstFlower = {
   x1: 182, // X value of the first flower drawn in the first row
   x2: 366, // X value of the second flower drawn in the second row

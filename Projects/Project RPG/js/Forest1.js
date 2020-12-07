@@ -1,11 +1,11 @@
 let oscillator3; // Variable for the oscillator
 let newFreq2; // Variable to facilitate change in oscillator's frequency
-let textStateFP = 1; // A variable which represents if a text box should be displayed, and which one if so
+let textStateFP = 0; // A variable which represents if a text box should be displayed, and which one if so
 let friendTalkedTo = false; // Boolean which checks if interaction with friend has begun
 let forestPathSelector = 1
 
 class ForestPath {
-  constructor(bg_forest1, friendDialogue1, friendDialogue2, friendDialogue3, friendDialogue4, friendDialogue5, friendDialogue6) {
+  constructor(bg_forest1) {
     this.bg = bg_forest1;
   }
 
@@ -54,16 +54,18 @@ class ForestPath {
 
   // If the player interacts directly with the friend, or if they try to ignore and walk past
   introduction() {
-    if (player.sprite.position.y < 288 && textStateFP === 1) {
-      friend.forestPathText1();
+    if (player.sprite.position.y < 288 && textStateFP === 0) {
       friendTalkedTo = true;
+      textStateFP = 1
+      friend.dialogue6.play();
     } else if (
       friend.sprite.overlap(player.sprite) &&
       keyCode === SHIFT &&
-      textStateFP === 1
+      textStateFP === 0
     ) {
-      friend.forestPathText1();
       friendTalkedTo = true;
+      textStateFP = 1
+      friend.dialogue6.play();
     }
   }
 
@@ -76,7 +78,7 @@ class ForestPath {
       player.sprite.position.y = -100
       friend.sprite.position.x = -100
       friend.sprite.position.y = -100
-      newFreq2 = 20
+      newFreq2 = newFreq2 - 1
     }
   }
 
@@ -134,40 +136,45 @@ class ForestPath {
   }
 
   // Updates the text box displayed and plays the relevant dialogue sound effect on each click of shift
-  //&& textStateFP !== 9 && textStateFP !== 12
   changeTextState() {
-    if ((friendTalkedTo === true) && keyCode === SHIFT) {
+    if ((friendTalkedTo === true) && keyCode === SHIFT && textStateFP !== 9 && textStateFP !== 12) {
       textStateFP = textStateFP + 1;
       switch (textStateFP) {
+        case 0:
+          friend.dialogue6.play();
+          break;
+        case 3:
+          friend.dialogue4.play();
+          break;
         case 4:
-          friendDialogue4.play();
+          friend.dialogue5.play();
           break;
         case 5:
-          friendDialogue4.play();
+          friend.dialogue2.play();
           break;
         case 6:
-          friendDialogue4.play();
+          friend.dialogue5.play();
           break;
         case 7:
-          friendDialogue4.play();
+          friend.dialogue1.play();
           break;
         case 8:
-          friendDialogue4.play();
+          friend.dialogue2.play();
           break;
         case 10:
-          friendDialogue4.play();
+          friend.dialogue2.play();
           break;
         case 11:
-          friendDialogue4.play();
+          friend.dialogue1.play();
           break;
         case 13:
-          friendDialogue4.play();
+          friend.dialogue1.play();
           break;
         case 14:
-          friendDialogue4.play();
+          friend.dialogue6.play();
           break;
         case 15:
-          friendDialogue4.play();
+          friend.dialogue1.play();
           break;
       }
     }
@@ -176,6 +183,7 @@ class ForestPath {
   selectChoice1() {
     if ((friendTalkedTo === true) && textStateFP === 9) {
       textStateFP = textStateFP + 1;
+      friend.dialogue2.play();
     }
   }
 
@@ -183,8 +191,10 @@ class ForestPath {
   selectChoice2() {
     if ((friendTalkedTo === true) && textStateFP === 12 && selector === 1) {
       textStateFP = textStateFP + 1;
+      friend.dialogue1.play();
     } else if ((friendTalkedTo === true) && textStateFP === 12 && selector === 2) {
       textStateFP = textStateFP + 2
+        friend.dialogue6.play();
     }
   }
 

@@ -204,12 +204,28 @@ class ForestLake{
   changeTextState1(){
     if (friendTalkedToLake1 === true && keyCode === SHIFT){
       textStateFL_1 = textStateFL_1 + 1
+      switch (textStateFL_1) {
+        case 0:
+          friend.dialogue2.play();
+          break;
+        case 1:
+          friend.dialogue1.play();
+          break;
+      }
     }
   }
   // Updates the text box displayed and plays the relevant dialogue sound effect on each click of shift for the interaction that takes place when the player walks towards the lake
   changeTextState2(){
     if (friendTalkedToLake2 === true && keyCode === SHIFT){
       textStateFL_2 = textStateFL_2 + 1
+      switch (textStateFL_2) {
+        case 0:
+          friend.dialogue2.play();
+          break;
+        case 1:
+          friend.dialogue1.play();
+          break;
+      }
     }
   }
   // Updates the text box displayed on each click of shift for the interaction that takes place when the player interacts with the lake
@@ -225,6 +241,14 @@ class ForestLake{
   changeTextState4(){
     if (friendTalkedToLake3 === true && keyCode === SHIFT){
       textStateFL_4 = textStateFL_4 + 1
+    }
+    switch (textStateFL_4) {
+      case 0:
+        friend.dialogue2.play();
+        break;
+      case 1:
+        friend.dialogue1.play();
+        break;
     }
   }
   // Switches scene from lake to forestPath3

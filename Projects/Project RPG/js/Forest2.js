@@ -67,12 +67,36 @@ class ForestPath2 {
   changeTextState() {
     if (textStateFP2 > 0 && (keyCode === SHIFT)) {
       textStateFP2 = textStateFP2 + 1;
+      switch (textStateFP2) {
+        case 4:
+          friend.dialogue5.play();
+          break;
+        case 5:
+          friend.dialogue4.play();
+          break;
+        case 6:
+          friend.dialogue2.play();
+          break;
+        case 7:
+          friend.dialogue1.play();
+          break;
+        case 8:
+          friend.dialogue2.play();
+          break;
+        case 9:
+          friend.dialogue6.play();
+          break;
+        case 11:
+          friend.dialogue1.play();
+          break;
+      }
     }
   }
   // Shows next text box when the player selects an option
   selectChoice() {
     if (textStateFP2 === 2) {
       textStateFP2 = textStateFP2 + 1;
+      friend.dialogue2.play()
     }
   }
 

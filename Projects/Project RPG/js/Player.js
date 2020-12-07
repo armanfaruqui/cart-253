@@ -45,12 +45,12 @@ class Player {
           this.stepSound.play();
         }
       }
-      if (scene === "town") {
+      else if (scene === "town") {
         if (!this.stepSound2.isPlaying()) {
           this.stepSound2.play();
         }
       }
-      if (scene === "forestPath") {
+      else if (scene === "forestPath" || scene === "forestPath2" || scene === "lake" || scene === "forestPath3") {
         if (!this.stepSound3.isPlaying()) {
           this.stepSound3.play();
         }
@@ -74,7 +74,7 @@ class Player {
           this.stepSound2.play();
         }
       }
-      if (scene === "forestPath") {
+      if (scene === "forestPath" || scene === "forestPath2" || scene === "lake" || scene === "forestPath3") {
         if (!this.stepSound3.isPlaying()) {
           this.stepSound3.play();
         }
@@ -98,7 +98,7 @@ class Player {
           this.stepSound2.play();
         }
       }
-      if (scene === "forestPath") {
+      if (scene === "forestPath" || scene === "forestPath2" || scene === "lake" || scene === "forestPath3") {
         if (!this.stepSound3.isPlaying()) {
           this.stepSound3.play();
         }
@@ -122,7 +122,7 @@ class Player {
           this.stepSound2.play();
         }
       }
-      if (scene === "forestPath") {
+      if (scene === "forestPath" || scene === "forestPath2" || scene === "lake" || scene === "forestPath3") {
         if (!this.stepSound3.isPlaying()) {
           this.stepSound3.play();
         }
