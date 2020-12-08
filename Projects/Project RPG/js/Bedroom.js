@@ -11,10 +11,10 @@ class Bedroom {
     if (scene === "bedroom") {
       // Bed sprite
       this.sprite = createSprite(370, 350, 12, 10); // Initializes a sprite
-      this.sprite.addAnimation("bed", bed); // Adds the preloaded animation
+      this.sprite.addAnimation("bed", bed); // Adds the preloaded animation(s)
       this.sprite.depth = 1; // Depth determines the order in which sprites are displayed. Sprites with higher depths are drawn on top of sprites with lower depths
       this.sprite.changeAnimation("bed"); // Decides which animation should be displayed since sprites can hold multiple
-      this.sprite.addToGroup(things); // Adds a sprite to a defined group
+      this.sprite.addToGroup(things); // Adds a sprite to a defined group so sprites with similair properties can be reffered to easier
       // Desk sprite
       desk.sprite = createSprite(270, 150, 12, 10);
       desk.sprite.addAnimation("desk", desk);
@@ -113,6 +113,8 @@ class Bedroom {
     if (player.sprite.position.y < 150) player.sprite.position.y = 150;
     if (player.sprite.position.x > 380) player.sprite.position.x = 380;
     if (player.sprite.position.y > 450) player.sprite.position.y = 450;
+
+    player.sprite.collide(this.sprite)
   }
   // Switches scene from bedroom to hall
   exit() {

@@ -1,5 +1,5 @@
 let hallObjects // Variable to create a sprite group
-let oscillator;  // Variable for the oscillator
+let oscillator; // Variable for the oscillator
 let textState = 0 // A variable which represents if a text box should be displayed, and which one if so
 
 class Hall {
@@ -50,27 +50,18 @@ class Hall {
 
       if (selector === 1) {
         fill(229, 112, 40)
-        text(choice1, x, y2 - 30)
+        text(choice1, x, y2 - 30, width / 2, height)
         fill(255)
-        if (textState === 1) {
-          text(choice2, 280, y2 - 30)
-        } else if (textState === 2) {
-          text(choice2, 240, y2 - 30)
-        }
+        text(choice2, 280, y2 - 30, width / 2, height)
       } else if (selector === 2) {
         fill(255)
-        text(choice1, x, y2 - 30)
+        text(choice1, x, y2 - 30, width / 2, height)
         fill(229, 112, 40)
-        if (textState === 1) {
-          text(choice2, 280, y2 - 30)
-        } else if (textState === 2) {
-          text(choice2, 240, y2 - 30)
-        }
+        text(choice2, 280, y2 - 30, width / 2, height)
       }
-      pop()
     }
   }
-
+  // Updates the text box displayed on each click of shift
   changeTextState() {
     if (textState === 1 && selector === 1 || textState === 2 && selector === 1 || textState === 3 && selector === 1) {
       textState = textState + 1
@@ -97,19 +88,19 @@ class Hall {
   }
 
   exit2() {
-    if (textState === 4 && selector === 1) {
-      scene = 'town'
-      player.sprite.position.x = 65
-      player.sprite.position.y = 620
-      oscillator.stop()
+      if (textState === 4 && selector === 1) {
+        scene = 'town'
+        player.sprite.position.x = 65
+        player.sprite.position.y = 620
+        oscillator.stop()
 
-      // For some reason, these sprites needed to be manually removed or have their collider set to 0 to prevent them from being drawn on other scenes in their respective positions
-      bedroom.spite.setCollider("rectangle", 0, 0, 0, 0)
-      bedroom.sprite.remove()
-      bedroom.desk.sprite.remove()
-      bedroom.door.sprite.remove()
-      this.sprite.remove()
-      maindoor.sprite.remove()
+        // For some reason, these sprites needed to be manually removed or have their collider set to 0 to prevent them from being drawn on other scenes in their respective positions
+        bedroom.spite.setCollider("rectangle", 0, 0, 0, 0)
+        bedroom.sprite.remove()
+        bedroom.desk.sprite.remove()
+        bedroom.door.sprite.remove()
+        this.sprite.remove()
+        maindoor.sprite.remove()
     }
   }
 
@@ -120,6 +111,4 @@ class Hall {
     oscillator.freq(newFreq);
     console.log(newFreq);
   }
-
-
 }

@@ -63,9 +63,9 @@ class ForestPath2 {
       }
     }
   }
-    // Updates the text box displayed and plays the relevant dialogue sound effect on each click of shift
+  // Updates the text box displayed and plays the relevant dialogue sound effect on each click of shift
   changeTextState() {
-    if (textStateFP2 > 0 && (keyCode === SHIFT)) {
+    if (textStateFP2 > 0 && keyCode === SHIFT && textStateFP2 !== 2) {
       textStateFP2 = textStateFP2 + 1;
       switch (textStateFP2) {
         case 4:
@@ -78,7 +78,7 @@ class ForestPath2 {
           friend.dialogue2.play();
           break;
         case 7:
-          friend.dialogue1.play();
+          friend.dialogue3.play();
           break;
         case 8:
           friend.dialogue2.play();
@@ -87,12 +87,12 @@ class ForestPath2 {
           friend.dialogue6.play();
           break;
         case 11:
-          friend.dialogue1.play();
+          friend.dialogue3.play();
           break;
       }
     }
   }
-  // Shows next text box when the player selects an option
+  // Shows next text box when the player selects an option and plays the relevant dialogue sound
   selectChoice() {
     if (textStateFP2 === 2) {
       textStateFP2 = textStateFP2 + 1;

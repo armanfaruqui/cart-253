@@ -59,7 +59,7 @@ class ForestPath3 {
     if (friend.sprite.position.x > 370) friend.sprite.position.x = 370;
     if (friend.sprite.position.y > 1326) friend.sprite.position.y = 1326;
   }
-
+  // Displays relevant text in text box with selectable options
   questionForFriend1() {
     if (textStateFP3 === 1 && player.sprite.position.y < 1320) {
       choice()
@@ -84,7 +84,7 @@ class ForestPath3 {
        }
     }
   }
-
+  // Displays relevant text in text box with selectable options
   questionForFriend2() {
     if (textStateFP3 === 12 && player.sprite.position.y < 1320 && questionAsked2 === 0) {
       choice()
@@ -114,7 +114,7 @@ class ForestPath3 {
        }
     }
   }
-
+  // Displays the text for circumstances where the player has to make a selection
   friendAnswer(stateOfText, dialogue) {
     if (textStateFP3 === stateOfText) {
       dynamicTextBox2();
@@ -124,7 +124,7 @@ class ForestPath3 {
       text(comment, x, player.sprite.position.y - 202, width, height);
     }
   }
-
+  // Shows next text box when the player selects an option for the first question and plays the relevant dialogue sound
   selectChoice1(){
     if (textStateFP3 === 1 & selector === 1){
       textStateFP3 = textStateFP3 + 1
@@ -135,7 +135,7 @@ class ForestPath3 {
       questionAsked = 2
     }
   }
-
+  // Shows next text box when the player selects an option for the section question and plays the relevant dialogue sound
   selectChoice2(){
     if (textStateFP3 === 12 & selector === 1 && questionAsked === 2){
       textStateFP3 = 2
@@ -150,7 +150,7 @@ class ForestPath3 {
       questionAsked2 = 3
     }
   }
-
+  // Updates the text box displayed and plays the relevant dialogue sound effect on each click of shift
   changeTextState(){
     if(keyCode === SHIFT && textStateFP3 > 0 && textStateFP3 !== 1 && textStateFP3 !== 12 && textStateFP3 !== 7){
       textStateFP3 = textStateFP3 + 1
@@ -169,6 +169,7 @@ class ForestPath3 {
     }
   }
 
+  // If the conversation isn't finished, every time the player reaches the top of the scene, his position is quickly reset to the bottom, giving the impression that the path is longer than it actually is
   resetPosition(){
     if (player.sprite.position.y < 258 && conversationEnded === false){
       player.sprite.position.y = 1326;
@@ -176,9 +177,11 @@ class ForestPath3 {
     }
   }
 
+  // Switches scene from forestPath3 to cliff
   exit(){
     if (player.sprite.position.y < 250){
-      scene === "booty"
+      scene = "cliff"
+      cliff.start()
     }
   }
 

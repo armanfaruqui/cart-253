@@ -52,6 +52,16 @@ class ForestPath {
     oscillator3.freq(newFreq2);
   }
 
+  // Called at forestPath1 to display the friend's sprite standing next to the tree
+    standingNextToTree() {
+      if (textStateFP < 15) {
+        friend.sprite.position.x = 190
+        friend.sprite.position.y = 382
+        friend.sprite.changeAnimation("standLeft")
+        player.sprite.collide(friend.sprite)
+      }
+    }
+
   // If the player interacts directly with the friend, or if they try to ignore and walk past
   introduction() {
     if (player.sprite.position.y < 288 && textStateFP === 0) {
@@ -101,7 +111,8 @@ class ForestPath {
       }
       if (textStateFP === 15) {
         friend.sprite.changeAnimation("standLeft")
-        friend.adjustPostion()
+        friend.sprite.position.y = player.sprite.position.y // Positions friend next to player
+        friend.sprite.position.x = player.sprite.position.x + 80
       }
     }
   }
@@ -116,14 +127,14 @@ class ForestPath {
       choice2 = c2
       if (selector === 1) {
         fill(229, 112, 40)
-        text(c1, x, player.sprite.position.y - 180)
+        text(c1, x, player.sprite.position.y - 180, width/2, height)
         fill(255)
-        text(c2, x + 50, player.sprite.position.y - 150)
+        text(c2, 280, player.sprite.position.y - 180, width/2, height)
       } else if (selector === 2) {
         fill(255)
-        text(c1, x, player.sprite.position.y - 180)
+        text(c1, x, player.sprite.position.y - 180, width/2, height)
         fill(229, 112, 40)
-        text(c2, x + 50, player.sprite.position.y - 150)
+        text(c2, 280, player.sprite.position.y - 180, width/2, height)
       }
     }
   }
@@ -156,7 +167,7 @@ class ForestPath {
           friend.dialogue5.play();
           break;
         case 7:
-          friend.dialogue1.play();
+          friend.dialogue3.play();
           break;
         case 8:
           friend.dialogue2.play();
@@ -165,16 +176,16 @@ class ForestPath {
           friend.dialogue2.play();
           break;
         case 11:
-          friend.dialogue1.play();
+          friend.dialogue3.play();
           break;
         case 13:
-          friend.dialogue1.play();
+          friend.dialogue3.play();
           break;
         case 14:
           friend.dialogue6.play();
           break;
         case 15:
-          friend.dialogue1.play();
+          friend.dialogue3.play();
           break;
       }
     }
@@ -205,6 +216,8 @@ class ForestPath {
     friend.sprite.position.x = 190
     friend.sprite.position.y = 392
   }
+
+
 
   //Switches scene from town to forest path
   exit() {

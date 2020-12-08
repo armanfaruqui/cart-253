@@ -4,7 +4,7 @@ let bezel = 6;
 let showSongs = 1
 
 class Phone {
-  constructor(phoneScreen, musicScreen, selfieIndoor, selfieTown, selfieForestPath, selfieLake, selfieForestPath3, phoneSong1, phoneSong2, phoneSong3) {
+  constructor(phoneScreen, musicScreen, notesScreen, selfieIndoor, selfieTown, selfieForestPath, selfieLake, selfieForestPath3, phoneSong1, phoneSong2, phoneSong3) {
     this.x = 400;
     this.y = 400;
     this.width = phoneWidth;
@@ -16,15 +16,17 @@ class Phone {
 
   display() {
     camera.off();
-    push();
-    fill(57, 58, 56);
+    push();    fill(57, 58, 56);
     rect(this.x, this.y, this.width, this.height, 5);
     if (this.selected === "music") {
-      image(musicScreen, this.x + this.bezel, this.y + this.bezel);
-    } else {
-      image(this.screenImage, this.x + this.bezel, this.y + this.bezel);
+      image(musicScreen, this.x + this.bezel, this.y + this.bezel)
     }
-    pop();
+    else if(this.selected === "notes") {
+      image(notesScreen, this.x + this.bezel, this.y + this.bezel)
+    }
+    else if(this.selected === "menu"){
+      image(this.screenImage, this.x + this.bezel, this.y + this.bezel);
+      }
     camera.on();
   }
 
@@ -52,7 +54,7 @@ class Phone {
         mouseY > this.y + this.bezel + 12 &&
         mouseY < this.y + this.bezel + 31
       ) {
-        this.selected = "messages";
+        this.selected = "notes";
       }
       if (
         mouseX > this.x + this.bezel + 39 &&
@@ -101,7 +103,7 @@ class Phone {
         fill(46, 106, 66)
         rect(this.x + this.bezel, this.y + this.bezel + 20, 65, 20);
         rect(this.x + this.bezel, this.y + this.bezel + 40, 65, 20);
-        if (mouseX > this.x + this.bezel && mouseX < this.x + this.bezel + 65 && mouseY > this.y + this.bezel + 20 && mouseY < this.y + this.bezel + 40) {
+        if (mouseX > this.x + this.bezel && mouseX < this.x + this.bezel + 65 && mouseY > this.y + this.bezel + 20 && mouseY < this.y + this.bezel + 40 || phoneSong1.isPlaying()) {
           fill(251, 223, 107)
           textSize(8)
           text("BREAKFAST", this.x + this.bezel + 3, this.y + this.bezel * 2 + 25);
@@ -111,7 +113,7 @@ class Phone {
           textSize(8)
           text("BREAKFAST", this.x + this.bezel + 3, this.y + this.bezel * 2 + 25);
         }
-        if (mouseX > this.x + this.bezel && mouseX < this.x + this.bezel + 65 && mouseY > this.y + this.bezel + 40 && mouseY < this.y + this.bezel + 60) {
+        if (mouseX > this.x + this.bezel && mouseX < this.x + this.bezel + 65 && mouseY > this.y + this.bezel + 40 && mouseY < this.y + this.bezel + 60 || phoneSong2.isPlaying()) {
           fill(251, 223, 107)
           textSize(8)
           text("Breathe", this.x + this.bezel + 3, this.y + this.bezel * 2 + 45);
@@ -124,7 +126,7 @@ class Phone {
       if (friendTalkedToLake3 === true){
         fill(46, 106, 66)
         rect(this.x + this.bezel, this.y + this.bezel + 60, 65, 20);
-        if (mouseX > this.x + this.bezel && mouseX < this.x + this.bezel + 65 && mouseY > this.y + this.bezel + 60 && mouseY < this.y + this.bezel + 80 ) {
+        if (mouseX > this.x + this.bezel && mouseX < this.x + this.bezel + 65 && mouseY > this.y + this.bezel + 60 && mouseY < this.y + this.bezel + 80 || phoneSong3.isPlaying()) {
           fill(251, 223, 107)
           textSize(8)
           text("Cabin Fever", this.x + this.bezel + 3, this.y + this.bezel * 2 + 65);
@@ -168,6 +170,25 @@ class Phone {
     }
   }
 
+  notes(){
+    if (this.selected === "notes"){
+      camera.off()
+      fill(255)
+      textSize(8)
+      push()
+      textStyle(BOLD);
+      text("To Do List", this.x + this.bezel + 20, this.y + 18)
+      pop()
+      if (butcherTalkedTo === false){
+      text(" - Go to the Butchery on time so you don't get another paycut", this.x + this.bezel + 3, this.y + 30, 66, 129)
+      }
+      else if (butcherTalkedTo === true){
+        text(" - Collect the veal package and secretly bring it to the butchery", this.x + this.bezel + 3, this.y + 30, 66, 129)
+      }
+      text(" - Find happiness", this.x + this.bezel, this.y + 80, 66, 129)
+    }
+      camera.on()
+  }
   exit() {
     if (
       mouseX > this.x + this.bezel &&

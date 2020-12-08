@@ -1,21 +1,12 @@
-let player_stand; //Player variables
-let player_walkDown;
-let player_sprite;
-let player_standLeft;
-let player_walkLeft;
-let player_standRight;
-let player_walkRight;
-let player_standUp;
-let player_walkup;
-let humans
-let standStill = false
+let humans // Variable to create a sprite group
+let standStill = false // Boolean which is changed to true if the player's position needs to be fixed
 
 class Player {
 
   constructor(player_stand, player_walkDown, player_standLeft, player_walkLeft, player_standRight, player_walkRight, player_standUp, player_walkUp, woodstep, stoneStep, blank2) {
     humans = new Group()
-    this.sprite = createSprite(200, 200, 42, 42);
-    this.sprite.addAnimation("stand", player_stand);
+    this.sprite = createSprite(200, 200, 42, 42); // Initializes the sprite
+    this.sprite.addAnimation("stand", player_stand);  // Adds the preloaded animation(s)
     this.sprite.addAnimation("walkDown", player_walkDown);
     this.sprite.addAnimation("standLeft", player_standLeft);
     this.sprite.addAnimation("walkLeft", player_walkLeft);
@@ -25,27 +16,26 @@ class Player {
     this.sprite.addAnimation("walkUp", player_walkUp);
     this.sprite.addAnimation("blank2", blank2);
     this.sprite.setCollider("rectangle", 0, 20, 22, 35);
-    this.sprite.addToGroup(humans)
+    this.sprite.addToGroup(humans) // Adds a sprite to a defined group so sprites with similair properties can be reffered to easier
     this.sprite.depth = 5; //Visualize depth as photoshop layers
     this.direction = "down";
     this.stepSound = woodstep;
     this.stepSound2 = stoneStep;
     this.stepSound3 = grassStep
-
   }
 
   update() {
-  if(standStill === false){
-    if (keyIsDown(65) && !keyIsDown(83) && !keyIsDown(68) && !keyIsDown(87)) {
-      this.sprite.changeAnimation("walkLeft");
-      this.sprite.velocity.x = -4.4;
-      this.direction = "left";
-      if (scene === "bedroom" || scene === "hall" || scene === "butchery") {
-        if (!this.stepSound.isPlaying()) {
+  if(standStill === false){ // Using a function to change this to true locks the player's position
+    if (keyIsDown(65) && !keyIsDown(83) && !keyIsDown(68) && !keyIsDown(87)) { // For movement to the left
+      this.sprite.changeAnimation("walkLeft"); // Relevant animation triggered
+      this.sprite.velocity.x = -4.4; // Moves the sprite
+      this.direction = "left"; // Stores the direction for use in different functions
+      if (scene === "bedroom" || scene === "hall" || scene === "butchery") { // The following if statements play the relevant step sound
+        if (!this.stepSound.isPlaying()) { // Makes sure the sound isn't already playing
           this.stepSound.play();
         }
       }
-      else if (scene === "town") {
+      else if (scene === "town"|| scene === "cliff") {
         if (!this.stepSound2.isPlaying()) {
           this.stepSound2.play();
         }
@@ -55,13 +45,8 @@ class Player {
           this.stepSound3.play();
         }
       }
-    } else if (
-      keyIsDown(83) &&
-      !keyIsDown(65) &&
-      !keyIsDown(68) &&
-      !keyIsDown(87)
-    ) {
-      this.sprite.changeAnimation("walkDown");
+    } else if (keyIsDown(83) && !keyIsDown(65) && !keyIsDown(68) && !keyIsDown(87)) { // For movement to the right
+      this.sprite.changeAnimation("walkDown"); // Same process repeated for movement in the other 3 directions
       this.sprite.velocity.y = 4;
       this.direction = "down";
       if (scene === "bedroom" || scene === "hall" || scene === "butchery") {
@@ -69,7 +54,7 @@ class Player {
           this.stepSound.play();
         }
       }
-      if (scene === "town") {
+      if (scene === "town"|| scene === "cliff") {
         if (!this.stepSound2.isPlaying()) {
           this.stepSound2.play();
         }
@@ -93,7 +78,7 @@ class Player {
           this.stepSound.play();
         }
       }
-      if (scene === "town") {
+      if (scene === "town"|| scene === "cliff") {
         if (!this.stepSound2.isPlaying()) {
           this.stepSound2.play();
         }
@@ -117,7 +102,7 @@ class Player {
           this.stepSound.play();
         }
       }
-      if (scene === "town") {
+      if (scene === "town" || scene === "cliff") {
         if (!this.stepSound2.isPlaying()) {
           this.stepSound2.play();
         }
@@ -139,27 +124,18 @@ class Player {
       } else if (this.direction === "left") {
         this.sprite.changeAnimation("standLeft");
       }
-      woodstep.stop()
+      woodstep.stop() // Ensures the step sounds don't play when the player isn't moving
       stoneStep.stop()
       grassStep.stop()
     }
-    this.sprite.collide(bedroom.sprite)
   }
-  drawSprites(humans)
+  drawSprites(humans) // Draws the sprite
 }
 
+  // Locks the player's position
   standStill(){
     standStill = true
     this.sprite.velocity.x = 0
     this.sprite.velocity.y = 0
   }
-
 }
-// stopSound() {
-//   if (scene === "bedroom" || scene === "hall"){
-//     woodstep.stop()
-//   }
-//   if (scene === "town"){
-//     stoneStep.stop()
-//   }
-// }

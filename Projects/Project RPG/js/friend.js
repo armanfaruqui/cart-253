@@ -1,5 +1,4 @@
-let tfp;
-let standStill2 = false
+let standStill2 = false // Boolean which is changed to true if the player's position needs to be fixed
 
 class Friend {
   constructor(friend_stand, friend_walkDown, friend_standLeft, friend_walkLeft, friend_standRight, friend_walkRight, friend_standUp, friend_walkUp, friend_new, friendDialogue1, friendDialogue2, friendDialogue3, friendDialogue4, friendDialogue5, friendDialogue6) {
@@ -16,7 +15,7 @@ class Friend {
     this.sprite.addToGroup(humans)
     this.sprite.depth = 4; //Visualize depth as photoshop layers
     this.direction = "down";
-    this.dialogue1 = friendDialogue1
+    this.dialogue1 = friendDialogue1 // Adds dialogue sounds to the object
     this.dialogue2 = friendDialogue2
     this.dialogue3 = friendDialogue3
     this.dialogue4 = friendDialogue4
@@ -24,16 +23,7 @@ class Friend {
     this.dialogue6 = friendDialogue6
   }
 
-  standingThere() {
-    if (textStateFP < 15) {
-      this.sprite.position.x = 190
-      this.sprite.position.y = 382
-      this.sprite.changeAnimation("standLeft")
-      player.sprite.collide(this.sprite)
-    }
-  }
-
-  update() {
+  update() { // Is the same as update() for the player, but without the step sounds
   if (standStill2 === false){
     if (keyIsDown(65) && !keyIsDown(83) && !keyIsDown(68) && !keyIsDown(87)) {
       this.sprite.changeAnimation("walkLeft");
@@ -87,20 +77,19 @@ class Friend {
   }
     drawSprites(humans)
 }
+
+  // If due to a collision the distance is closed between the player and friend, this readjusts their position
   updateDistanceFromPlayer(distanceBetween){
     let d = dist(this.sprite.position.x, this.sprite.position.y, player.sprite.position.x, player.sprite.position.y)
     //console.log(d)
     if (d < distanceBetween) {
-      this.sprite.position.x = this.sprite.position.x + 1
+      this.sprite.position.x = this.sprite.position.x + 1 // Smoothly adjusts x position until the correct distance inbetween is reached
     }
-    this.sprite.position.y = player.sprite.position.y
+    this.sprite.position.y = player.sprite.position.y // Levels y position since they always walk side by side
   }
 
-  adjustPostion(){
-    this.sprite.position.x = player.sprite.position.x + 80
-    this.sprite.position.y = player.sprite.position.y
-  }
 
+  // Locks the friend's position
   standStill(){
     standStill2 = true
     this.sprite.velocity.x = 0
