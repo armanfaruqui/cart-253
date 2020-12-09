@@ -185,6 +185,7 @@ class ForestLake{
   startFishing(){
     if (textStateFL_3 === 3){
       lakeTheme.stop()
+      phoneSong3.stop()
       game = "fishingGameSetup";
     }
   }

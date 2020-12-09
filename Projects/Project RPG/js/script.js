@@ -429,7 +429,6 @@ function draw() {
       cliff.display();
       cliff.boundaries();
       friend.update();
-      cliff.standStill()
       friend.updateDistanceFromPlayer(40);
       cliff.playTheme()
       cliff.friendText(1, "We made it");

@@ -1,7 +1,7 @@
-let phoneWidth = 77;
-let phoneHeight = 140;
-let bezel = 6;
-let showSongs = 1
+let phoneWidth = 77; // Width of phone
+let phoneHeight = 140; // Height of phone
+let bezel = 6; // Distance from phone edges to screen
+let showSongs = 1 // Boolean which checks if playlist should be shown
 
 class Phone {
   constructor(phoneScreen, musicScreen, notesScreen, selfieIndoor, selfieTown, selfieForestPath, selfieLake, selfieForestPath3, phoneSong1, phoneSong2, phoneSong3) {
@@ -10,15 +10,15 @@ class Phone {
     this.width = phoneWidth;
     this.height = phoneHeight;
     this.bezel = bezel;
-    this.selected = 'menu';
+    this.selected = 'menu'; // Game starts with phone on the menu/home screen
     this.screenImage = phoneScreen;
   }
-
+  // Displays the phone and its screen
   display() {
-    camera.off();
-    push();    fill(57, 58, 56);
-    rect(this.x, this.y, this.width, this.height, 5);
-    if (this.selected === "music") {
+    camera.off(); //  Camera is often turned off then on for scenes which use the dynamic camera because of how it messes with position values
+    fill(57, 58, 56);
+    rect(this.x, this.y, this.width, this.height, 5); // The edges of the phone
+    if (this.selected === "music") { // Separate screen images for each app
       image(musicScreen, this.x + this.bezel, this.y + this.bezel)
     }
     else if(this.selected === "notes") {
@@ -29,7 +29,7 @@ class Phone {
       }
     camera.on();
   }
-
+  // Selects an app when clicked on
   selectApp() {
     if (this.selected === "menu") {
       if (
@@ -56,16 +56,9 @@ class Phone {
       ) {
         this.selected = "notes";
       }
-      if (
-        mouseX > this.x + this.bezel + 39 &&
-        mouseX < this.x + this.bezel + 58 &&
-        mouseY > this.y + this.bezel + 43 &&
-        mouseY < this.y + this.bezel + 62
-      ) {
-        this.selected = "pong";
-      }
     }
   }
+  // Displays an image of the player relative to which scene they are in
   camera() {
     if (this.selected === "camera") {
       if (scene === 'bedroom' || scene === 'hall' || scene === 'butchery') {
@@ -95,7 +88,7 @@ class Phone {
       }
     }
   }
-
+  // Displays the player's playlist when the music app is selected
   displayMusic() {
     if (this.selected === "music") {
       camera.off()
@@ -104,7 +97,7 @@ class Phone {
         rect(this.x + this.bezel, this.y + this.bezel + 20, 65, 20);
         rect(this.x + this.bezel, this.y + this.bezel + 40, 65, 20);
         if (mouseX > this.x + this.bezel && mouseX < this.x + this.bezel + 65 && mouseY > this.y + this.bezel + 20 && mouseY < this.y + this.bezel + 40 || phoneSong1.isPlaying()) {
-          fill(251, 223, 107)
+          fill(251, 223, 107) // If statements to make the text yellow is song is playing or hovered over
           textSize(8)
           text("BREAKFAST", this.x + this.bezel + 3, this.y + this.bezel * 2 + 25);
         }
@@ -141,13 +134,13 @@ class Phone {
      }
      camera.on()
     }
-
+  // Plays the selected song
   playMusic() {
     if (this.selected === "music") {
       camera.off()
       if (mouseX > this.x + this.bezel && mouseX < this.x + this.bezel + 65 && mouseY > this.y + this.bezel + 20 && mouseY < this.y + this.bezel + 40) {
         if (!phoneSong1.isPlaying()){
-        phoneSong2.stop()
+        phoneSong2.stop() // Ensures no other song is playing when player selects a song
         forestTheme.stop()
         lakeTheme.stop()
         townTheme.stop()
@@ -178,7 +171,7 @@ class Phone {
       camera.on()
     }
   }
-
+  // Displays the player's notes
   notes(){
     if (this.selected === "notes"){
       camera.off()
@@ -198,6 +191,7 @@ class Phone {
     }
       camera.on()
   }
+  // Returns from an app to the home screen/menu
   exit() {
     if (
       mouseX > this.x + this.bezel &&

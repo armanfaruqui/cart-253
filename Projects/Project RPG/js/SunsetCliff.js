@@ -99,13 +99,6 @@ class SunsetCliff {
     }
   }
 
-  standStill(){
-    if (textStateSC > 1){
-      player.standStill()
-      friend.standStill()
-    }
-  }
-
   endText() {
     if (textStateSC > 16) {
       fill(120, 31, 44);
