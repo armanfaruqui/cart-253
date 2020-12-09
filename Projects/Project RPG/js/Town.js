@@ -17,10 +17,10 @@ class Town {
     tree,
     townTheme,
     door,
-    sheriff
+    sheriff,
+    sheriffSound
   ) {
     this.bg = town; // Image of the scene/background
-    this.song = townTheme;
     this.door = door;
     buildings = new Group();
     entities = new Group();
@@ -97,8 +97,8 @@ class Town {
     if (dog.sprite.overlap(player.sprite) && keyCode === SHIFT) {
       dog.sprite.changeAnimation("evildog");
       player.sprite.position.x = player.sprite.position.x - 10;
-      fill(255,0,0)
-      rect(0, 0, 3000, 3000)
+      fill(255,0,0);
+      rect(0, 0, 3000, 3000);
       growl.play();
     }
   }
@@ -126,11 +126,11 @@ class Town {
     player.sprite.collide(butchery.sprite);
     player.sprite.collide(sheriff.sprite);
   }
-
-  song() {
+  // Plays the theme for the scene
+  playTheme() {
     if (scene === "town") {
-      if (!this.song.isPlaying()) {
-        this.song.play();
+      if (!townTheme.isPlaying() && !phoneSong1.isPlaying() && !phoneSong2.isPlaying() && !phoneSong3.isPlaying()) {
+        townTheme.play();
       }
     }
   }
@@ -168,6 +168,7 @@ class Town {
       player.sprite.position.y = 458;
       camera.position.x = 253.5;
       camera.position.y = 253.5;
+      townTheme.stop()
     }
   }
 
@@ -181,6 +182,7 @@ class Town {
       player.sprite.position.y < -146
     ) {
       textStateSheriff = textStateSheriff + 1;
+      sheriffSound.play()
     }
   }
 
@@ -208,12 +210,11 @@ class Town {
   }
 
   // Switches scene from town to forest path
-  //textStateSheriff > 6 &&
-
   exitToForest() {
-    if (player.sprite.position.y < -169.6) {
+    if (textStateSheriff > 6 && player.sprite.position.y < -169.6) {
       scene = "forestPath";
       forestPath.start();
+      townTheme.stop();
     }
   }
 

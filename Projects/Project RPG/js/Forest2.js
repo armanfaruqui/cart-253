@@ -2,7 +2,7 @@ let textStateFP2 = 1 // A variable which represents if a text box should be disp
 
 class ForestPath2 {
   constructor(bg_forestPath2) {
-    this.bg = bg_forestPath2
+    this.bg = bg_forestPath2;
   }
 
 // Displays background
@@ -44,22 +44,22 @@ class ForestPath2 {
   // Displays text options for player to select
   friendAnswer(stateOfText, c1, c2) {
     if (textStateFP2 === stateOfText) {
-      choice()
+      choice();
       dynamicTextBox2();
       fill(65, 243, 252);
       textSize(12);
-      choice1 = c1
-      choice2 = c2
+      choice1 = c1;
+      choice2 = c2;
       if (selector === 1) {
-        fill(229, 112, 40)
-        text(c1, x, player.sprite.position.y - 180)
-        fill(255)
-        text(c2, x + 50, player.sprite.position.y - 150)
+        fill(229, 112, 40);
+        text(c1, x, player.sprite.position.y - 180);
+        fill(255);
+        text(c2, x + 50, player.sprite.position.y - 150);
       } else if (selector === 2) {
-        fill(255)
-        text(c1, x, player.sprite.position.y - 180)
-        fill(229, 112, 40)
-        text(c2, x + 50, player.sprite.position.y - 150)
+        fill(255);
+        text(c1, x, player.sprite.position.y - 180);
+        fill(229, 112, 40);
+        text(c2, x + 50, player.sprite.position.y - 150);
       }
     }
   }
@@ -86,7 +86,7 @@ class ForestPath2 {
         case 9:
           friend.dialogue6.play();
           break;
-        case 11:
+        case 10:
           friend.dialogue3.play();
           break;
       }
@@ -96,15 +96,19 @@ class ForestPath2 {
   selectChoice() {
     if (textStateFP2 === 2) {
       textStateFP2 = textStateFP2 + 1;
-      friend.dialogue2.play()
+      friend.dialogue2.play();
     }
   }
 
   // Switches scene from forestPath2 to lake
   exit(){
     if (player.sprite.position.y < 250){
-      scene = "lake"
-      forestLake.start()
+      scene = "lake";
+      forestLake.start();
+      forestTheme.stop()
+      phoneSong1.stop()
+      phoneSong2.stop()
+      phoneSong3.stop()
     }
   }
 

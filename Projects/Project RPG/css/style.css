@@ -1,4 +1,16 @@
+html, body {
+  height: 100%;
+}
+
 body {
   padding: 0;
   margin: 0;
+  display: flex;
+  background-image: url(../assets/images/pageBG.jpg);
+  background-size: 1280px, 920px;
+  background-repeat: no-repeat;
+/* This centers our sketch horizontally. */
+  justify-content: center;
+
+
 }

@@ -148,6 +148,9 @@ class Phone {
       if (mouseX > this.x + this.bezel && mouseX < this.x + this.bezel + 65 && mouseY > this.y + this.bezel + 20 && mouseY < this.y + this.bezel + 40) {
         if (!phoneSong1.isPlaying()){
         phoneSong2.stop()
+        forestTheme.stop()
+        lakeTheme.stop()
+        townTheme.stop()
         phoneSong3.stop()
         phoneSong1.play()
         }
@@ -155,6 +158,9 @@ class Phone {
       if (mouseX > this.x + this.bezel && mouseX < this.x + this.bezel + 65 && mouseY > this.y + this.bezel + 40 && mouseY < this.y + this.bezel + 60) {
         if (!phoneSong2.isPlaying()){
         phoneSong1.stop()
+        forestTheme.stop()
+        lakeTheme.stop()
+        townTheme.stop()
         phoneSong3.stop()
         phoneSong2.play()
         }
@@ -163,6 +169,9 @@ class Phone {
         if (!phoneSong3.isPlaying()){
         phoneSong1.stop()
         phoneSong2.stop()
+        forestTheme.stop()
+        lakeTheme.stop()
+        townTheme.stop()
         phoneSong3.play()
         }
       }

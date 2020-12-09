@@ -15,19 +15,19 @@ class Friend {
     this.sprite.addToGroup(humans)
     this.sprite.depth = 4; //Visualize depth as photoshop layers
     this.direction = "down";
-    this.dialogue1 = friendDialogue1 // Adds dialogue sounds to the object
-    this.dialogue2 = friendDialogue2
-    this.dialogue3 = friendDialogue3
-    this.dialogue4 = friendDialogue4
-    this.dialogue5 = friendDialogue5
-    this.dialogue6 = friendDialogue6
+    this.dialogue1 = friendDialogue1; // Adds dialogue sounds to the object
+    this.dialogue2 = friendDialogue2;
+    this.dialogue3 = friendDialogue3;
+    this.dialogue4 = friendDialogue4;
+    this.dialogue5 = friendDialogue5;
+    this.dialogue6 = friendDialogue6;
   }
 
   update() { // Is the same as update() for the player, but without the step sounds
   if (standStill2 === false){
     if (keyIsDown(65) && !keyIsDown(83) && !keyIsDown(68) && !keyIsDown(87)) {
       this.sprite.changeAnimation("walkLeft");
-      this.sprite.velocity.x = -4.4;
+      this.sprite.velocity.x = -2.4;
       this.direction = "left";
 
     } else if (
@@ -37,7 +37,7 @@ class Friend {
       !keyIsDown(87)
     ) {
       this.sprite.changeAnimation("walkDown");
-      this.sprite.velocity.y = 4;
+      this.sprite.velocity.y = 2.4;
       this.direction = "down";
 
     } else if (
@@ -47,7 +47,7 @@ class Friend {
       !keyIsDown(87)
     ) {
       this.sprite.changeAnimation("walkRight");
-      this.sprite.velocity.x = 4.4;
+      this.sprite.velocity.x = 2.4;
       this.direction = "right";
 
     } else if (
@@ -57,7 +57,7 @@ class Friend {
       !keyIsDown(65)
     ) {
       this.sprite.changeAnimation("walkUp");
-      this.sprite.velocity.y = -4;
+      this.sprite.velocity.y = -2.4;
       this.direction = "up";
 
     } else {
@@ -80,20 +80,20 @@ class Friend {
 
   // If due to a collision the distance is closed between the player and friend, this readjusts their position
   updateDistanceFromPlayer(distanceBetween){
-    let d = dist(this.sprite.position.x, this.sprite.position.y, player.sprite.position.x, player.sprite.position.y)
+    let d = dist(this.sprite.position.x, this.sprite.position.y, player.sprite.position.x, player.sprite.position.y);
     //console.log(d)
     if (d < distanceBetween) {
-      this.sprite.position.x = this.sprite.position.x + 1 // Smoothly adjusts x position until the correct distance inbetween is reached
+      this.sprite.position.x = this.sprite.position.x + 1; // Smoothly adjusts x position until the correct distance inbetween is reached
     }
-    this.sprite.position.y = player.sprite.position.y // Levels y position since they always walk side by side
+    this.sprite.position.y = player.sprite.position.y; // Levels y position since they always walk side by side
   }
 
 
   // Locks the friend's position
   standStill(){
-    standStill2 = true
-    this.sprite.velocity.x = 0
-    this.sprite.velocity.y = 0
+    standStill2 = true;
+    this.sprite.velocity.x = 0;
+    this.sprite.velocity.y = 0;
   }
 
 

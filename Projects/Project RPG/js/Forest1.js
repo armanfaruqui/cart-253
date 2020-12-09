@@ -5,13 +5,15 @@ let friendTalkedTo = false; // Boolean which checks if interaction with friend h
 let forestPathSelector = 1
 
 class ForestPath {
-  constructor(bg_forest1) {
+  constructor(bg_forest1, forestTheme) {
     this.bg = bg_forest1;
+    this.song = forestTheme
   }
 
   // Displays background
   display() {
     image(this.bg, 0, 0);
+    console.log(textStateFP)
   }
 
   // Assigns player position and starts oscillator
@@ -20,6 +22,14 @@ class ForestPath {
     player.sprite.position.y = 950;
     oscillator3 = new p5.Oscillator(220, "triangle");
     oscillator3.start();
+  }
+  // Plays the theme for the scene
+  playTheme() {
+    if (scene === "forestPath" && textStateFP> 1) {
+      if (!forestTheme.isPlaying() && !phoneSong1.isPlaying() && !phoneSong2.isPlaying() && !phoneSong3.isPlaying()) {
+        forestTheme.play();
+      }
+    }
   }
   // Defines walls
   boundaries() {
@@ -67,7 +77,7 @@ class ForestPath {
     if (player.sprite.position.y < 288 && textStateFP === 0) {
       friendTalkedTo = true;
       textStateFP = 1
-      friend.dialogue6.play();
+      friend.dialogue5.play();
     } else if (
       friend.sprite.overlap(player.sprite) &&
       keyCode === SHIFT &&
@@ -75,7 +85,7 @@ class ForestPath {
     ) {
       friendTalkedTo = true;
       textStateFP = 1
-      friend.dialogue6.play();
+      friend.dialogue2.play();
     }
   }
 
@@ -155,16 +165,13 @@ class ForestPath {
           friend.dialogue6.play();
           break;
         case 3:
-          friend.dialogue4.play();
+          friend.dialogue6.play();
           break;
         case 4:
-          friend.dialogue5.play();
-          break;
-        case 5:
           friend.dialogue2.play();
           break;
         case 6:
-          friend.dialogue5.play();
+          friend.dialogue4.play();
           break;
         case 7:
           friend.dialogue3.play();
@@ -176,10 +183,10 @@ class ForestPath {
           friend.dialogue2.play();
           break;
         case 11:
-          friend.dialogue3.play();
+          friend.dialogue5.play();
           break;
         case 13:
-          friend.dialogue3.play();
+          friend.dialogue4.play();
           break;
         case 14:
           friend.dialogue6.play();
@@ -202,7 +209,7 @@ class ForestPath {
   selectChoice2() {
     if ((friendTalkedTo === true) && textStateFP === 12 && selector === 1) {
       textStateFP = textStateFP + 1;
-      friend.dialogue1.play();
+      friend.dialogue3.play();
     } else if ((friendTalkedTo === true) && textStateFP === 12 && selector === 2) {
       textStateFP = textStateFP + 2
         friend.dialogue6.play();

@@ -1,6 +1,7 @@
 /**************************************************
 Fishing
 Arman Faruqui
+This file is not part of the simulation but it is embedded within script.js
 **************************************************/
 let fish1;
 let fish2;

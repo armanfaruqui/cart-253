@@ -73,7 +73,7 @@ class Bedroom {
       push();
       textBox();
       fill(255);
-      question = "Play the game ? ";
+      question = "Use your computer?";
       choice1 = "Sure";
       choice2 = "Not Today";
       textSize(12);
@@ -100,7 +100,7 @@ class Bedroom {
   // Opens a game in a separate tab
   launchGame() {
     if (showB2 === true && selector === 1) {
-      window.open("https://armanfaruqui.github.io/cart253/Projects/project-1/"); // Launches plenty of fish in the sea in a seprate tab
+      window.open("https://www.google.com/search?sxsrf=ALeKk028iLTxTp1ScADA2TEffxpkOVliag%3A1607497826917&ei=YnjQX9rKN82ggQbksaiYBQ&q=why+am+i+so+useless&oq=why+am+i+so+useless&gs_lcp=CgZwc3ktYWIQAzIFCAAQyQMyAggAMgIIADICCAAyAggAMgIIADICCAAyBggAEBYQHjIGCAAQFhAeMgYIABAWEB46BAgjECc6BwgAEMkDEEM6BAgAEEM6BAguEEM6CAgAELEDEIMBOgoILhCxAxDJAxBDOggILhCxAxCDAToLCC4QsQMQgwEQyQM6BQgAEMcDUNJpWMV9YP99aABwAXgAgAHOAogB9x2SAQYyLTE1LjGYAQCgAQGqAQdnd3Mtd2l6wAEB&sclient=psy-ab&ved=0ahUKEwjag82HrMDtAhVNUMAKHeQYClMQ4dUDCA0&uact=5"); // Launches browser
       showB2 = false;
     }
     if (showB2 === true && selector === 2) {

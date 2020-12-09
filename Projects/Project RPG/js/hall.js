@@ -27,46 +27,46 @@ class Hall {
   // Draws background and draws sprites
   display() {
     image(bg_hall, 0, 0);
-    drawSprites(hallObjects)
+    drawSprites(hallObjects);
   }
   // Starts interaction with door
   keyPressed() {
     if (mainDoor.sprite.overlap(player.sprite) && keyCode === SHIFT) {
-      textState = 1
+      textState = 1;
     }
   }
   //
   doorText(stateOfText, q, c1, c2) {
     if (textState === stateOfText && mainDoor.sprite.overlap(player.sprite)) {
-      choice()
-      push()
-      textBox()
-      fill(255)
-      question = q
-      choice1 = c1
-      choice2 = c2
-      textSize(12)
-      text(question, x, y, width, height)
+      choice();
+      push();
+      textBox();
+      fill(255);
+      question = q;
+      choice1 = c1;
+      choice2 = c2;
+      textSize(12);
+      text(question, x, y, width, height);
 
       if (selector === 1) {
-        fill(229, 112, 40)
-        text(choice1, x, y2 - 30, width / 2, height)
-        fill(255)
+        fill(229, 112, 40);
+        text(choice1, x, y2 - 30, width / 2, height);
+        fill(255);
         text(choice2, 280, y2 - 30, width / 2, height)
       } else if (selector === 2) {
-        fill(255)
-        text(choice1, x, y2 - 30, width / 2, height)
-        fill(229, 112, 40)
-        text(choice2, 280, y2 - 30, width / 2, height)
+        fill(255);
+        text(choice1, x, y2 - 30, width / 2, height);
+        fill(229, 112, 40);
+        text(choice2, 280, y2 - 30, width / 2, height);
       }
     }
   }
   // Updates the text box displayed on each click of shift
   changeTextState() {
     if (textState === 1 && selector === 1 || textState === 2 && selector === 1 || textState === 3 && selector === 1) {
-      textState = textState + 1
+      textState = textState + 1;
     } else {
-      textState = 0
+      textState = 0;
     }
   }
 
@@ -80,34 +80,34 @@ class Hall {
 
   exit() {
     if (this.sprite.overlap(player.sprite) && player.direction === 'right') {
-      scene = 'bedroom'
-      player.sprite.position.x = 120
-      player.sprite.position.y = 420
-      oscillator.stop()
+      scene = 'bedroom';
+      player.sprite.position.x = 120;
+      player.sprite.position.y = 420;
+      oscillator.stop();
     }
   }
 
   exit2() {
       if (textState === 4 && selector === 1) {
-        scene = 'town'
-        player.sprite.position.x = 65
-        player.sprite.position.y = 620
-        oscillator.stop()
+        scene = 'town';
+        player.sprite.position.x = 65;
+        player.sprite.position.y = 620;
+        oscillator.stop();
 
         // For some reason, these sprites needed to be manually removed or have their collider set to 0 to prevent them from being drawn on other scenes in their respective positions
-        bedroom.spite.setCollider("rectangle", 0, 0, 0, 0)
-        bedroom.sprite.remove()
-        bedroom.desk.sprite.remove()
-        bedroom.door.sprite.remove()
-        this.sprite.remove()
-        maindoor.sprite.remove()
+        bedroom.spite.setCollider("rectangle", 0, 0, 0, 0);
+        bedroom.sprite.remove();
+        bedroom.desk.sprite.remove();
+        bedroom.door.sprite.remove();
+        this.sprite.remove();
+        maindoor.sprite.remove();
     }
   }
 
   //Oscillator which increases its frequency the closer you get to the main door
   anxiety() {
-    let doorDistance = dist(player.sprite.position.x, player.sprite.position.y, mainDoor.sprite.position.x, mainDoor.sprite.position.y) // Measures distance between player and door
-    let newFreq = map(doorDistance, 280, 20, 0, 100) // Max dist = 270. Min = 20
+    let doorDistance = dist(player.sprite.position.x, player.sprite.position.y, mainDoor.sprite.position.x, mainDoor.sprite.position.y); // Measures distance between player and door
+    let newFreq = map(doorDistance, 280, 20, 0, 100); // Max dist = 270. Min = 20
     oscillator.freq(newFreq);
     console.log(newFreq);
   }

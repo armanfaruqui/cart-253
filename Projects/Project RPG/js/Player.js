@@ -1,5 +1,5 @@
-let humans // Variable to create a sprite group
-let standStill = false // Boolean which is changed to true if the player's position needs to be fixed
+let humans; // Variable to create a sprite group
+let standStill = false; // Boolean which is changed to true if the player's position needs to be fixed
 
 class Player {
 
@@ -21,14 +21,14 @@ class Player {
     this.direction = "down";
     this.stepSound = woodstep;
     this.stepSound2 = stoneStep;
-    this.stepSound3 = grassStep
+    this.stepSound3 = grassStep;
   }
 
   update() {
   if(standStill === false){ // Using a function to change this to true locks the player's position
     if (keyIsDown(65) && !keyIsDown(83) && !keyIsDown(68) && !keyIsDown(87)) { // For movement to the left
       this.sprite.changeAnimation("walkLeft"); // Relevant animation triggered
-      this.sprite.velocity.x = -4.4; // Moves the sprite
+      this.sprite.velocity.x = -2.4; // Moves the sprite
       this.direction = "left"; // Stores the direction for use in different functions
       if (scene === "bedroom" || scene === "hall" || scene === "butchery") { // The following if statements play the relevant step sound
         if (!this.stepSound.isPlaying()) { // Makes sure the sound isn't already playing
@@ -47,7 +47,7 @@ class Player {
       }
     } else if (keyIsDown(83) && !keyIsDown(65) && !keyIsDown(68) && !keyIsDown(87)) { // For movement to the right
       this.sprite.changeAnimation("walkDown"); // Same process repeated for movement in the other 3 directions
-      this.sprite.velocity.y = 4;
+      this.sprite.velocity.y = 2.4;
       this.direction = "down";
       if (scene === "bedroom" || scene === "hall" || scene === "butchery") {
         if (!this.stepSound.isPlaying()) {
@@ -71,7 +71,7 @@ class Player {
       !keyIsDown(87)
     ) {
       this.sprite.changeAnimation("walkRight");
-      this.sprite.velocity.x = 4.4;
+      this.sprite.velocity.x = 2.4;
       this.direction = "right";
       if (scene === "bedroom" || scene === "hall" || scene === "butchery") {
         if (!this.stepSound.isPlaying()) {
@@ -95,7 +95,7 @@ class Player {
       !keyIsDown(65)
     ) {
       this.sprite.changeAnimation("walkUp");
-      this.sprite.velocity.y = -4;
+      this.sprite.velocity.y = -2.4;
       this.direction = "up";
       if (scene === "bedroom" || scene === "hall" || scene === "butchery") {
         if (!this.stepSound.isPlaying()) {
@@ -124,18 +124,18 @@ class Player {
       } else if (this.direction === "left") {
         this.sprite.changeAnimation("standLeft");
       }
-      woodstep.stop() // Ensures the step sounds don't play when the player isn't moving
-      stoneStep.stop()
-      grassStep.stop()
+      woodstep.stop(); // Ensures the step sounds don't play when the player isn't moving
+      stoneStep.stop();
+      grassStep.stop();
     }
   }
-  drawSprites(humans) // Draws the sprite
+  drawSprites(humans); // Draws the sprite
 }
 
   // Locks the player's position
   standStill(){
-    standStill = true
-    this.sprite.velocity.x = 0
-    this.sprite.velocity.y = 0
+    standStill = true;
+    this.sprite.velocity.x = 0;
+    this.sprite.velocity.y = 0;
   }
 }
