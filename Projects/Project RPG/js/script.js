@@ -147,7 +147,7 @@ function preload() {
   sheriffSound = loadSound("assets/sounds/sheriffSound.mp3");
 
   // Music
-  townTheme = loadSound("assets/sounds/OutsideTheme.mp3");
+  townTheme = loadSound("assets/sounds/outsideTheme.mp3");
   lakeTheme = loadSound("assets/sounds/lakeMusic.mp3");
   forestTheme = loadSound("assets/sounds/forestSong.mp3");
   cliffTheme = loadSound("assets/sounds/cliffSong.mp3");
