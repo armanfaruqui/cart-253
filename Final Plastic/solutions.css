@@ -1,0 +1,69 @@
+@font-face {
+  font-family: 'leoscar';
+  src: url(fonts/Leoscar_Sans_Serif.ttf);
+}
+
+@font-face {
+  font-family: 'oxygen';
+  src: url(fonts/Oxygen-Regular.ttf);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'oxygen';
+}
+.header{
+  height: 180px;
+  background-color: #485461;
+  background-image: linear-gradient(315deg, #485461 0%, #28313b 74%);
+}
+.header h2 {
+  font-family: 'leoscar';
+  width: 100%;
+  font-size: 100px;
+  top: 45px;
+  color: aquamarine;
+  letter-spacing: 3px;
+  text-align: center;
+  margin-bottom: 80px;
+  position: absolute;
+
+}
+
+.logo{
+  display: flex;
+  position: absolute;
+  border-radius: 20px;
+  left: 25px;
+  top: 25px;
+  mouseover: pointer;
+  z-index: 3;
+}
+
+iframe{
+    display: inline;
+}
+
+.section-light{
+  background-color:#f4f4f4;
+  color:#666;
+}
+
+.section-light p3 {
+  display: block;
+  padding: 50px;
+  line-height: 50px;
+  font-size: 24px;
+  color: #6b93d6;
+}
+
+.instagram{
+  display: flex;
+}
+
+a{
+  font-size: 24px;
+  padding: 50px;
+}

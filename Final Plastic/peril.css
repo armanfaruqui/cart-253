@@ -1,0 +1,166 @@
+@font-face {
+  font-family: 'leoscar';
+  src: url(fonts/Leoscar_Sans_Serif.ttf);
+}
+
+@font-face {
+  font-family: 'oxygen';
+  src: url(fonts/Oxygen-Light.ttf);
+}
+
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.logo{
+  display: flex;
+  position: fixed;
+  border-radius: 20px;
+  left: 25px;
+  top: 25px;
+  mouseover: pointer;
+  z-index: 3;
+}
+
+body, html{
+  height:100%;
+  margin:0;
+  font-size:16px;
+  font-family:"oxygen", sans-serif;
+  font-weight:400;
+  line-height:1.8em;
+  color:#666;
+}
+
+
+.pimg1, .pimg2, .pimg3, .pimg4, .pimg5, .pimg6, .pimg7{
+  position:relative;
+  opacity:0.90;
+  background-position:center;
+  background-size:cover;
+  background-repeat:no-repeat;
+
+  /*
+    fixed = parallax
+    scroll = normal
+  */
+  background-attachment:fixed;
+}
+
+.pimg1{
+  background-image:url('images/headerPeril.jpg');
+  min-height:100%;
+}
+
+.pimg2{
+  background-image:url('images/cleanbeach1.png');
+  min-height:500px;
+}
+
+.pimg3{
+  background-image:url('images/dirtybeach1.png');
+  min-height:500px;
+}
+
+.pimg4{
+  background-image:url('images/cattle2.jpg');
+  min-height:500px;
+}
+
+.pimg5{
+  background-image:url('images/cattle.png');
+  min-height:500px;
+}
+
+.pimg6{
+  background-image:url('images/micro2.jpg');
+  min-height:500px;
+}
+
+.pimg7{
+  background-image:url('images/micro1.jpg');
+  min-height:500px;
+  width 100%;
+}
+
+.section{
+  text-align:center;
+  padding:50px 80px;
+}
+
+.section-light{
+  background-color:#f4f4f4;
+  color:#666;
+}
+
+.section-light p3 {
+  display: block;
+  padding-left: 200px;
+  padding-right: 200px;
+  line-height: 50px;
+  font-size: 36px;
+  color: #6b93d6;
+}
+
+.green {
+  color: #9fc164;
+}
+
+.section-dark{
+  background-color:#282e34;
+  color:#ddd;
+  min-height:200px;
+  display: flex;
+  justify-content: center;
+  flex-basis:  | auto; /* default auto */
+  padding: 50px;
+  position: relative;
+  z-index: 4;
+}
+
+.section-dark p {
+  width: 10%;
+  padding-left: 0px;
+  text-align: left;
+}
+
+.section-dark ul {
+  text-align: left;
+  z-index: 4;
+}
+
+.section-dark iframe {
+  z-index: 4;
+}
+
+.ptext{
+  position:absolute;
+  top:50%;
+  width:100%;
+  text-align:center;
+  color:#fff;
+  font-size:66px;
+  letter-spacing:4px;
+  -webkit-text-stroke: 1px black;
+  text-shadow: 2px 2px #c70808;
+  text-transform:uppercase;
+  font-family:"Leoscar", sans-serif;
+}
+
+
+.ptext .border.trans{
+  background-color:transparent;
+}
+
+@media(max-width:568px){
+  .pimg1, .pimg2, .pimg3, .pimg4, .pimg5, .pimg6, .pimg7{
+    background-attachment:scroll;
+  }
+}
+
+.gif {
+	margin: 0;
+	padding: 0;
+  display: block;
+}

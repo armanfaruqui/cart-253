@@ -1,0 +1,401 @@
+@font-face {
+  font-family: 'leoscar';
+  src: url(fonts/Leoscar_Sans_Serif.ttf);
+}
+
+@font-face {
+  font-family: 'oxygen';
+  src: url(fonts/Oxygen-Regular.ttf);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'oxygen';
+}
+.header{
+  height: 180px;
+  background-color: #485461;
+  background-image: linear-gradient(315deg, #485461 0%, #28313b 74%);
+}
+.header h2 {
+  font-family: 'leoscar';
+  width: 100%;
+  font-size: 100px;
+  top: 45px;
+  color:aliceblue;
+  letter-spacing: 3px;
+  text-align: center;
+  margin-bottom: 80px;
+  position: absolute;
+  text-shadow: 2px 2px 20px #fff;
+}
+
+.logo{
+  display: flex;
+  position: absolute;
+  border-radius: 20px;
+  left: 25px;
+  top: 25px;
+  mouseover: pointer;
+  z-index: 3;
+}
+
+section {
+  position: relative;
+  width: 100%;
+  height: 120vh;
+  background: radial-gradient(#ff9f40, #733c06);
+  overflow: hidden;
+  display: flex;
+}
+
+section h2{
+  color: #fff;
+  font-size: 8em;
+  letter-spacing: 5px;
+}
+
+section .set{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0%;
+  left: 0%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+section .set div{
+  position: absolute;
+  display: block;
+}
+
+section .set div:nth-child(1){
+  left: 20%;
+  animation: animate 15s linear infinite;
+  animation-delay: -7s;
+}
+
+section .set div:nth-child(2){
+  left: 50%;
+  animation: animate 20s linear infinite;
+  animation-delay: -5s;
+}
+
+section .set div:nth-child(3){
+  left: 70%;
+  animation: animate 20s linear infinite;
+  animation-delay: 0s;
+}
+
+section .set div:nth-child(4){
+  left: 0%;
+  animation: animate 15s linear infinite;
+  animation-delay: -5s;
+}
+
+section .set div:nth-child(5){
+  left: 85%;
+  animation: animate 18s linear infinite;
+  animation-delay: -10s;
+}
+
+section .set div:nth-child(6){
+  left: 0%;
+  animation: animate 12s linear infinite;
+}
+
+section .set div:nth-child(7){
+  left: 15%;
+  animation: animate 12s linear infinite;
+}
+
+section .set div:nth-child(8){
+  left: 60%;
+  animation: animate 15s linear infinite;
+}
+
+@keyframes animate{
+  0%{
+    opacity: 0;
+    top: -10%;
+    transform: translateX(20px) rotate(0deg);
+  }
+  10%{
+    opacity: 1;
+  }
+  20%{
+    transform: translateX(-20px) rotate(45deg);
+  }
+  40%{
+    transform: translateX(-20px) rotate(90deg);
+  }
+  60%{
+    transform: translateX(20px) rotate(180deg);
+  }
+  80%{
+    transform: translateX(-20px) rotate(180deg);
+  }
+  100%{
+    top: 110%;
+    transform: translateX(-20px) rotate(225deg);
+  }
+}
+
+section2 .set2 div{
+  position: absolute;
+  display: block;
+}
+
+section2 .set2 div:nth-child(1){
+  left: 20%;
+  animation: animate 15s linear infinite;
+  animation-delay: -7s;
+}
+
+section2 .set2 div:nth-child(2){
+  left: 50%;
+  animation: animate 20s linear infinite;
+  animation-delay: -5s;
+}
+
+section2 .set2 div:nth-child(3){
+  left: 70%;
+  animation: animate 20s linear infinite;
+  animation-delay: 0s;
+}
+
+section2 .set2 div:nth-child(4){
+  left: 0%;
+  animation: animate 15s linear infinite;
+  animation-delay: -5s;
+}
+
+section2 .set2 div:nth-child(5){
+  left: 85%;
+  animation: animate 18s linear infinite;
+  animation-delay: -10s;
+}
+
+section2 .set2 div:nth-child(6){
+  left: 0%;
+  animation: animate 12s linear infinite;
+}
+
+section2 .set2 div:nth-child(7){
+  left: 15%;
+  animation: animate 12s linear infinite;
+}
+
+section2 .set2 div:nth-child(8){
+  left: 60%;
+  animation: animate 15s linear infinite;
+}
+
+@keyframes animate{
+  0%{
+    opacity: 0;
+    top: -10%;
+    transform: translateX(20px) rotate(0deg);
+  }
+  10%{
+    opacity: 1;
+  }
+  20%{
+    transform: translateX(-20px) rotate(45deg);
+  }
+  40%{
+    transform: translateX(-20px) rotate(90deg);
+  }
+  60%{
+    transform: translateX(20px) rotate(180deg);
+  }
+  80%{
+    transform: translateX(-20px) rotate(180deg);
+  }
+  100%{
+    top: 110%;
+    transform: translateX(-20px) rotate(225deg);
+  }
+}
+  .quote p2 {
+  color: #fff;
+  font-family: "oxygen";
+  letter-spacing: 0.5px;
+  text-align: center;
+  line-height: 2em;
+  border-radius: 20px;
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  position: absolute;
+  top: 14%;
+  background: rgba(0, 0, 0, 0.5);
+  left: 50%;
+  }
+
+.Boxes{
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  z-index: 0;
+  top: 250px;
+}
+
+.Boxes img{
+  border-radius: 20px;
+}
+
+.indBox img{
+margin-left: 90px;
+margin-right: 90px;
+}
+
+.Boxes h3{
+  font-family: 'leoscar';
+  margin-top: 38px;
+  text-align: center;
+  font-size: 28px;
+  position: absolute;
+  color:aliceblue;
+}
+
+.colBox h3{
+  right: 240px;
+  letter-spacing: 2px;
+  text-decoration: underline;
+}
+
+.indBox h3{
+  left: 180px;
+  letter-spacing: 10px;
+}
+
+.description{
+  background-color: #485461;
+  background-image: linear-gradient(315deg, #485461 0%, #28313b 74%);
+  color: aliceblue;
+  height: 360px;
+  font-size: 18px;
+  line-height: 1.5;
+  padding: 40px;
+  padding-left: 90px;
+  padding-right: 90px;
+  z-index: 1;
+}
+
+.description h3{
+  text-align: left;
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+section2 {
+  position: relative;
+  width: 100%;
+  height: 580vh;
+  background: radial-gradient(#ff9f40, #733c06);
+  overflow: hidden;
+  display: flex;
+}
+
+.example1{
+  position: absolute;
+  padding-left: 90px;
+  padding-top: 90px;
+}
+
+.example1 img{
+  border-radius: 20px;
+}
+
+.pinto{
+  display: flex;
+  opacity: 0;
+  position: absolute;
+  bottom: 1px;
+}
+
+.pinto:hover{
+  display: flex;
+  transition: 1s;
+  opacity: 1;
+}
+
+.example2{
+  position: absolute;
+  padding-left: 90px;
+  top: 700px;
+}
+
+.example2 img{
+  border-radius: 20px;
+}
+
+.trump{
+  display: flex;
+  opacity: 0;
+  position: absolute;
+  bottom: 1px;
+}
+
+.trump:hover{
+  display: flex;
+  transition: 1s;
+  opacity: 1;
+}
+
+.example3{
+  position: absolute;
+  padding-left: 90px;
+  top: 1350px;
+}
+
+.example3 img{
+  border-radius: 20px;
+}
+
+.shrum{
+  display: flex;
+  opacity: 0;
+  position: absolute;
+  bottom: 1px;
+}
+
+.shrum:hover{
+  display: flex;
+  transition: 1s;
+  opacity: 1;
+}
+
+.example4{
+  position: absolute;
+  padding-left: 90px;
+  top: 2000px;
+}
+
+.example4 img{
+  border-radius: 20px;
+}
+
+.nestle{
+  display: flex;
+  opacity: 0;
+  position: absolute;
+  bottom: 1px;
+}
+
+.nestle:hover{
+  display: flex;
+  transition: 1s;
+  opacity: 1;
+}
+
+.pile{
+padding-top: 2400px;
+box-sizing: border-box;
+width: auto;
+height: auto;
+}

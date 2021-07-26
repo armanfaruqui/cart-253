@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>History and Production</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="timeline-container" id="timeline-1">
+      <div class="timeline-header">
+        <h2 class="timeline-header__title">HISTORY</h2>
+        <h3 class="timeline-header__subtitle">A timeline of plastic's production, distribution, and pollution</h3>
+        <a href="index.html"> <img class="logo" src="images/logo.png" width=120 height=120>
+      </div> </a>
+
+      <div class="timeline">
+        <div class="timeline-item" data-text="INCEPTION">
+          <div class="timeline__content"><img class="timeline__img" src="images/bakeland.jpg" />
+            <h2 class="timeline__content-title">1907</h2>
+            <p class="timeline__content-desc">The world's first synthetic plastic called ‘bakelite’ was made by the breaking down and rearranging of long repeating molecule groups known as polymers. These synthetic polymers had remarkable traits.
+              They were malleable, lightweight, durable, cheap, and easy to produce.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-text="METAMORPHOSIS">
+          <div class="timeline__content"><img class="timeline__img" src="images/bakelitepvc.jpeg.png" />
+            <h2 class="timeline__content-title">1920s</h2>
+            <p class="timeline__content-desc">The period of peace following World War 1 encouraged Chemists to invent and produce more. Plastic began to find its way into homes of most Americans. The most notable of these plastics were bakelite and
+              PVC. Bakelite was used for mechanical parts for products such as the telephone. PVC was used to make pipes for plumbing, containers, and electrical gears. </p>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-text="ESTABLISHMENT">
+          <div class="timeline__content"><img class="timeline__img" src="images/bagfish.jpg.png" />
+            <h2 class="timeline__content-title">1930s</h2>
+            <p class="timeline__content-desc">More modern which we see today were invented. Polyethylene was discovered by scientists Fawcett and Gibson, which later became the world's most consumed polymer. The potential of this new material was
+              realized and the longest established plastic federation known as the British Plastic Foundation(BPF) was founded.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-text="INTEGRATION">
+          <div class="timeline__content"><img class="timeline__img" src="images/1960.jpg.png" />
+            <h2 class="timeline__content-title">1960s</h2>
+            <p class="timeline__content-desc">There was a rapid growth of global plastic production during this time as they began to feature in textiles, fashion, toys, and other domestic uses. Acrylic paints were introduced which played a key role
+              in the pop art revolution. However, we also saw the first signs of plastic pollution as scientists notice floating pieces of plastic waste whilst conducting a study on planktons.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-text="DEPENDANCY">
+          <div class="timeline__content"><img class="timeline__img" src="images/1990.jpg" />
+            <h2 class="timeline__content-title">1990s</h2>
+            <p class="timeline__content-desc">Whilst high performing engineering plastics were commercially introduced, the effects of plastic pollution became visible to the public eye. However, most of it was overshadowed by the flashiness of high
+              tech goods such as designer watches, vacuum cleaners, and mobile phones being widely and cheaply available to the public thanks to the use of plastics.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-text="AWAKENING">
+          <div class="timeline__content"><img class="timeline__img" src="images/2000.jpg" />
+            <h2 class="timeline__content-title">2000s</h2>
+            <p class="timeline__content-desc">The Great Pacific Garbage Patch, which was the world's largest collection of floating garbage was discovered in the ocean near Los Angeles. Bangladesh became the first country, and San Francisco the first
+              city to ban plastic bags. More research looking into the effects of plastic pollution began to be funded. Was this all too little too late?</p>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-text="PANIC">
+          <div class="timeline__content"><img class="timeline__img" src="images/whale.jpeg" />
+            <h2 class="timeline__content-title">Now</h2>
+            <p class="timeline__content-desc">It was recently discovered that there are 51 trillion particles of microplastics in our ocean. These are being consumed by humans through fish and have been linked with a variety of serious health
+              concerns such as cancer.. In 2018 The Earth Day Network focused Earth Day on ending plastic pollution by 2020. However we are still further than ever from achieving that goal.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item" data-text="AGONY">
+          <div class="timeline__content"><img class="timeline__img" src="images/last.jpg" />
+            <h2 class="timeline__content-title">FUTURE?</h2>
+            <p class="timeline__content-desc">
+              With the rise of plastic’s pollution not affecting the rise of its production, where are we headed? Will most of our oceans surface be covered with waste? Will plastic outweigh all fish in the ocean by 2050? Will microplastics invade
+              our bodies, food, and water more than it already has? Scientists certainly think so.
+            </p>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script>
+      (function($) {
+        $.fn.timeline = function() {
+          var selectors = {
+            id: $(this),
+            item: $(this).find(".timeline-item"),
+            activeClass: "timeline-item--active",
+            img: ".timeline__img"
+          };
+          selectors.item.eq(0).addClass(selectors.activeClass);
+          selectors.id.css(
+            "background-image",
+            "url(" +
+            selectors.item
+            .first()
+            .find(selectors.img)
+            .attr("src") +
+            ")"
+          );
+          var itemLength = selectors.item.length;
+          $(window).scroll(function() {
+            var max, min;
+            var pos = $(this).scrollTop();
+            selectors.item.each(function(i) {
+              min = $(this).offset().top;
+              max = $(this).height() + $(this).offset().top;
+              var that = $(this);
+              if (i == itemLength - 2 && pos > min + $(this).height() / 2) {
+                selectors.item.removeClass(selectors.activeClass);
+                selectors.id.css(
+                  "background-image",
+                  "url(" +
+                  selectors.item
+                  .last()
+                  .find(selectors.img)
+                  .attr("src") +
+                  ")"
+                );
+                selectors.item.last().addClass(selectors.activeClass);
+              } else if (pos <= max - 40 && pos >= min) {
+                selectors.id.css(
+                  "background-image",
+                  "url(" +
+                  $(this)
+                  .find(selectors.img)
+                  .attr("src") +
+                  ")"
+                );
+                selectors.item.removeClass(selectors.activeClass);
+                $(this).addClass(selectors.activeClass);
+              }
+            });
+          });
+        };
+      })(jQuery);
+
+      $("#timeline-1").timeline();
+    </script>
+
+  </body>
+
+</html>

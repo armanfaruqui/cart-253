@@ -1,0 +1,134 @@
+@font-face {
+  font-family: 'leoscar';
+  src: url(../fonts/Leoscar_Sans_Serif.ttf);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+
+  font font-family: sans-serif;
+
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.container .column{
+  width: 25%;
+  height: 100%;
+  float: left;
+  border-right: 2px solid rgba(0,0,0,.5);
+  box-sizing: border-box;
+  z-index: 1;
+}
+
+.container .column:last-child {
+  border-right: none;
+}
+
+.container .column .content {
+  position: relative;
+  height: 100%;
+}
+
+.container .column .content h1 {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  background: rgba(0,0,0,.1);
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  color: rgba(255,255,255,.2);
+  font-size: 15em;
+  border-top: 2px solid rgba(0,0,0,.5);
+  border-bottom: 2px solid rgba(0,0,0,.5);
+}
+
+.container .column .content .box {
+  position: absolute;
+  height: 20%;
+  width: 100%;
+  border-radius: 10px;
+  top: 50%;
+  transform: translateY(100%);
+  box-sizing: border-box;
+  padding: 40px;
+  background-image: url(../images/paint.png);
+  text-align: center;
+  color: ghostwhite;
+  transition: 0.5%;
+  opacity: 0;
+}
+
+.container .column .content .box .last {
+background-image: none;
+
+}
+.container .column.active .content .box {
+  opacity: 1;
+  transform: translateY(-50%);
+}
+
+.container .column .content .box h2 {
+  margin: 0;
+  padding: 0;
+  letter-spacing: 1px;
+  text-align: center;
+  justify-content: center;
+  font-size: 48px;
+  color: #fff;
+  font-family: 'leoscar', sans-serif;
+}
+
+.container .column .content .box p{
+  color: #262626;
+  font-size: 18px;
+}
+
+.container .column .bg{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.container .column.active .bg.bg1{
+  background: url(../images/waste.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  transition: 0.5s;
+}
+
+.container .column.active .bg.bg2{
+  background: url(../images/waste2.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  transition: 0.5s;
+}
+
+.container .column.active .bg.bg3{
+  background: url(../images/waste3.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  transition: 0.5s;
+}
+
+.container .column.active .bg.bg4{
+  background: url(../images/family.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  transition: 0.5s;
+}
